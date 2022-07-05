@@ -2,7 +2,7 @@ import React from "react";
 import { NativeBaseProvider, Box, Stack } from "native-base";
 import { NavigationContainer, TabRouter } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigatiion/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Recommendations from "./components/Recommendations";
@@ -11,37 +11,42 @@ import SearchResults from "./components/SearchResults";
 import SingleBook from "./components/SingleBook";
 import SingleShelf from "./components/SingleShelf";
 import UserProfile from "./components/UserProfile";
+import Login from "./components/Login";
+import CreateAccount from "./components/CreateAccount";
 
-const Stack = createNativeStackNavigator();
+const MainStack = createNativeStackNavigator();
+const UserStack = createNativeStackNavigator();
+const RecStack = createNativeStackNavigator();
+const SearchTabStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function SearchStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Search" component={Search} />
-      <Stack.Screen name="Search Results" component={SearchResults} />
-      <Stack.Screen name="Single Book" component={SingleBook} />
-    </Stack.Navigator>
+    <SearchTabStack.Navigator>
+      <SearchTabStack.Screen name="Search" component={Search} />
+      <SearchTabStack.Screen name="Search Results" component={SearchResults} />
+      <SearchTabStack.Screen name="Single Book" component={SingleBook} />
+    </SearchTabStack.Navigator>
   );
 }
 
 function RecommendationsStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Recommendations" component={Recommendations} />
-      <Stack.Screen name="Single Book" component={SingleBook} />
-    </Stack.Navigator>
+    <RecStack.Navigator>
+      <RecStack.Screen name="Recommendations" component={Recommendations} />
+      <RecStack.Screen name="Single Book" component={SingleBook} />
+    </RecStack.Navigator>
   );
 }
 
 function UsersShelvesStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="All Shelves" component={UsersShelves} />
-      <Stack.Screen name="User Profile" component={UserProfile} />
-      <Stack.Screen name="Single Shelf" component={SingleShelf} />
-      <Stack.Screen name="Single Book" component={SingleBook} />
-    </Stack.Navigator>
+    <UserStack.Navigator>
+      <UserStack.Screen name="All Shelves" component={UsersShelves} />
+      <UserStack.Screen name="User Profile" component={UserProfile} />
+      <UserStack.Screen name="Single Shelf" component={SingleShelf} />
+      <UserStack.Screen name="Single Book" component={SingleBook} />
+    </UserStack.Navigator>
   );
 }
 
@@ -60,11 +65,11 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Create Account" component={CreateAccount} />
-          <Stack.Screen name="Nav Bar" component={NavBar} />
-        </Stack.Navigator>
+        <MainStack.Navigator>
+          <MainStack.Screen name="Login" component={Login} />
+          <MainStack.Screen name="Create Account" component={CreateAccount} />
+          <MainStack.Screen name="Nav Bar" component={NavBar} />
+        </MainStack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
   );
