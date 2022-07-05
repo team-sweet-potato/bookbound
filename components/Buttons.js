@@ -1,7 +1,7 @@
 import React from "react";
-import { NativeBaseProvider, Box, Button, View, Text } from "native-base";
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native";
-export default Buttons = () => {
+
+export const Buttons = () => {
   return (
     <View>
       <View style={styles.parent}>

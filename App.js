@@ -1,6 +1,6 @@
 import React from "react";
-import First from "./First";
-import { StyleSheet, View, Image, Box } from "react-native";
+import {Buttons} from "./components/Buttons";
+import { StyleSheet, View, Image} from "react-native";
 
 export default function App() {
   return (
@@ -9,7 +9,7 @@ export default function App() {
         style={styles.tinyLogo}
         source={require("./assets/bookboundtestlogo.png")}
       ></Image>
-      <First />
+      <Buttons />
     </View>
   );
 }
