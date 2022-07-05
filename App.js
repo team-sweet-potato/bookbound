@@ -1,6 +1,6 @@
 import React from "react";
 import First from "./First";
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Box } from "react-native";
 
 export default function App() {
   return (
@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
     padding: 70,
     flex: 1,
     alignItems: "center",
-
   },
   tinyLogo: {
     width: 200,
@@ -30,21 +29,4 @@ const styles = StyleSheet.create({
     width: 66,
     height: 58,
   },
-
 });
-
-// import React from "react";
-// import First from "./First";
-// import { Image, View } from "react-native";
-
-// export default function App() {
-//   return (
-//     <View style={{alignItems: "center", justifyContent: "center"}}>
-//       <Image
-//         source={require("./assets/bookboundtestlogo.png")}
-//         style={{ height: 200, resizeMode: 'stretch'}}
-//       ></Image>
-//       <First />
-//     </View>
-//   );
-// }
