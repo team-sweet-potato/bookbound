@@ -13,7 +13,7 @@ import {
   VStack
 } from "native-base"
 
-export const Login = () => {
+const Login = () => {
 
   return (
     <Box
@@ -39,7 +39,6 @@ export const Login = () => {
           }} color="coolGray.600" fontWeight="medium" size="xs">
             Sign in to continue!
           </Heading>
-
           <VStack space={3} mt="5">
             <FormControl>
               <FormControl.Label>Email ID</FormControl.Label>
@@ -79,3 +78,5 @@ export const Login = () => {
     </Box>
   )
 }
+
+export default Login
