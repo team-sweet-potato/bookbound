@@ -33,7 +33,6 @@ const CreateAccount = () => {
 
   return (
     <Box
-
       safeAreaTop="20"
       alignItems="center">
       <Image

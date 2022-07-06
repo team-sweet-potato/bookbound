@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { auth } from '../firebase'
+import { signInWithEmailAndPassword } from "firebase/auth";
 import {
   Box,
   Button,
@@ -18,7 +20,20 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("")
 
   const takeToHome = () => {
-    navigation.navigate("Nav Bar", { screen: "Home" })
+    // navigation.navigate("Nav Bar", { screen: "Home" })
+    console.log(auth.currentUser.uid)
+  }
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        console.log(auth.currentUser.uid)
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
   }
 
   return (
@@ -70,11 +85,11 @@ const Login = ({ navigation }) => {
                 Forget Password?
               </Link>
             </FormControl>
-            <Button mt="2" colorScheme="indigo">
+            <Button mt="2" colorScheme="indigo" onPress={handleLogin}>
               Sign in
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={takeToHome}>
-              Sign in
+              Test: Go to home
             </Button>
             <HStack mt="6" justifyContent="center">
               <Text fontSize="sm" color="coolGray.600" _dark={{
