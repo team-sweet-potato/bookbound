@@ -32,6 +32,8 @@ const CreateAccount = () => {
 
   return (
     <Box safeAreaTop="20" alignItems="center">
+      safeAreaTop="20"
+      alignItems="center">
       <Image
         source={require("../assets/bookboundtestlogo.png")}
         alt="bookbound logo"
