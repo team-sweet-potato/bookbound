@@ -6,12 +6,10 @@ const UserProfile = () => {
     <ScrollView>
       <VStack alignItems="center">
         <Container>
-          <Content padder>
             <Text>Hello, User!</Text>
             <Text>
               UserProfile Screen
             </Text>
-          </Content>
         </Container>
       </VStack>
     </ScrollView>

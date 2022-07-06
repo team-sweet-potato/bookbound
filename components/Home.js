@@ -2,7 +2,6 @@ import React from "react";
 import {
   Button,
   Container,
-  Content,
   ScrollView,
   Text,
   VStack
@@ -13,7 +12,6 @@ const Home = () => {
     <ScrollView>
       <VStack alignItems="center">
         <Container>
-          <Content padder>
             <Text>Hello, User!</Text>
             <Text>
               “I took a deep breath and listened to the old brag of my heart: I
@@ -25,7 +23,6 @@ const Home = () => {
             <Button bordered small>
               <Text>Recommended</Text>
             </Button>
-          </Content>
         </Container>
       </VStack>
     </ScrollView>
