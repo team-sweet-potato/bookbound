@@ -32,30 +32,30 @@ function LogoTitle() {
 
 function SearchStack() {
   return (
-    <SearchTabStack.Navigator>
-      <SearchTabStack.Screen name="Search" component={Search} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <SearchTabStack.Screen name="Search Results" component={SearchResults} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <SearchTabStack.Screen name="Single Book" component={SingleBook} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
+    <SearchTabStack.Navigator screenOptions={{ headerShown: false }}>
+      <SearchTabStack.Screen name="Search" component={Search} />
+      <SearchTabStack.Screen name="Search Results" component={SearchResults}  />
+      <SearchTabStack.Screen name="Single Book" component={SingleBook} />
     </SearchTabStack.Navigator>
   );
 }
 
 function RecommendationsStack() {
   return (
-    <RecStack.Navigator>
-      <RecStack.Screen name="Recommendations" component={Recommendations} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <RecStack.Screen name="Single Book" component={SingleBook} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
+    <RecStack.Navigator screenOptions={{ headerShown: false }}>
+      <RecStack.Screen name="Recommendations" component={Recommendations} />
+      <RecStack.Screen name="Single Book" component={SingleBook} />
     </RecStack.Navigator>
   );
 }
 
 function UsersShelvesStack() {
   return (
-    <UserStack.Navigator>
-      <UserStack.Screen name="All Shelves" component={UsersShelves} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <UserStack.Screen name="User Profile" component={UserProfile} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <UserStack.Screen name="Single Shelf" component={SingleShelf} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <UserStack.Screen name="Single Book" component={SingleBook} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
+    <UserStack.Navigator screenOptions={{ headerShown: false }}>
+      <UserStack.Screen name="All Shelves" component={UsersShelves} />
+      <UserStack.Screen name="User Profile" component={UserProfile} />
+      <UserStack.Screen name="Single Shelf" component={SingleShelf} />
+      <UserStack.Screen name="Single Book" component={SingleBook} />
     </UserStack.Navigator>
   );
 }
