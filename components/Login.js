@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -14,6 +14,8 @@ import {
 } from "native-base"
 
 const Login = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
 
   return (
     <Box
@@ -21,11 +23,11 @@ const Login = () => {
       alignItems="center">
       <Image
         source={require("../assets/bookboundtestlogo.png")}
-        alt='bookbound logo'
+        alt="bookbound logo"
         justifyContent="center"
         alignItems="center"
-        width='200'
-        height='100'
+        width="200"
+        height="100"
       ></Image>
       <Center w="100%">
         <Box safeArea p="2" py="8" w="90%" maxW="290">
@@ -42,11 +44,20 @@ const Login = () => {
           <VStack space={3} mt="5">
             <FormControl>
               <FormControl.Label>Email ID</FormControl.Label>
-              <Input />
+              <Input
+                value={email}
+                placeholder="email"
+                onChangeText={text => setEmail(text)}
+              />
             </FormControl>
             <FormControl>
               <FormControl.Label>Password</FormControl.Label>
-              <Input type="password" />
+              <Input
+                value={password}
+                placeholder="password"
+                onChangeText={text => setPassword(text)}
+                secureTextEntry
+              />
               <Link _text={{
                 fontSize: "xs",
                 fontWeight: "500",
