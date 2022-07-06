@@ -65,10 +65,11 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <MainStack.Navigator>
-          <MainStack.Screen name="Login" component={Login} />
+        <MainStack.Navigator initialRouteName="Single Book">
+          <MainStack.Screen name="Single Book" component={SingleBook} />
+          {/* <MainStack.Screen name="Login" component={Login} />
           <MainStack.Screen name="Create Account" component={CreateAccount} />
-          <MainStack.Screen name="Nav Bar" component={NavBar} />
+          <MainStack.Screen name="Nav Bar" component={NavBar} /> */}
         </MainStack.Navigator>
       </NavigationContainer>
     </NativeBaseProvider>
