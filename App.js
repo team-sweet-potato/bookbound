@@ -66,7 +66,7 @@ export default function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <MainStack.Navigator>
-          {/* <MainStack.Screen name="Login" component={Login} /> */}
+          <MainStack.Screen name="Login" component={Login} />
           <MainStack.Screen name="Create Account" component={CreateAccount} />
           <MainStack.Screen name="Nav Bar" component={NavBar} />
         </MainStack.Navigator>
