@@ -1,5 +1,12 @@
 import React from "react";
-import { ScrollView, Container, VStack, Text, Button } from "native-base";
+import {
+  Button,
+  Container,
+  Content,
+  ScrollView,
+  Text,
+  VStack
+} from "native-base";
 
 const Home = () => {
   return (
