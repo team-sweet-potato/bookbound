@@ -6,12 +6,10 @@ const UsersShelves = () => {
     <ScrollView>
       <VStack alignItems="center">
         <Container>
-          <Content padder>
             <Text>Hello, User!</Text>
             <Text>
               UsersShelves Screen
             </Text>
-          </Content>
         </Container>
       </VStack>
     </ScrollView>

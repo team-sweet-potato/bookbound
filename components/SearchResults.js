@@ -6,12 +6,10 @@ const SearchResults = () => {
     <ScrollView>
       <VStack alignItems="center">
         <Container>
-          <Content padder>
             <Text>Hello, User!</Text>
             <Text>
               SearchResults Screen
             </Text>
-          </Content>
         </Container>
       </VStack>
     </ScrollView>

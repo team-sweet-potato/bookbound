@@ -6,12 +6,10 @@ const SingleShelf = () => {
     <ScrollView>
       <VStack alignItems="center">
         <Container>
-          <Content padder>
             <Text>Hello, User!</Text>
             <Text>
               SingleShelf Screen
             </Text>
-          </Content>
         </Container>
       </VStack>
     </ScrollView>

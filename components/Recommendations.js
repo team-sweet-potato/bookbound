@@ -6,12 +6,10 @@ const Recommendations = () => {
     <ScrollView>
       <VStack alignItems="center">
         <Container>
-          <Content padder>
             <Text>Hello, User!</Text>
             <Text>
               Recommendations Screen
             </Text>
-          </Content>
         </Container>
       </VStack>
     </ScrollView>
