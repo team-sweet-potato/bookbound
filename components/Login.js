@@ -18,7 +18,7 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("")
 
   const takeToHome = () => {
-    navigation.navigate("Nav Bar", { screen: "Home" })
+    navigation.navigate("Nav Bar")
   }
 
   return (
@@ -74,7 +74,7 @@ const Login = ({ navigation }) => {
               Sign in
             </Button>
             <Button mt="2" colorScheme="indigo" onPress={takeToHome}>
-              Sign in
+              Take to Home
             </Button>
             <HStack mt="6" justifyContent="center">
               <Text fontSize="sm" color="coolGray.600" _dark={{
