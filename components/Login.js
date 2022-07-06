@@ -13,9 +13,13 @@ import {
   VStack
 } from "native-base"
 
-const Login = () => {
+const Login = ({ navigation }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const takeToHome = () => {
+    navigation.navigate("Nav Bar", { screen: "Home" })
+  }
 
   return (
     <Box
@@ -67,6 +71,9 @@ const Login = () => {
               </Link>
             </FormControl>
             <Button mt="2" colorScheme="indigo">
+              Sign in
+            </Button>
+            <Button mt="2" colorScheme="indigo" onPress={takeToHome}>
               Sign in
             </Button>
             <HStack mt="6" justifyContent="center">
