@@ -78,7 +78,6 @@ export default function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <MainStack.Navigator screenOptions={{ headerShown: false }}>
-          <MainStack.Screen name="Single Book" component={SingleBook} />
           <MainStack.Screen name="Login" component={Login} />
           <MainStack.Screen name="Create Account" component={CreateAccount} />
           <MainStack.Screen name="Nav Bar" component={NavBar} />
