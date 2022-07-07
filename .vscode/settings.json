@@ -1,6 +1,6 @@
 {
   "workbench.colorCustomizations": {
     "editorWarning.foreground": "#ec0"
-  },
-  "prettier.bracketSpacing": true
+  }
 }
+
