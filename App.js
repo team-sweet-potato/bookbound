@@ -34,9 +34,9 @@ function LogoTitle() {
 function SearchStack() {
   return (
     <SearchTabStack.Navigator screenOptions={{ headerShown: false }}>
-      <SearchTabStack.Screen name="Search" component={Search} />
+      <SearchTabStack.Screen name="Search Page" component={Search} />
       <SearchTabStack.Screen name="Search Results" component={SearchResults} />
-      <SearchTabStack.Screen name="Single Book" component={SingleBook} />
+      {/* <SearchTabStack.Screen name="Single Book" component={SingleBook} /> */}
     </SearchTabStack.Navigator>
   );
 }
@@ -45,7 +45,7 @@ function RecommendationsStack() {
   return (
     <RecStack.Navigator screenOptions={{ headerShown: false }}>
       <RecStack.Screen name="Recommendations" component={Recommendations} />
-      <RecStack.Screen name="Single Book" component={SingleBook} />
+      {/* <RecStack.Screen name="Single Book" component={SingleBook} /> */}
     </RecStack.Navigator>
   );
 }

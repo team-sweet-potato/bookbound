@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Center,
-  Heading,
   Icon,
   Input,
   ScrollView,
@@ -10,14 +9,12 @@ import {
 } from "native-base";
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 
-const Search = () => {
-  const handleKeyPress = (event) => {
-    // This function will handle saving the what will be searched
-  }
+const Search = ({ navigation }) => {
+  const [search, setSearch] = useState("")
 
   const onSubmitEditing = (event) => {
     // This function will submit the text to be searched to the Books API
-    // console.log(event.nativeEvent.text)
+    navigation.push("Search Results")
   }
 
   return (
@@ -42,11 +39,11 @@ const Search = () => {
               InputRightElement={<Icon m="2" mr="3" size="6" color="gray.400" as={<FontAwesome name="barcode" size={24} color="black" />} />}
               returnKeyType="done"
               onSubmitEditing={onSubmitEditing}
-              onKeyPress={handleKeyPress} />
+              onChangeText={text => setSearch(text)} />
           </VStack>
         </Center>
       </Box>
-    </ScrollView>
+    </ScrollView >
   );
 };
 
