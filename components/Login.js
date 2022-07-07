@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { auth } from '../firebase'
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import {
   Box,
   Button,
@@ -19,21 +19,25 @@ const Login = ({ navigation }) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const takeToHome = () => {
-    navigation.navigate("Nav Bar")
-    console.log(auth.currentUser.uid)
+  function takeToHome() {
+    navigation.push("Nav Bar")
   }
 
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        console.log(auth.currentUser.uid)
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+  async function handleLogin() {
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      navigation.push("Nav Bar")
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  function handleGoToSignUp() {
+    navigation.push("Create Account")
+  }
+
+  async function handleSignOut() {
+    await signOut(auth)
   }
 
   return (
@@ -77,6 +81,7 @@ const Login = ({ navigation }) => {
                 onChangeText={text => setPassword(text)}
                 secureTextEntry
               />
+              {/* Not functioning Link for Forgot Password */}
               <Link _text={{
                 fontSize: "xs",
                 fontWeight: "500",
@@ -91,17 +96,24 @@ const Login = ({ navigation }) => {
             <Button mt="2" colorScheme="indigo" onPress={takeToHome}>
               Take to Home
             </Button>
+            <Button mt="2" colorScheme="indigo" onPress={handleGoToSignUp}>
+              Sign Up
+            </Button>
+            <Button mt="2" colorScheme="indigo" onPress={handleSignOut}>
+              Log Out
+            </Button>
             <HStack mt="6" justifyContent="center">
               <Text fontSize="sm" color="coolGray.600" _dark={{
                 color: "warmGray.200"
               }}>
                 I'm a new user.{" "}
               </Text>
+              {/* Link not functional, switch out for button? */}
               <Link _text={{
                 color: "indigo.500",
                 fontWeight: "medium",
                 fontSize: "sm"
-              }} href="#">
+              }} >
                 Sign Up
               </Link>
             </HStack>
