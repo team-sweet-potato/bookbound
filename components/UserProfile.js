@@ -14,7 +14,6 @@ import {
   Stack,
   Divider,
 } from "native-base";
-import BBLogo from "./BBLogo";
 
 const UserProfile = () => {
   return (
@@ -26,7 +25,6 @@ const UserProfile = () => {
           </Button>
         </Stack>
       </Flex>
-      <BBLogo />
       <Flex direction="row" mb="2" mt="1.5">
         <Box safeAreaTop>
           <VStack space={2.5} w="100%" px="3">
