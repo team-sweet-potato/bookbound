@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 import {
   Box,
   Button,
@@ -15,18 +16,26 @@ import {
   VStack,
 } from "native-base";
 
-const CreateAccount = () => {
+const CreateAccount = ({ navigation }) => {
   // Variables to sign up
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
 
-  const handleSignUp = () => {
+  async function handleSignUp() {
     if (password === verifyPassword) {
-      createUserWithEmailAndPassword(auth, email, password).catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
+      try {
+        await createUserWithEmailAndPassword(auth, email, password)
+        await setDoc(doc(db, "users", auth.currentUser.uid), {
+          firstName: firstName,
+          lastName: lastName,
+        });
+        navigation.push("Nav Bar")
+      } catch (error) {
+        console.log(error)
+      }
     }
   };
 
@@ -67,6 +76,22 @@ const CreateAccount = () => {
           </Heading>
           <VStack space={3} mt="5">
             <FormControl>
+              <FormControl.Label>First Name</FormControl.Label>
+              <Input
+                value={firstName}
+                placeholder="firstName"
+                onChangeText={(text) => setFirstName(text)}
+              />
+            </FormControl>
+            <FormControl>
+              <FormControl.Label>Last Name</FormControl.Label>
+              <Input
+                value={lastName}
+                placeholder="lastName"
+                onChangeText={(text) => setLastName(text)}
+              />
+            </FormControl>
+            <FormControl>
               <FormControl.Label>Email</FormControl.Label>
               <Input
                 value={email}
@@ -95,6 +120,9 @@ const CreateAccount = () => {
             <Button mt="2" colorScheme="indigo" onPress={handleSignUp}>
               Sign up
             </Button>
+            <Button mt="2" colorScheme="indigo" onPress={() => navigation.goBack()}>
+              Back to Login
+            </Button>
             <HStack mt="6" justifyContent="center">
               <Text
                 fontSize="sm"
@@ -111,7 +139,8 @@ const CreateAccount = () => {
                   fontWeight: "medium",
                   fontSize: "sm",
                 }}
-                href="#"
+                href="Login"
+                onPress={() => navigation.pop()}
               >
                 Login
               </Link>

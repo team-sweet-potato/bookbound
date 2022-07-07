@@ -24,6 +24,7 @@ const Tab = createBottomTabNavigator();
 function LogoTitle() {
   return (
     <Image
+      alt="bookbound logo"
       style={{ width: 81, height: 50 }}
       source={require("./assets/bookboundtestlogo.png")}
     />
@@ -34,7 +35,7 @@ function SearchStack() {
   return (
     <SearchTabStack.Navigator screenOptions={{ headerShown: false }}>
       <SearchTabStack.Screen name="Search" component={Search} />
-      <SearchTabStack.Screen name="Search Results" component={SearchResults}  />
+      <SearchTabStack.Screen name="Search Results" component={SearchResults} />
       <SearchTabStack.Screen name="Single Book" component={SingleBook} />
     </SearchTabStack.Navigator>
   );
@@ -77,7 +78,7 @@ export default function App() {
     <NativeBaseProvider>
       <NavigationContainer>
         <MainStack.Navigator screenOptions={{ headerShown: false }}>
-          <MainStack.Screen name="Login" component={Login}  />
+          <MainStack.Screen name="Login" component={Login} />
           <MainStack.Screen name="Create Account" component={CreateAccount} />
           <MainStack.Screen name="Nav Bar" component={NavBar} />
         </MainStack.Navigator>
