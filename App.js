@@ -63,7 +63,7 @@ function UsersShelvesStack() {
 
 function NavBar() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
       <Tab.Screen name="Home" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
       <Tab.Screen name="Search" component={SearchStack} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
       <Tab.Screen name="For You" component={RecommendationsStack} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
