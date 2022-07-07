@@ -1,10 +1,30 @@
 import { ScrollView, Container, Image, VStack, Text, Heading, Badge, Icon, Row, Divider, Fab } from "native-base";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
+import axios from 'axios';
 
 
-const SingleBook = () => {
+const SingleBook = ({ route }) => {
+  const [book, setBook] = useState({});
+
+  const fetchBook = async () => {
+    try  {
+      // const {data} = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${route.params.isbn}`);
+      const {data} = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:9781250313218`);
+      console.log('data', data)
+      setBook(data);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchBook();
+  }, [])
+
   return (
+    !book.items ? (<Text>Loading</Text>) : (
     <ScrollView>
       <VStack space={4} alignItems="center">
         <Container>
@@ -15,20 +35,18 @@ const SingleBook = () => {
             Read
           </Badge>
           <Image source={{
-          uri: "https://media.npr.org/assets/img/2020/08/05/81nnjiouhll-1-_wide-fd16ee400446584c16f15aad084c8fcf0d489245.jpg?s=1400"
-          }} alt="Harrow the Ninth book cover" size="2xl" />
+          uri: book.items[0].volumeInfo.imageLinks.thumbnail
+          }} alt={`${book.items[0].volumeInfo.title} book cover`} size="2xl" />
         </Container>
         <Container>
-          <Heading size="xl">Harrow the Ninth</Heading>
-          <Heading size="md">by Tamsyn Muir</Heading>
+          <Heading size="xl">{book.items[0].volumeInfo.title}</Heading>
+          <Heading size="md">By {book.items[0].volumeInfo.authors.join(", ")}</Heading>
           <Divider my="2" _light={{
               bg: "muted.800"
             }} _dark={{
               bg: "muted.50"
             }} />
-          <Text fontSize="sm">
-            Harrow the Ninth, the sequel to Gideon the Ninth, turns a galaxy inside out as one necromancer struggles to survive the wreckage of herself aboard the Emperor's haunted space station.
-          </Text>
+          <Text fontSize="sm">{book.items[0].volumeInfo.description}</Text>
         </Container>
         <Container>
           <Heading size="sm">Your Rating:</Heading>
@@ -42,7 +60,7 @@ const SingleBook = () => {
         </Container>
         <Fab renderInPortal={false} shadow={2} size="sm" icon={<Icon color="white" as={AntDesign} name="plus" size="sm" />} />
       </VStack>
-    </ScrollView>
+    </ScrollView>)
   )
 }
 
