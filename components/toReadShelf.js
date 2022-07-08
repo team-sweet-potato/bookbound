@@ -55,7 +55,24 @@ const toReadShelf = () => {
     fetchBooks();
   }, [books, shelf]);
 
-  return <Text>To Read Books</Text>;
+  return (
+    <ScrollView>
+      <VStack space={4} alignItems="center">
+        {books.map((book) => {
+          return (
+            <Container>
+              <Image
+                source={{ uri: book.imageLinks.thumbnail }}
+                alt={`${book.title} book cover`}
+              />
+              <Heading>{book.title}</Heading>
+              <Text>{book.authors.join(", ")}</Text>
+            </Container>
+          );
+        })}
+      </VStack>
+    </ScrollView>
+  );
 };
 
 export default toReadShelf;
