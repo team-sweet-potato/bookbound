@@ -1,13 +1,13 @@
 import React from "react";
 import { ScrollView, Container, VStack, Text, Button } from "native-base";
-import UserProfile from "./UserProfile";
+import SingleShelf from "./SingleShelf";
 
 const UsersShelves = () => {
   return (
     <ScrollView>
       <VStack alignItems="center">
         <Container>
-            <UserProfile/>
+          <SingleShelf />
         </Container>
       </VStack>
     </ScrollView>
