@@ -14,6 +14,7 @@ import UserProfile from "./components/UserProfile";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
 import { Image } from "native-base";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 
 const MainStack = createNativeStackNavigator();
 const UserStack = createNativeStackNavigator();
@@ -63,7 +64,22 @@ function UsersShelvesStack() {
 
 function NavBar() {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        if (route.name === 'Home') {
+          return <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
+        } else if (route.name === 'Search') {
+          return <Ionicons name={focused ? 'search-sharp' : 'search-outline'} size={size} color={color} />
+        } else if (route.name === 'For You') {
+          return <Ionicons name={focused ? 'book' : 'book-outline'} size={size} color={color} />
+        } else if (route.name === 'My Shelves') {
+          return <MaterialCommunityIcons name={'bookshelf'} size={size} color={color} />
+        }
+      },
+      tabBarActiveTintColor: 'black',
+      tabBarInactiveTintColor: 'gray',
+      headerShown: false
+    })}>
       <Tab.Screen name="Home" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
       <Tab.Screen name="Search" component={SearchStack} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
       <Tab.Screen name="For You" component={RecommendationsStack} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
