@@ -4,24 +4,18 @@ import { FontAwesome, AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 import { auth, db } from '../firebase';
 import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc } from "firebase/firestore";
+import { SafeAreaView } from 'react-native';
 
 
 const SingleBook = ({ route }) => {
   const [book, setBook] = useState({});
   const [list, setList] = useState('');
   const [rating, setRating] = useState(0);
-  const isbn = route.params.isbn;
+  const [isbn, setIsbn] = useState('');
 
   const fetchBook = async () => {
-    try  {
-      const {data} = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`);
-      if (data) {
-        setBook(data.items[0].volumeInfo);
-      }
-    }
-    catch (err) {
-      console.log(err);
-    }
+    setBook(route.params.book);
+    setIsbn(route.params.book.industryIdentifiers.filter(isbn => isbn.type === "ISBN_13")[0].identifier);
   }
 
   const fetchList = async () => {
@@ -73,7 +67,8 @@ const SingleBook = ({ route }) => {
   }, [])
 
   return (
-    Object.keys(book).length === 0 ? (<Text>Loading</Text>) : (
+    <SafeAreaView>
+    {Object.keys(book).length === 0 ? (<Text>Loading</Text>) : (
     <ScrollView>
       <VStack space={4} alignItems="center">
         <Container>
@@ -119,8 +114,8 @@ const SingleBook = ({ route }) => {
           </Box>
         </Center>
       </VStack>
-    </ScrollView>)
-  )
+    </ScrollView>)}
+    </SafeAreaView>)
 }
 
 export default SingleBook;
