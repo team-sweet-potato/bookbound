@@ -5,29 +5,11 @@ import {
   VStack,
   Text,
   Heading,
-  Badge,
-  Icon,
-  Row,
-  Divider,
-  Fab,
-  Center,
-  Box,
-  Select,
-  CheckIcon,
 } from "native-base";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { auth, db } from "../firebase";
-import {
-  collection,
-  getDocs,
-  doc,
-  updateDoc,
-  deleteDoc,
-  setDoc,
-  query,
-} from "firebase/firestore";
-import { api_key } from "../apikey";
+import { collection, getDocs, query } from "firebase/firestore";
 
 const SingleShelf = () => {
   const [shelf, setShelf] = useState([]);
@@ -58,12 +40,9 @@ const SingleShelf = () => {
                 isbn
               )}`
             );
-            //return setBook((books) => [...books, data.items[0].volumeInfo]);
             booksArr.push(data.items[0].volumeInfo);
           }
           setBook(booksArr);
-          console.log("booksArr", booksArr);
-          console.log("BOOKS2", books);
         } catch (err) {
           console.log(err);
         }
@@ -74,27 +53,26 @@ const SingleShelf = () => {
   useEffect(() => {
     fetchUserShelf();
     fetchBooks();
-    console.log("SHELF", shelf);
-    console.log("BOOKS", books);
   }, [books, shelf]);
 
-  //useEffect(() => {
-  //fetchBooks();
-  //console.log("BOOKS", books);
-  // }, [books, shelf]);
-
-  /* return !shelf.length > 0 ? (
-    <Text>Loading</Text>
-  ) : (
+  return (
     <ScrollView>
       <VStack space={4} alignItems="center">
-        <Container>
-          <Text>{books}</Text>
-        </Container>
+        {books.map((book) => {
+          return (
+            <Container>
+              <Image
+                source={{ uri: book.imageLinks.thumbnail }}
+                alt={`${book.title} book cover`}
+              />
+              <Heading>{book.title}</Heading>
+              <Text>{book.authors.join(", ")}</Text>
+            </Container>
+          );
+        })}
       </VStack>
     </ScrollView>
-  ); */
-  return <Text>Hello</Text>;
+  );
 };
 
 export default SingleShelf;
