@@ -13,7 +13,8 @@ import {
 } from "native-base";
 
 const IndividualSearchResult = ({ book }) => {
-
+  console.log(book)
+  const image = book['volumeInfo']['imageLinks'] !== undefined ? book['volumeInfo']['imageLinks']['smallThumbnail'] : 'https://historyexplorer.si.edu/books/book/multicultural-portrait-immigration'
   return (
     <Box>
       <Pressable onPress={() => console.log('You touched me')} _dark={{
@@ -27,7 +28,7 @@ const IndividualSearchResult = ({ book }) => {
             alignItems="center"
             space={3}>
             <Image source={{
-              uri: book['volumeInfo']['imageLinks']['smallThumbnail']
+              uri: image
             }} alt="Alternate Text" size="xl" />
             <VStack style={{ flexGrow: 1, flexDirection: 'row' }}>
               <Text
