@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Button,
   Container,
@@ -6,8 +5,28 @@ import {
   Text,
   VStack
 } from "native-base";
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  const [book, setBook] = useState({});
+
+  const fetchTestBook = async () => {
+    try  {
+      const {data} = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:9780439023481`);
+      if (data) {
+        setBook(data.items[0].volumeInfo);
+      }
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => {
+    fetchTestBook();
+  }, [])
+
   return (
     <ScrollView>
       <VStack alignItems="center">
@@ -22,6 +41,9 @@ const Home = () => {
             </Button>
             <Button bordered small>
               <Text>Recommended</Text>
+            </Button>
+            <Button bordered small onPress={() => navigation.navigate("My Shelves", {screen: "Single Book", params: {book}})}>
+              <Text>Single Book test</Text>
             </Button>
         </Container>
       </VStack>
