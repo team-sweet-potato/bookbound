@@ -9,7 +9,9 @@ import Recommendations from "./components/Recommendations";
 import UsersShelves from "./components/UsersShelves";
 import SearchResults from "./components/SearchResults";
 import SingleBook from "./components/SingleBook";
-import SingleShelf from "./components/SingleShelf";
+import haveReadShelf from "./components/haveReadShelf";
+import toReadShelf from "./components/toReadShelf";
+import currentlyReadingShelf from "./components/currentlyReadingShelf";
 import UserProfile from "./components/UserProfile";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
@@ -56,7 +58,9 @@ function UsersShelvesStack() {
     <UserStack.Navigator screenOptions={{ headerShown: false }}>
       <UserStack.Screen name="All Shelves" component={UsersShelves} />
       <UserStack.Screen name="User Profile" component={UserProfile} />
-      <UserStack.Screen name="Single Shelf" component={SingleShelf} />
+      <UserStack.Screen name="Read" component={haveReadShelf} />
+      <UserStack.Screen name="To Be Read" component={toReadShelf} />
+      <UserStack.Screen name="Reading" component={currentlyReadingShelf} />
       <UserStack.Screen name="Single Book" component={SingleBook} />
     </UserStack.Navigator>
   );
@@ -64,30 +68,71 @@ function UsersShelvesStack() {
 
 function NavBar() {
   return (
-    <Tab.Navigator screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) => {
-        if (route.name === 'Home') {
-          return <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color} />
-        } else if (route.name === 'Search') {
-          return <Ionicons name={focused ? 'search-sharp' : 'search-outline'} size={size} color={color} />
-        } else if (route.name === 'For You') {
-          return <Ionicons name={focused ? 'book' : 'book-outline'} size={size} color={color} />
-        } else if (route.name === 'My Shelves') {
-          return <MaterialCommunityIcons name={'bookshelf'} size={size} color={color} />
-        }
-      },
-      tabBarActiveTintColor: 'black',
-      tabBarInactiveTintColor: 'gray',
-      headerShown: false
-    })}>
-      <Tab.Screen name="Home" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <Tab.Screen name="Search" component={SearchStack} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <Tab.Screen name="For You" component={RecommendationsStack} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
-      <Tab.Screen name="My Shelves" component={UsersShelvesStack} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          if (route.name === "Home") {
+            return (
+              <Ionicons
+                name={focused ? "home" : "home-outline"}
+                size={size}
+                color={color}
+              />
+            );
+          } else if (route.name === "Search") {
+            return (
+              <Ionicons
+                name={focused ? "search-sharp" : "search-outline"}
+                size={size}
+                color={color}
+              />
+            );
+          } else if (route.name === "For You") {
+            return (
+              <Ionicons
+                name={focused ? "book" : "book-outline"}
+                size={size}
+                color={color}
+              />
+            );
+          } else if (route.name === "My Shelves") {
+            return (
+              <MaterialCommunityIcons
+                name={"bookshelf"}
+                size={size}
+                color={color}
+              />
+            );
+          }
+        },
+        tabBarActiveTintColor: "black",
+        tabBarInactiveTintColor: "gray",
+        headerShown: false,
+      })}
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchStack}
+        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+      />
+      <Tab.Screen
+        name="For You"
+        component={RecommendationsStack}
+        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+      />
+      <Tab.Screen
+        name="My Shelves"
+        component={UsersShelvesStack}
+        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+      />
     </Tab.Navigator>
   );
 }
-
 
 export default function App() {
   return (

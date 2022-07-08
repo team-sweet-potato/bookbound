@@ -11,7 +11,7 @@ import axios from "axios";
 import { auth, db } from "../firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 
-const SingleShelf = () => {
+const haveReadShelf = () => {
   const [shelf, setShelf] = useState([]);
   const [books, setBook] = useState([]);
 
@@ -75,4 +75,4 @@ const SingleShelf = () => {
   );
 };
 
-export default SingleShelf;
+export default haveReadShelf;
