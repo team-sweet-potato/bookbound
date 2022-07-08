@@ -5,12 +5,15 @@ import {
   Heading,
   Pressable,
   Text,
-  HStack
+  HStack,
+  ScrollView
 } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
+import IndividualSearchResult from './IndividualSearchResult'
 
-
-const SearchResults = ({ navigation }) => {
+const SearchResults = ({ navigation, route }) => {
+  const books = route.params.books["items"]
+  // console.log(books['items'])
   return (
     <>
       <SafeAreaView>
@@ -37,22 +40,26 @@ const SearchResults = ({ navigation }) => {
               isTruncated
               numberOfLines={1}
               flex={1}
-              // @ts-ignore
-              style={{ wordWrap: "normal" }}
+            // @ts-ignore
             >
               Search Results
             </Heading>
           </HStack>
         </Box>
       </SafeAreaView>
+
       <Box
         flex={1}
         flexBasis="0"
         px={4}
         mx="auto"
-        pt={navigation ? "70px" : 0}
         w={{ base: "100%", md: "768px", lg: "1000px", xl: "1080px" }}
       >
+        <ScrollView>
+          {books ? books.map(book => (
+            <IndividualSearchResult key={book.id} book={book} />
+          )) : <Text>No Results</Text>}
+        </ScrollView>
       </Box>
     </>
   )
