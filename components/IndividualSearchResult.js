@@ -13,8 +13,7 @@ import {
 } from "native-base";
 
 const IndividualSearchResult = ({ book }) => {
-  console.log(book)
-  const image = book['volumeInfo']['imageLinks'] !== undefined ? book['volumeInfo']['imageLinks']['smallThumbnail'] : 'https://historyexplorer.si.edu/books/book/multicultural-portrait-immigration'
+  const image = book['volumeInfo']['imageLinks'] !== undefined ? book['volumeInfo']['imageLinks']['smallThumbnail'] : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg"
   return (
     <Box>
       <Pressable onPress={() => console.log('You touched me')} _dark={{
