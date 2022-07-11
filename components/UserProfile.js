@@ -1,85 +1,135 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { updateEmail, updatePassword } from "firebase/auth";
+import { auth, db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
 import {
-  Avatar,
-  ScrollView,
-  Container,
-  VStack,
-  Text,
-  NativeBaseProvider,
-  HStack,
   Box,
-  Flex,
-  Center,
   Button,
-  Stack,
-  Divider,
+  Center,
+  FormControl,
+  Heading,
+  HStack,
+  Link,
+  Image,
+  Input,
+  ScrollView,
+  Text,
+  VStack,
 } from "native-base";
 
-const UserProfile = () => {
+const UserProfile = ({ navigation, route }) => {
+  // Variables to sign up
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [verifyPassword, setVerifyPassword] = useState("");
+
+  const fetchUser = async () => {
+    setFirstName(route.params.user.firstName);
+    setLastName(route.params.user.lastName);
+    setUsername(route.params.user.username);
+    setEmail(auth.currentUser.email);
+  }
+
+  useEffect(() => {
+    fetchUser();
+  }, [])
+
+  async function handleSignUp() {
+    if (password === verifyPassword && firstName && lastName && username) {
+      try {
+        await updateEmail(auth.currentUser, email);
+        await updatePassword(auth.currentUser, password);
+        await setDoc(doc(db, "users", auth.currentUser.uid), {
+          firstName: firstName,
+          lastName: lastName,
+          username: username
+        });
+        navigation.push("All Shelves")
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
   return (
-    <NativeBaseProvider>
-      <Flex direction="row-reverse">
-        <Stack mb="2.5" mt="5">
-          <Button size="sm" variant="outline" colorScheme="secondary">
-            Log Out
-          </Button>
-        </Stack>
-      </Flex>
-      <Flex direction="row" mb="2" mt="1.5">
-        <Box safeAreaTop>
-          <VStack space={2.5} w="100%" px="3">
-            <Avatar
+    <ScrollView>
+      <Box
+        safeAreaTop="20"
+        alignItems="center">
+        <Center w="100%">
+          <Box safeArea p="2" py="8" w="90%" maxW="290">
+            <Heading
               size="lg"
-              source={{
-                uri: "https://media.istockphoto.com/photos/man-sitting-on-sofa-reading-a-book-picture-id457207689?k=20&m=457207689&s=612x612&w=0&h=UNc95C-PqL_bXVz20Xq_c5RlIRen2RCc1avDlQKs-VA=",
+              fontWeight="600"
+              color="coolGray.800"
+              _dark={{
+                color: "warmGray.50",
               }}
-            ></Avatar>
-          </VStack>
-        </Box>
-      </Flex>
-      <Container>
-        <Box space={4} w="100%" px="3" padding="3">
-          <Text fontSize="lg" fontWeight="medium">
-            Gary the Test Guy
-          </Text>
-          <Text fontSize="sm" fontWeight="medium">
-            @gary_loves_books
-          </Text>
-          <Text fontSize="md" fontWeight="medium">
-            Brooklyn, NY
-          </Text>
-          <Text>some more user data</Text>
-        </Box>
-      </Container>
-      <Divider my="2" />
-      <Center>
-        <Text fontSize="lg" fontWeight="medium" padding="3">
-          Gary's Stacks
-        </Text>
-      </Center>
-      <ScrollView horizontal={true}>
-        <HStack space={3} justifyContent="center" mb="2" mt="1.5">
-          <Center h="40" w="20" bg="#cb997e" rounded="md" shadow={3}>
-            Romance
-          </Center>
-          <Center h="40" w="20" bg="#ddbea9" rounded="md" shadow={3}>
-            Sci Fi
-          </Center>
-          <Center h="40" w="20" bg="#ffe8d6" rounded="md" shadow={3}>
-            Fantasy
-          </Center>
-          <Center h="40" w="20" bg="#b7b7a4" rounded="md" shadow={3}>
-            Horror
-          </Center>
-          <Center h="40" w="20" bg="#a5a58d" rounded="md" shadow={3}>
-            Adventure
-          </Center>
-          <Center h="40" w="20" bg="#6b705c" rounded="md" shadow={3}>
-            History
-          </Center>
-        </HStack>
-      </ScrollView>
-    </NativeBaseProvider>
+            >
+              Update Account Info
+            </Heading>
+            <VStack space={3} mt="5">
+              <FormControl>
+                <FormControl.Label>First Name</FormControl.Label>
+                <Input
+                  value={firstName}
+                  placeholder="firstName"
+                  onChangeText={(text) => setFirstName(text)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Last Name</FormControl.Label>
+                <Input
+                  value={lastName}
+                  placeholder="lastName"
+                  onChangeText={(text) => setLastName(text)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Username</FormControl.Label>
+                <Input
+                  value={username}
+                  placeholder="username"
+                  onChangeText={(text) => setUsername(text)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Email</FormControl.Label>
+                <Input
+                  value={email}
+                  placeholder="email"
+                  onChangeText={(text) => setEmail(text)}
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Change Password</FormControl.Label>
+                <Input
+                  value={password}
+                  placeholder="password"
+                  onChangeText={(text) => setPassword(text)}
+                  secureTextEntry
+                />
+              </FormControl>
+              <FormControl>
+                <FormControl.Label>Verify New Password</FormControl.Label>
+                <Input
+                  value={verifyPassword}
+                  placeholder="password"
+                  onChangeText={(text) => setVerifyPassword(text)}
+                  secureTextEntry
+                />
+              </FormControl>
+              <Button mt="2" colorScheme="indigo" onPress={handleSignUp}>
+                Submit
+              </Button>
+            </VStack>
+          </Box>
+        </Center>
+      </Box>
+    </ScrollView>
   );
 };
 
