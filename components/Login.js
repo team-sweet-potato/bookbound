@@ -15,6 +15,7 @@ import {
   Text,
   VStack
 } from "native-base"
+import axios from 'axios'
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("")
@@ -39,6 +40,11 @@ const Login = ({ navigation }) => {
 
   async function handleSignOut() {
     await signOut(auth)
+  }
+
+  async function handleGetTestData() {
+    const { data } = await axios.get(`http://localhost:8000/Disappearing Acts/1`);
+    console.log(data["isbn"])
   }
 
   return (
@@ -103,6 +109,10 @@ const Login = ({ navigation }) => {
               </Button>
               <Button mt="2" colorScheme="indigo" onPress={handleSignOut}>
                 Log Out
+              </Button>
+              {/* Test button to be removed on final product */}
+              <Button mt="2" colorScheme="indigo" onPress={handleGetTestData}>
+                Get Test Data
               </Button>
               <HStack mt="6" justifyContent="center">
                 <Text fontSize="sm" color="coolGray.600" _dark={{

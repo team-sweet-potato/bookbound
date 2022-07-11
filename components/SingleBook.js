@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesome, AntDesign } from '@expo/vector-icons';
 import axios from 'axios';
 import { auth, db } from '../firebase';
-import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc } from "firebase/firestore";
+import { collection, getDocs, doc, updateDoc, deleteDoc, setDoc, getDoc } from "firebase/firestore";
 import { SafeAreaView } from 'react-native';
 
 
@@ -51,20 +51,27 @@ const SingleBook = ({ route }) => {
   const handlePress = async (index) => {
     setRating(index);
     await updateDoc(doc(doc(db, "users", auth.currentUser.uid), "readBooks", isbn), {rate: index});
+    const book = doc(db, "ratings", isbn);
+    await setDoc(book, {}, {merge: true});
+    await setDoc(doc(book, "userRatings", auth.currentUser.uid), {rate: index});
   }
 
   const handleValueChange = async (value) => {
-    if (list !== '') {
+    if (list !== "") {
       await deleteDoc(doc(doc(db, "users", auth.currentUser.uid), list, isbn));
     }
-    await setDoc(doc(doc(db, "users", auth.currentUser.uid), value, isbn), {});
-    setList(value);
+    if (value !== "") {
+      await setDoc(doc(doc(db, "users", auth.currentUser.uid), value, isbn), {});
+      setList(value);
+    } else {
+      setList(value);
+    }
   }
 
   useEffect(() => {
     fetchBook();
     fetchList();
-  }, [])
+  }, [book, list])
 
   return (
     <SafeAreaView>
@@ -107,6 +114,7 @@ const SingleBook = ({ route }) => {
             bg: "teal.600",
             endIcon: <CheckIcon size="5" />
             }} mt={1} onValueChange={itemValue => handleValueChange(itemValue)}>
+              <Select.Item label="None" value="" />
               <Select.Item label="Read" value="readBooks" />
               <Select.Item label="To Be Read" value="toReadBooks" />
               <Select.Item label="Currently Reading" value="currentlyReading" />
