@@ -34,7 +34,7 @@ const Recommendations = () => {
             {({
               isPressed
             }) => {
-              return <Center h="40" w="20" bg="#cb997e" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#cb997e" opacity={isPressed ? .5 : 1} rounded="8" style={{
+              return <Center h="40" w="20" bg="#cb997e" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#cb997e" opacity={isPressed ? .5 : 1} borderRadius="8" style={{
                 transform: [{
                   scale: isPressed ? 0.96 : 1
                 }]
@@ -47,7 +47,7 @@ const Recommendations = () => {
             {({
               isPressed
             }) => {
-              return <Center h="40" w="20" bg="#cb997e" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#ddbea9" opacity={isPressed ? .5 : 1} rounded="8" style={{
+              return <Center h="40" w="20" bg="#cb997e" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#ddbea9" opacity={isPressed ? .5 : 1} borderRadius="8" style={{
                 transform: [{
                   scale: isPressed ? 0.96 : 1
                 }]
@@ -60,7 +60,7 @@ const Recommendations = () => {
             {({
               isPressed
             }) => {
-              return <Center h="40" w="20" bg="#ffe8d6" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#ffe8d6" opacity={isPressed ? .5 : 1} rounded="8" style={{
+              return <Center h="40" w="20" bg="#ffe8d6" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#ffe8d6" opacity={isPressed ? .5 : 1} borderRadius="8" style={{
                 transform: [{
                   scale: isPressed ? 0.96 : 1
                 }]
@@ -73,7 +73,7 @@ const Recommendations = () => {
             {({
               isPressed
             }) => {
-              return <Center h="40" w="20" bg="#b7b7a4" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#b7b7a4" opacity={isPressed ? .5 : 1} rounded="8" style={{
+              return <Center h="40" w="20" bg="#b7b7a4" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#b7b7a4" opacity={isPressed ? .5 : 1} borderRadius="8" style={{
                 transform: [{
                   scale: isPressed ? 0.96 : 1
                 }]
@@ -86,7 +86,7 @@ const Recommendations = () => {
             {({
               isPressed
             }) => {
-              return <Center h="40" w="20" bg="#a5a58d" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#ddbea9" opacity={isPressed ? .5 : 1} rounded="8" style={{
+              return <Center h="40" w="20" bg="#a5a58d" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#ddbea9" opacity={isPressed ? .5 : 1} borderRadius="8" style={{
                 transform: [{
                   scale: isPressed ? 0.96 : 1
                 }]
@@ -99,7 +99,7 @@ const Recommendations = () => {
             {({
               isPressed
             }) => {
-              return <Center h="40" w="20" bg="#6b705c" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#cb997e" opacity={isPressed ? .5 : 1} rounded="8" style={{
+              return <Center h="40" w="20" bg="#6b705c" rounded="md" borderWidth="1" borderColor="coolGray.300" shadow="3" backgroundColor="#cb997e" opacity={isPressed ? .5 : 1} borderRadius="8" style={{
                 transform: [{
                   scale: isPressed ? 0.96 : 1
                 }]
