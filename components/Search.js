@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Center,
@@ -6,13 +6,14 @@ import {
   Input,
   ScrollView,
   VStack,
+  Button
 } from "native-base";
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
-import { api_key } from '../apikey'
+import { api_key } from '../apikey';
 
 const Search = ({ navigation }) => {
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
 
   const onSubmitEditing = async (event) => {
     // This function will submit the text to be searched to the Books API
@@ -48,6 +49,9 @@ const Search = ({ navigation }) => {
               onChangeText={text => setSearch(text)} />
           </VStack>
         </Center>
+      </Box>
+      <Box>
+        <Button onPress={() => navigation.navigate("Scanner")}>Scan Barcode</Button>
       </Box>
     </ScrollView >
   );
