@@ -29,24 +29,22 @@ const CreateAccount = ({ navigation }) => {
   async function handleSignUp() {
     if (password === verifyPassword && firstName && lastName && username) {
       try {
-        await createUserWithEmailAndPassword(auth, email, password)
+        await createUserWithEmailAndPassword(auth, email, password);
         await setDoc(doc(db, "users", auth.currentUser.uid), {
           firstName: firstName,
           lastName: lastName,
-          username: username
+          username: username,
         });
-        navigation.push("Nav Bar")
+        navigation.push("Nav Bar");
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
-  };
+  }
 
   return (
     <ScrollView>
-      <Box
-        safeAreaTop="20"
-        alignItems="center">
+      <Box safeAreaTop="20" alignItems="center">
         <Image
           source={require("../assets/bookboundtestlogo.png")}
           alt="bookbound logo"
@@ -132,31 +130,13 @@ const CreateAccount = ({ navigation }) => {
               <Button mt="2" colorScheme="indigo" onPress={handleSignUp}>
                 Sign up
               </Button>
-              <Button mt="2" colorScheme="indigo" onPress={() => navigation.goBack()}>
+              <Button
+                mt="2"
+                colorScheme="indigo"
+                onPress={() => navigation.goBack()}
+              >
                 Back to Login
               </Button>
-              <HStack mt="6" justifyContent="center">
-                <Text
-                  fontSize="sm"
-                  color="coolGray.600"
-                  _dark={{
-                    color: "warmGray.200",
-                  }}
-                >
-                  I'm a current user.{" "}
-                </Text>
-                <Link
-                  _text={{
-                    color: "indigo.500",
-                    fontWeight: "medium",
-                    fontSize: "sm",
-                  }}
-                  href="Login"
-                  onPress={() => navigation.pop()}
-                >
-                  Login
-                </Link>
-              </HStack>
             </VStack>
           </Box>
         </Center>
