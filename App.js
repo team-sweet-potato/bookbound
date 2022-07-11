@@ -20,6 +20,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Scanner from './components/Scanner';
 import { auth } from "./firebase";
 
+
 const MainStack = createNativeStackNavigator();
 const UserStack = createNativeStackNavigator();
 const RecStack = createNativeStackNavigator();

@@ -3,59 +3,68 @@ import {
   ArrowBackIcon,
   Avatar,
   Box,
+  Container,
   Heading,
   HStack,
   Image,
   Pressable,
   Spacer,
   Text,
+  View,
   VStack
 } from "native-base";
 
 const IndividualSearchResult = ({ book }) => {
   const image = book['volumeInfo']['imageLinks'] !== undefined ? book['volumeInfo']['imageLinks']['smallThumbnail'] : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg"
+  console.log(book)
   return (
-    <Box>
+    <Box >
       <Pressable onPress={() => console.log('You touched me')} _dark={{
         bg: 'coolGray.800'
       }}
+        paddingTop={2}
+        paddingBottom={2}
         _light={{
           bg: 'white'
         }}>
-        <Box pl="4" pr="5" py="2">
-          <HStack
-            alignItems="center"
-            space={3}>
-            <Image source={{
-              uri: image
-            }} alt="Alternate Text" size="xl" />
-            <VStack style={{ flexGrow: 1, flexDirection: 'row' }}>
-              <Text
-                color="coolGray.800"
-                _dark={{
-                  color: 'warmGray.50'
-                }}
-                // alignSelf='flex-start'
-                bold>
-                {book['volumeInfo']['title']}
-              </Text>
-              <Text color="coolGray.600" _dark={{
-                color: 'warmGray.200'
-              }}>
-                recent text
-              </Text>
-            </VStack>
-            <Spacer />
-            <Text fontSize="xs" color="coolGray.800" _dark={{
-              color: 'warmGray.50'
-            }} alignSelf="flex-start">
-              Add
+        <HStack
+          alignItems="center"
+        // width="100%"
+        >
+          <Image source={{
+            uri: image
+          }}
+            width="20%"
+            alt="Alternate Text"
+            size="xl"
+
+          />
+
+          <VStack
+            paddingRight={4}
+            paddingLeft={3}
+            width="70%"
+            style={{ flexDirection: 'row', textAlignVertical: 'top' }}>
+            <Text
+              // style={{ textAlignVertical: 'top'  }}
+              // width={20}
+              style={{ justifyContent: 'flex-start', flexWrap: 'wrap', }}>
+              <View>
+                <Text style={{ textAlignVertical: 'top' }} bold>{book['volumeInfo']['title']}</Text>
+              </View>
+              <View>
+                <Text>Authors: {book['volumeInfo']["authors"].join(", ")}</Text>
+              </View>
+              <View>
+                <Text>Publish Date: {book['volumeInfo']["publishedDate"]}</Text>
+              </View>
             </Text>
-          </HStack>
-        </Box>
+          </VStack>
+        </HStack>
       </Pressable >
     </Box >
   )
 }
 
 export default IndividualSearchResult
+
