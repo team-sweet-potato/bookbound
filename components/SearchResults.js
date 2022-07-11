@@ -13,7 +13,6 @@ import IndividualSearchResult from './IndividualSearchResult'
 
 const SearchResults = ({ navigation, route }) => {
   const books = route.params.books["items"]
-  // console.log(books['items'])
   return (
     <>
       <SafeAreaView>
