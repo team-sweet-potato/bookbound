@@ -18,52 +18,63 @@ import CreateAccount from "./components/CreateAccount";
 import { Image } from "native-base";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Scanner from './components/Scanner';
+import { auth } from "./firebase";
+
 
 const MainStack = createNativeStackNavigator();
 const UserStack = createNativeStackNavigator();
 const RecStack = createNativeStackNavigator();
 const SearchTabStack = createNativeStackNavigator();
+const HomeStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function LogoTitle() {
   return (
     <Image
       alt="bookbound logo"
-      style={{ width: 81, height: 50 }}
+      style={{ width: 65, height: 40 }}
       source={require("./assets/bookboundtestlogo.png")}
     />
   );
 }
 
+function HomePageStack() {
+  return (
+    <HomeStack.Navigator initialRouteName="Home">
+      <HomeStack.Screen name="Home" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
+    </HomeStack.Navigator>
+  );
+}
+
 function SearchStack() {
   return (
-    <SearchTabStack.Navigator screenOptions={{ headerShown: false }}>
-      <SearchTabStack.Screen name="Search Page" component={Search} />
-      <SearchTabStack.Screen name="Scanner" component={Scanner} />
-      <SearchTabStack.Screen name="Search Results" component={SearchResults} />
-      <SearchTabStack.Screen name="Single Book" component={SingleBook} />
+    <SearchTabStack.Navigator initialRouteName="Search Page">
+      <SearchTabStack.Screen name="Search Page" component={Search} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
+      <SearchTabStack.Screen name="Scanner" component={Scanner} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
+      <SearchTabStack.Screen name="Search Results" component={SearchResults} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }}/>
+      <SearchTabStack.Screen name="Single Book" component={SingleBook} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }}/>
     </SearchTabStack.Navigator>
   );
 }
 
 function RecommendationsStack() {
   return (
-    <RecStack.Navigator screenOptions={{ headerShown: false }}>
-      <RecStack.Screen name="Recommendations" component={Recommendations} />
-      <RecStack.Screen name="Single Book" component={SingleBook} />
+    <RecStack.Navigator initialRouteName="Recommendations">
+      <RecStack.Screen name="Recommendations" component={Recommendations} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
+      <RecStack.Screen name="Single Book" component={SingleBook} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
     </RecStack.Navigator>
   );
 }
 
 function UsersShelvesStack() {
   return (
-    <UserStack.Navigator screenOptions={{ headerShown: false }}>
-      <UserStack.Screen name="All Shelves" component={UsersShelves} />
-      <UserStack.Screen name="User Profile" component={UserProfile} />
-      <UserStack.Screen name="Read" component={haveReadShelf} />
-      <UserStack.Screen name="To Be Read" component={toReadShelf} />
-      <UserStack.Screen name="Reading" component={currentlyReadingShelf} />
-      <UserStack.Screen name="Single Book" component={SingleBook} />
+    <UserStack.Navigator initialRouteName="All Shelves">
+      <UserStack.Screen name="All Shelves" component={UsersShelves} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
+      <UserStack.Screen name="User Profile" component={UserProfile} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
+      <UserStack.Screen name="Read" component={haveReadShelf} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
+      <UserStack.Screen name="To Be Read" component={toReadShelf} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
+      <UserStack.Screen name="Reading" component={currentlyReadingShelf} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
+      <UserStack.Screen name="Single Book" component={SingleBook} options={{ headerTitle: (props) => <LogoTitle {...props} />, headerBackTitleVisible: false }} />
     </UserStack.Navigator>
   );
 }
@@ -71,6 +82,7 @@ function UsersShelvesStack() {
 function NavBar() {
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "Home") {
@@ -109,29 +121,13 @@ function NavBar() {
         },
         tabBarActiveTintColor: "black",
         tabBarInactiveTintColor: "gray",
-        headerShown: false,
+        headerShown: false
       })}
     >
-      <Tab.Screen
-        name="Home"
-        component={Home}
-        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
-      />
-      <Tab.Screen
-        name="Search"
-        component={SearchStack}
-        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
-      />
-      <Tab.Screen
-        name="For You"
-        component={RecommendationsStack}
-        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
-      />
-      <Tab.Screen
-        name="My Shelves"
-        component={UsersShelvesStack}
-        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
-      />
+      <Tab.Screen name="Home" component={HomePageStack} />
+      <Tab.Screen name="Search" component={SearchStack} />
+      <Tab.Screen name="For You" component={RecommendationsStack} />
+      <Tab.Screen name="My Shelves" component={UsersShelvesStack} />
     </Tab.Navigator>
   );
 }
@@ -140,11 +136,17 @@ export default function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <MainStack.Navigator screenOptions={{ headerShown: false }}>
+        {auth ? (
+        <MainStack.Navigator initialRouteName="Login" screenOptions={{ headerShown: false }}>
           <MainStack.Screen name="Login" component={Login} />
           <MainStack.Screen name="Create Account" component={CreateAccount} />
           <MainStack.Screen name="Nav Bar" component={NavBar} />
         </MainStack.Navigator>
+        ) : (
+        <MainStack.Navigator initialRouteName="Nav Bar" screenOptions={{ headerShown: false }}>
+          <MainStack.Screen name="Nav Bar" component={NavBar} />
+        </MainStack.Navigator>
+        )}
       </NavigationContainer>
     </NativeBaseProvider>
   );

@@ -62,8 +62,11 @@ const toReadShelf = () => {
           return (
             <Container>
               <Image
-                source={{ uri: book.imageLinks.thumbnail }}
+                source={{
+                  uri: book.imageLinks.thumbnail,
+                }}
                 alt={`${book.title} book cover`}
+                size="2xl"
               />
               <Heading>{book.title}</Heading>
               <Text>{book.authors.join(", ")}</Text>
