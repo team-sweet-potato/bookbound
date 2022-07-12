@@ -18,9 +18,10 @@ const Search = ({ navigation }) => {
   const onSubmitEditing = async (event) => {
     // This function will submit the text to be searched to the Books API
     const searchQuery = search.replace(/ /g, '+')
-    const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${api_key}`)
+    const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${searchQuery}`)
     navigation.navigate("Search Results", {
-      books: data
+      books: data,
+      searchUrl: `https://www.googleapis.com/books/v1/volumes?q=${searchQuery}`
     })
   }
 
