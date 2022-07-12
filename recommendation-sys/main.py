@@ -7,6 +7,7 @@ from flask_restful import Api, Resource
 # from dotenv import load_dotenv
 # load_dotenv()
 import os
+import json
 
 from recommender.recommender import initiate_find
 
@@ -15,18 +16,11 @@ api = Api(app)
 
 # Route for Book Recommendations
 class Recommendation(Resource):
-  def get(self, book, isbn):
-    print(initiate_find(book))
-    return {"book": book,
-            "isbn": isbn}
+  def get(self, book):
+    result = initiate_find(book)
+    return json.dumps(result)
 
-api.add_resource(Recommendation, "/<string:book>/<int:isbn>")
-
-class Home(Resource):
-  def get(self):
-    return "hi"
-
-api.add_resource(Home, "/")
+api.add_resource(Recommendation, "/<string:book>")
 
 if __name__ == "__main__":
   app.run(host="localhost", port=8000, debug=True)
