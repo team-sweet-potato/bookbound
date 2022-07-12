@@ -40,8 +40,8 @@ function LogoTitle() {
 
 function HomePageStack() {
   return (
-    <HomeStack.Navigator initialRouteName="Home">
-      <HomeStack.Screen name="Home" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
+    <HomeStack.Navigator initialRouteName="Homepage">
+      <HomeStack.Screen name="Homepage" component={Home} options={{ headerTitle: (props) => <LogoTitle {...props} /> }} />
     </HomeStack.Navigator>
   );
 }
