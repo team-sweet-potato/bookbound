@@ -34,11 +34,6 @@ const Login = ({ navigation }) => {
     navigation.push("Create Account");
   }
 
-  async function handleGetTestData() {
-    const { data } = await axios.get(`http://localhost:8000/Disappearing Acts/1`);
-    console.log(data["isbn"])
-  }
-
   return (
     <ScrollView>
       <Box safeAreaTop="20" alignItems="center">
@@ -108,10 +103,6 @@ const Login = ({ navigation }) => {
               </Button>
               <Button mt="2" colorScheme="indigo" onPress={handleGoToSignUp}>
                 Sign Up
-              </Button>
-              {/* Test button to be removed on final product */}
-              <Button mt="2" colorScheme="indigo" onPress={handleGetTestData}>
-                Get Test Data
               </Button>
               <HStack mt="6" justifyContent="center">
                 <Text
