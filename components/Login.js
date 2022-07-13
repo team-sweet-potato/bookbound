@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import theme from "./Theme.js";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import {
@@ -14,8 +15,10 @@ import {
   ScrollView,
   Text,
   VStack,
+  NativeBaseProvider,
 } from "native-base";
-import axios from "axios";
+import { SafeAreaView, View, Animated } from "react-native";
+import LottieView from "lottie-react-native";
 
 const Login = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -34,41 +37,43 @@ const Login = ({ navigation }) => {
     navigation.push("Create Account");
   }
 
+  const progress = useRef(new Animated.Value(0)).current;
+
+  const handleLikeAnimation = () => {
+    Animated.timing(progress, {
+      toValue: 1,
+      duration: 12000,
+      useNativeDriver: true,
+    }).start();
+  };
+  useEffect(() => {
+    handleLikeAnimation();
+  }, []);
+
   return (
-    <ScrollView>
-      <Box safeAreaTop="20" alignItems="center">
-        <Image
-          source={require("../assets/bookboundtestlogo.png")}
-          alt="bookbound logo"
-          justifyContent="center"
-          alignItems="center"
-          width="200"
-          height="100"
-        ></Image>
+    <NativeBaseProvider theme={theme}>
+      <Center>
+        <SafeAreaView>
+          <View style={{ height: 200, width: 200 }}>
+            <LottieView
+              progress={progress}
+              source={require("../assets/lottieWithCoffee.json")}
+            />
+          </View>
+
+          <Center>
+            <Image
+              source={require("../assets/logo.png")}
+              style={theme.loginLogo}
+              alt="bookbound logo"
+            ></Image>
+          </Center>
+        </SafeAreaView>
+      </Center>
+      <Box>
         <Center w="100%">
-          <Box safeArea p="2" py="8" w="90%" maxW="290">
-            <Heading
-              size="lg"
-              fontWeight="600"
-              color="coolGray.800"
-              _dark={{
-                color: "warmGray.50",
-              }}
-            >
-              Welcome
-            </Heading>
-            <Heading
-              mt="1"
-              _dark={{
-                color: "warmGray.200",
-              }}
-              color="coolGray.600"
-              fontWeight="medium"
-              size="xs"
-            >
-              Sign in to continue!
-            </Heading>
-            <VStack space={3} mt="5">
+          <View>
+            <VStack space={7} mt="20">
               <FormControl>
                 <FormControl.Label>Email ID</FormControl.Label>
                 <Input
@@ -93,10 +98,10 @@ const Login = ({ navigation }) => {
                 Sign Up
               </Button>
             </VStack>
-          </Box>
+          </View>
         </Center>
       </Box>
-    </ScrollView>
+    </NativeBaseProvider>
   );
 };
 
