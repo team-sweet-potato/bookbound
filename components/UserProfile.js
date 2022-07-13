@@ -14,8 +14,9 @@ import {
   Input,
   ScrollView,
   Text,
-  VStack,
+  VStack
 } from "native-base";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 const UserProfile = ({ navigation, route }) => {
   // Variables to sign up
@@ -55,81 +56,80 @@ const UserProfile = ({ navigation, route }) => {
   }
 
   return (
-    <ScrollView>
-      <Box
-        safeAreaTop="20"
-        alignItems="center">
-        <Center w="100%">
-          <Box safeArea p="2" py="8" w="90%" maxW="290">
-            <Heading
-              size="lg"
-              fontWeight="600"
-              color="coolGray.800"
-              _dark={{
-                color: "warmGray.50",
-              }}
-            >
-              Update Account Info
-            </Heading>
-            <VStack space={3} mt="5">
-              <FormControl>
-                <FormControl.Label>First Name</FormControl.Label>
-                <Input
-                  value={firstName}
-                  placeholder="firstName"
-                  onChangeText={(text) => setFirstName(text)}
-                />
-              </FormControl>
-              <FormControl>
-                <FormControl.Label>Last Name</FormControl.Label>
-                <Input
-                  value={lastName}
-                  placeholder="lastName"
-                  onChangeText={(text) => setLastName(text)}
-                />
-              </FormControl>
-              <FormControl>
-                <FormControl.Label>Username</FormControl.Label>
-                <Input
-                  value={username}
-                  placeholder="username"
-                  onChangeText={(text) => setUsername(text)}
-                />
-              </FormControl>
-              <FormControl>
-                <FormControl.Label>Email</FormControl.Label>
-                <Input
-                  value={email}
-                  placeholder="email"
-                  onChangeText={(text) => setEmail(text)}
-                />
-              </FormControl>
-              <FormControl>
-                <FormControl.Label>Change Password</FormControl.Label>
-                <Input
-                  value={password}
-                  placeholder="password"
-                  onChangeText={(text) => setPassword(text)}
-                  secureTextEntry
-                />
-              </FormControl>
-              <FormControl>
-                <FormControl.Label>Verify New Password</FormControl.Label>
-                <Input
-                  value={verifyPassword}
-                  placeholder="password"
-                  onChangeText={(text) => setVerifyPassword(text)}
-                  secureTextEntry
-                />
-              </FormControl>
-              <Button mt="2" colorScheme="indigo" onPress={handleSignUp}>
-                Submit
-              </Button>
-            </VStack>
-          </Box>
-        </Center>
-      </Box>
-    </ScrollView>
+    <KeyboardAwareScrollView>
+        <Box
+          alignItems="center">
+          <Center w="100%">
+            <Box safeArea p="2" py="8" w="90%" maxW="290">
+              <Heading
+                size="lg"
+                fontWeight="600"
+                color="coolGray.800"
+                _dark={{
+                  color: "warmGray.50",
+                }}
+              >
+                Update Account Info
+              </Heading>
+              <VStack space={3} mt="5">
+                <FormControl>
+                  <FormControl.Label>First Name</FormControl.Label>
+                  <Input
+                    value={firstName}
+                    placeholder="firstName"
+                    onChangeText={(text) => setFirstName(text)}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>Last Name</FormControl.Label>
+                  <Input
+                    value={lastName}
+                    placeholder="lastName"
+                    onChangeText={(text) => setLastName(text)}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>Username</FormControl.Label>
+                  <Input
+                    value={username}
+                    placeholder="username"
+                    onChangeText={(text) => setUsername(text)}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>Email</FormControl.Label>
+                  <Input
+                    value={email}
+                    placeholder="email"
+                    onChangeText={(text) => setEmail(text)}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>Change Password</FormControl.Label>
+                  <Input
+                    value={password}
+                    placeholder="password"
+                    onChangeText={(text) => setPassword(text)}
+                    secureTextEntry
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>Verify New Password</FormControl.Label>
+                  <Input
+                    value={verifyPassword}
+                    placeholder="password"
+                    onChangeText={(text) => setVerifyPassword(text)}
+                    secureTextEntry
+                  />
+                </FormControl>
+                <Button mt="2" colorScheme="indigo" onPress={handleSignUp}>
+                  Submit
+                </Button>
+              </VStack>
+            </Box>
+          </Center>
+        </Box>
+    </KeyboardAwareScrollView>
   );
 };
 

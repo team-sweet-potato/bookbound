@@ -20,9 +20,7 @@ const Home = ({ navigation }) => {
 
   const fetchTestBook = async () => {
     try {
-      const { data } = await axios.get(
-        `https://www.googleapis.com/books/v1/volumes?q=isbn:9780439023481`
-      );
+      const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:1408855895`);
       if (data) {
         setBook(data.items[0].volumeInfo);
       }

@@ -34,17 +34,17 @@ def initiate_find(name):
   books_df_copy = books_df.copy()
   # Setting index equal to the book_id
   books_df_copy = books_df_copy.set_index("book_id")
-
+#   print(books_df_copy.head())
   index_book = {}
   book_index = {}
   index_isbn = {}
   b_id =list(ratings_df.book_id.unique())
   b_id.remove(10000)
-  for i in b_id:
-      index_book[i] = books_df_copy.iloc[i]['original_title']
-      index_isbn[i] = books_df_copy.iloc[i]['isbn']
-      book_index[index_book[i]] = i;
-
+  for id in b_id:
+      # index_book[id] = books_df_copy.iloc[id]['original_title'] if books_df_copy.iloc[id]['original_title'] != '' or pd.isnull(books_df_copy.iloc[id]['original_title']) else 'title'
+      index_book[id] = None if pd.isnull(books_df_copy.iloc[id]['original_title']) else books_df_copy.iloc[id]['original_title']
+      index_isbn[id] = None if pd.isnull(books_df_copy.iloc[id]['isbn']) else books_df_copy.iloc[id]['isbn']
+      book_index[index_book[id]] = id
   # Create weights for function to find similar books
   book_em_weightsExperiment = book_em_weights / np.linalg.norm(book_em_weights, axis = 1).reshape((-1, 1))
   book_em_weightsExperiment[0][:10]
@@ -77,8 +77,6 @@ def initiate_find(name):
       list = []
       for c in reversed(closest):
           obj = {"book":rindex[c], "isbn": iindex[c], "similarity": float(dists[c]) }
-          # obj = json.dumps(obj)
-          # loaded_r = json.loads(obj)
           list.append(obj)
       print(list)
       return list

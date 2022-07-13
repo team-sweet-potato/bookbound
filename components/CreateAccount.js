@@ -21,6 +21,7 @@ import {
 } from "native-base";
 import { Animated, SafeAreaView } from "react-native";
 import LottieView from "lottie-react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const CreateAccount = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
@@ -81,11 +82,7 @@ const CreateAccount = ({ navigation }) => {
                   </View>
                 </Center>
               </SafeAreaView>
-              <Text
-                mt="5"
-                
-                color={theme.color.rosey[600]}
-              >
+              <Text mt="5" color={theme.color.rosey[600]}>
                 Create an account to continue!
               </Text>
 

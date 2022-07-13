@@ -18,7 +18,9 @@ api = Api(app)
 class Recommendation(Resource):
   def get(self, book):
     result = initiate_find(book)
+    print(result)
     return json.dumps(result)
+    # return result
 
 api.add_resource(Recommendation, "/<string:book>")
 
