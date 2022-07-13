@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ArrowBackIcon,
   Box,
@@ -9,44 +9,35 @@ import {
   ScrollView
 } from "native-base";
 import { SafeAreaView } from "react-native-safe-area-context";
-import IndividualSearchResult from './IndividualSearchResult'
+import IndividualSearchResult from './IndividualSearchResult';
+import axios from 'axios';
 
 const SearchResults = ({ navigation, route }) => {
-  const books = route.params.books["items"]
+  const [books, setBooks] = useState([]);
+  const [numResults, setNumResults] = useState(0);
+
+  const isCloseToBottom = ({layoutMeasurement, contentOffset, contentSize}) => {
+    const paddingToBottom = 20;
+    return layoutMeasurement.height + contentOffset.y >=
+      contentSize.height - paddingToBottom;
+  };
+
+  const loadMoreResults = async () => {
+    if (numResults < 40) {
+      const newResults = numResults + 10;
+      setNumResults(newResults);
+      const { data } = await axios.get(`${route.params.searchUrl}&maxResults=10&startIndex=${numResults}`);
+      setBooks([...books, ...data.items]);
+    }
+  }
+
+  useEffect(() => {
+    setBooks(route.params.books["items"]);
+    setNumResults(10);
+  }, [])
+
   return (
     <>
-      <SafeAreaView>
-        <Box>
-          <HStack>
-            <Pressable
-              onPress={() => {
-                navigation.pop();
-              }}
-              _web={{
-                cursor: "pointer",
-              }}
-            >
-              {(
-                <ArrowBackIcon
-                  mx={3}
-                  size={5}
-                />
-              )}
-            </Pressable>
-            <Heading
-              color={"gray.800"}
-              _web={{ py: 2 }}
-              isTruncated
-              numberOfLines={1}
-              flex={1}
-            // @ts-ignore
-            >
-              Search Results
-            </Heading>
-          </HStack>
-        </Box>
-      </SafeAreaView>
-
       <Box
         flex={1}
         flexBasis="0"
@@ -54,7 +45,13 @@ const SearchResults = ({ navigation, route }) => {
         mx="auto"
         w={{ base: "100%", md: "768px", lg: "1000px", xl: "1080px" }}
       >
-        <ScrollView>
+        <ScrollView
+        onScroll={({nativeEvent}) => {
+          if (isCloseToBottom(nativeEvent)) {
+            loadMoreResults();
+          }
+        }}
+        scrollEventThrottle={400}>
           {books ? books.map(book => (
             <IndividualSearchResult key={book.id} book={book} />
           )) : <Text>No Results</Text>}

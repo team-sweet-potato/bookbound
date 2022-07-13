@@ -53,10 +53,22 @@ const IndividualSearchResult = ({ book }) => {
                 <Text style={{ textAlignVertical: 'top' }} bold>{book['volumeInfo']['title']}</Text>
               </View>
               <View>
-                <Text>Authors: {book['volumeInfo']["authors"].join(", ")}</Text>
+                {book['volumeInfo']["authors"] ? (
+                  <Text>
+                    Authors: {book['volumeInfo']["authors"].join(", ")}
+                  </Text>
+                  ) : (
+                  <Text></Text>
+                )}
               </View>
               <View>
-                <Text>Publish Date: {book['volumeInfo']["publishedDate"]}</Text>
+                {book['volumeInfo']["publishedDate"] ? (
+                  <Text>
+                    Publish Date: {book['volumeInfo']["publishedDate"]}
+                  </Text>
+                  ) : (
+                  <Text></Text>
+                )}
               </View>
             </Text>
           </VStack>
