@@ -46,9 +46,12 @@ function HomePageStack() {
   return (
     <HomeStack.Navigator initialRouteName="Homepage">
       <HomeStack.Screen
+        options={{
+          headerShown: false,
+        }}
         name="Homepage"
         component={Home}
-        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+        // options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
       />
     </HomeStack.Navigator>
   );

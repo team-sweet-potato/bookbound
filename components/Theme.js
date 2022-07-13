@@ -12,7 +12,6 @@ const customTheme = extendTheme({
           };
         },
       },
-      
     },
   },
   Text: {
@@ -83,6 +82,10 @@ const customTheme = extendTheme({
   loginLogo: {
     width: 150,
     height: 29,
+  },
+  clockImage: {
+    width: 200,
+    height: 130,
   },
   arch: {
     width: 40,
@@ -190,7 +193,9 @@ const customTheme = extendTheme({
 
 const theme = extendTheme({
   rosey: customTheme.colors.rosey,
+  browns: customTheme.colors.browns,
   smallLogo: customTheme.smallLogo,
+  clockImage: customTheme.clockImage,
   loginLogo: customTheme.loginLogo,
   typography: customTheme.typography,
   opacity: customTheme.opacity,
