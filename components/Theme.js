@@ -1,35 +1,123 @@
 import React from "react";
-import { NativeBaseProvider, extendTheme } from "native-base";
-import { Content } from "./Content";
+import { extendTheme } from "native-base";
 
-export default function () {
-  const theme = extendTheme({
-    colors: {
-      // Add new color
-      rose: {
-        50: "#fff1f2",
-        100: "#ffe4e6",
-        200: "#fecdd3",
-        300: "#fda4af",
-        400: "#fb7185",
-        500: "#f43f5e",
-        600: "#e11d48",
-        700: "#be123c",
-        800: "#9f1239",
-        900: "#881337",
-      },
-      // Redefining only one shade, rest of the color will remain same.
-      amber: {
-        400: "#d97706",
+const customTheme = extendTheme({
+  components: {
+    Button: {
+      variants: {
+        ghost: ({ rosey }) => {
+          return {
+            bg: `${rosey}.200`,
+            rounded: "full",
+          };
+        },
       },
     },
-    config: {
-      // Changing initialColorMode to 'dark'
-      initialColorMode: "dark",
+  },
+  Text: {
+    baseStyle: {
+      color: "rosey.400",
     },
-  });
-
-  const typography = {
+    defaultProps: {
+      size: "lg",
+    },
+    sizes: {
+      xl: {
+        fontSize: "64px",
+      },
+      lg: {
+        fontSize: "32px",
+      },
+      md: {
+        fontSize: "16px",
+      },
+      sm: {
+        fontSize: "12px",
+      },
+    },
+  },
+  colors: {
+    rosey: {
+      50: "#ea8c55",
+      100: "#c75146",
+      200: "#CE7366",
+      300: "#B36A5E",
+      400: "#ad2e24",
+      500: "#cc444b",
+      600: "#D35669",
+      700: "#bf4342",
+      800: "#81171b",
+      900: "#540804",
+    },
+    amber: {
+      50: "#ffc971",
+      100: "#ffb627",
+      200: "#ff9505",
+      300: "#e2711d",
+      400: "#cc5803",
+    },
+    deepRed: {
+      50: "#ea8c55",
+      100: "#c75146",
+      200: "#ad2e24",
+      300: "#81171b",
+      400: "#540804",
+    },
+    browns: {
+      50: "#ede0d4",
+      100: "#e6ccb2",
+      200: "#ddb892",
+      300: "#b08968",
+      400: "#7f5539",
+      500: "#9c6644",
+    },
+    alert: {
+      main: "#9a031e",
+    },
+  },
+  smallLogo: {
+    width: 130,
+    height: 20,
+  },
+  loginLogo: {
+    width: 150,
+    height: 29,
+  },
+  clockImage: {
+    width: 200,
+    height: 130,
+  },
+  arch: {
+    width: 40,
+    height: 80,
+    flex: "center",
+  },
+  fontConfig: {
+    Roboto: {
+      100: {
+        normal: "Roboto-Light",
+        italic: "Roboto-LightItalic",
+      },
+      200: {
+        normal: "Roboto-Light",
+        italic: "Roboto-LightItalic",
+      },
+      300: {
+        normal: "Roboto-Light",
+        italic: "Roboto-LightItalic",
+      },
+      400: {
+        normal: "Roboto-Regular",
+        italic: "Roboto-Italic",
+      },
+      500: {
+        normal: "Roboto-Medium",
+      },
+      600: {
+        normal: "Roboto-Medium",
+        italic: "Roboto-MediumItalic",
+      },
+    },
     letterSpacings: {
       xs: "-0.05em",
       sm: "-0.025em",
@@ -83,28 +171,38 @@ export default function () {
       "8xl": 96,
       "9xl": 128,
     },
-  };
-  const opacity = {
-    0: 0,
-    5: 0.05,
-    10: 0.1,
-    20: 0.2,
-    25: 0.25,
-    30: 0.3,
-    40: 0.4,
-    50: 0.5,
-    60: 0.6,
-    70: 0.7,
-    75: 0.75,
-    80: 0.8,
-    90: 0.9,
-    95: 0.95,
-    100: 1,
-  };
+    opacity: {
+      0: 0,
+      5: 0.05,
+      10: 0.1,
+      20: 0.2,
+      25: 0.25,
+      30: 0.3,
+      40: 0.4,
+      50: 0.5,
+      60: 0.6,
+      70: 0.7,
+      75: 0.75,
+      80: 0.8,
+      90: 0.9,
+      95: 0.95,
+      100: 1,
+    },
+  },
+});
 
-  return (
-    <NativeBaseProvider theme={theme}>
-      <Content />
-    </NativeBaseProvider>
-  );
-}
+const theme = extendTheme({
+  rosey: customTheme.colors.rosey,
+  browns: customTheme.colors.browns,
+  smallLogo: customTheme.smallLogo,
+  clockImage: customTheme.clockImage,
+  loginLogo: customTheme.loginLogo,
+  typography: customTheme.typography,
+  opacity: customTheme.opacity,
+  font: customTheme.fontConfig.Roboto,
+  heading: customTheme.fonts.heading,
+  button: customTheme.components.Button,
+  text: customTheme.components.Text,
+});
+
+export default theme;
