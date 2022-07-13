@@ -11,7 +11,7 @@ import axios from "axios";
 import { auth, db } from "../firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 
-const haveReadShelf = () => {
+const ReadShelf = () => {
   const [shelf, setShelf] = useState([]);
   const [books, setBook] = useState([]);
 
@@ -35,10 +35,10 @@ const haveReadShelf = () => {
         let booksArr = [];
         try {
           for (const isbn of shelf) {
+            console.log("ISBN", isbn);
             const { data } = await axios.get(
-              `https://www.googleapis.com/books/v1/volumes?q=isbn:${parseInt(
-                isbn
-              )}`
+              `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}
+              `
             );
             booksArr.push(data.items[0].volumeInfo);
           }
@@ -78,9 +78,4 @@ const haveReadShelf = () => {
   );
 };
 
-export default haveReadShelf;
-
-const handleSignOut = () => {
-  signOut(auth);
-  navigation.navigate("Login");
-};
+export default ReadShelf;
