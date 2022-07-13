@@ -15,7 +15,7 @@ books_df = pd.read_csv("books.csv")
 ratings_df.head()
 
 from sklearn.model_selection import train_test_split
-Xtrain, Xtest = train_test_split(ratings_df, test_size=0.3, random_state=1)
+Xtrain, Xtest = train_test_split(ratings_df, test_size=0.4, random_state=1)
 
 #Get the number of unique entities in books and users columns
 nbook_id = ratings_df.book_id.nunique()
