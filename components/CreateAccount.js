@@ -16,6 +16,7 @@ import {
   Text,
   VStack,
 } from "native-base";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const CreateAccount = ({ navigation }) => {
   // Variables to sign up
@@ -43,7 +44,7 @@ const CreateAccount = ({ navigation }) => {
   }
 
   return (
-    <ScrollView>
+    <KeyboardAwareScrollView>
       <Box safeAreaTop="20" alignItems="center">
         <Image
           source={require("../assets/bookboundtestlogo.png")}
@@ -141,7 +142,7 @@ const CreateAccount = ({ navigation }) => {
           </Box>
         </Center>
       </Box>
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
