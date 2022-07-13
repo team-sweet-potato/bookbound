@@ -3,7 +3,7 @@ import { extendTheme } from "native-base";
 
 const customTheme = extendTheme({
   colors: {
-    rose: {
+    rosey: {
       50: "#ea8c55",
       100: "#c75146",
       200: "#CE7366",
@@ -42,8 +42,8 @@ const customTheme = extendTheme({
     },
   },
   smallLogo: {
-    width: 200,
-    height: 100,
+    width: 130,
+    height: 20,
   },
   loginLogo: {
     width: 150,
@@ -55,7 +55,7 @@ const customTheme = extendTheme({
     flex: "center",
   },
   button: {
-    size: "sm",
+    size: "md",
     variant: "ghost",
   },
   buttonText: {

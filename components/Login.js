@@ -102,10 +102,10 @@ const Login = ({ navigation }) => {
                   size="md"
                   variant="ghost"
                   onPress={handleLogin}
-                  colorScheme={theme.color.rose}
+                  colorScheme={theme.color.rosey}
                 >
                   <Text
-                    colorScheme={theme.color.rose}
+                    colorScheme={theme.color.rosey}
                     color={theme.buttonText.color}
                   >
                     Sign in
@@ -117,10 +117,10 @@ const Login = ({ navigation }) => {
                     <Button
                       size="md"
                       variant="ghost"
-                      colorScheme={theme.color.rose}
+                      colorScheme={theme.color.rosey}
                       onPress={handleGoToSignUp}
                     >
-                      <Text color={theme.color.rose[600]}>Sign Up</Text>
+                      <Text color={theme.color.rosey[600]}>Sign Up</Text>
                     </Button>
                   </Center>
                 </VStack>
