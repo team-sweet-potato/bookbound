@@ -17,10 +17,10 @@ const ToReadShelf = ({ navigation }) => {
 
   const fetchBooks = async () => {
     let isbnArr = [];
-    const readBooksShelf = query(
+    const bookShelf = query(
       collection(db, "users", auth.currentUser.uid, "toReadBooks")
     );
-    const shelfContents = await getDocs(readBooksShelf);
+    const shelfContents = await getDocs(bookShelf);
     shelfContents.forEach((book) => {
       return isbnArr.push(book.id);
     });

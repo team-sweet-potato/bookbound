@@ -5,83 +5,59 @@ import {
   VStack,
   Text,
   Heading,
+  Pressable,
 } from "native-base";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { auth, db } from "../firebase";
 import { collection, getDocs, query } from "firebase/firestore";
-import { SafeAreaView } from "react-native-safe-area-context";
 
-const ReadingShelf = () => {
-  const [shelf, setShelf] = useState([]);
+const ReadingShelf = ({ navigation }) => {
   const [books, setBook] = useState([]);
-  let exist;
-  const fetchUserShelf = async () => {
-    let isbnArr = [];
-    try {
-      const readBooksShelf = query(
-        collection(db, "users", auth.currentUser.uid, "currentlyReading")
-      );
-      const shelfContents = await getDocs(readBooksShelf);
-      if (shelf.length < 1) {
-        console.log(shelfContents);
-        shelfContents.forEach((book) => {
-          return isbnArr.push(book.id);
-        });
-
-        return setShelf(isbnArr);
-      }
-    } catch (err) {
-      console.log(err);
-      exist = "No";
-      console.log("I did it!!!");
-    }
-  };
 
   const fetchBooks = async () => {
-    if (shelf.length >= 1) {
-      if (books.length < 1) {
-        let booksArr = [];
-        try {
-          for (const isbn of shelf) {
-            console.log("ISBN", isbn);
-            const { data } = await axios.get(
-              `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}
+    let isbnArr = [];
+    const bookShelf = query(
+      collection(db, "users", auth.currentUser.uid, "currentlyReading")
+    );
+    const shelfContents = await getDocs(bookShelf);
+    shelfContents.forEach((book) => {
+      return isbnArr.push(book.id);
+    });
+    let booksArr = [];
+    try {
+      for (const isbn of isbnArr) {
+        const { data } = await axios.get(
+          `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}
               `
-            );
-            booksArr.push(data.items[0].volumeInfo);
-          }
-          setBook(booksArr);
-        } catch (err) {
-          console.log(err);
-        }
+        );
+        booksArr.push(data.items[0].volumeInfo);
       }
+      setBook(booksArr);
+    } catch (err) {
+      console.log(err);
     }
   };
-
-  useEffect(() => {
-    fetchUserShelf();
-    console.log("SHELF", shelf);
-  }, []);
 
   useEffect(() => {
     fetchBooks();
-    console.log("books", books);
+    console.log("BOOKS", books);
   }, []);
-  //books, shelf
 
   return (
-    <SafeAreaView>
-      {shelf.length < 1 ? (
-        <VStack>
-          <Text>No books added yet!!!</Text>
+    <ScrollView>
+      {books.length < 1 ? (
+        <VStack space={4} alignItems="center">
+          <Text>Oh no! You don't have any books saved in this shelf yet.</Text>
         </VStack>
       ) : (
-        <ScrollView>
-          <VStack space={4} alignItems="center">
-            {books.map((book) => {
-              return (
-                <Container>
+        <VStack space={4} alignItems="center">
+          {books.map((book) => {
+            return (
+              <Container>
+                <Pressable
+                  onPress={() => navigation.navigate("Single Book", { book })}
+                >
                   <Image
                     source={{
                       uri: book.imageLinks.thumbnail,
@@ -89,15 +65,19 @@ const ReadingShelf = () => {
                     alt={`${book.title} book cover`}
                     size="2xl"
                   />
+                </Pressable>
+                <Pressable
+                  onPress={() => navigation.navigate("Single Book", { book })}
+                >
                   <Heading>{book.title}</Heading>
-                  <Text>{book.authors.join(", ")}</Text>
-                </Container>
-              );
-            })}
-          </VStack>
-        </ScrollView>
+                </Pressable>
+                <Text>{book.authors.join(", ")}</Text>
+              </Container>
+            );
+          })}
+        </VStack>
       )}
-    </SafeAreaView>
+    </ScrollView>
   );
 };
 
