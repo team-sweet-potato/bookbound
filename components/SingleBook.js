@@ -108,7 +108,7 @@ const SingleBook = ({ route }) => {
               {list === "currentlyReading" && <Badge colorScheme="info" rounded="full" mb={-4} mr={-4} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>Reading</Badge>}
               {list === "toReadBooks" && <Badge colorScheme="warning" rounded="full" mb={-4} mr={-4} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>To Read</Badge>}
               <Image source={{
-                uri: book.imageLinks.thumbnail
+                uri: book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png'
               }} alt={`${book.title} book cover`} size="2xl" />
             </Container>
             <Container>
