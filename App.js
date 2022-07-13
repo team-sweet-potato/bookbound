@@ -9,9 +9,9 @@ import Recommendations from "./components/Recommendations";
 import UsersShelves from "./components/UsersShelves";
 import SearchResults from "./components/SearchResults";
 import SingleBook from "./components/SingleBook";
-import haveReadShelf from "./components/haveReadShelf";
-import toReadShelf from "./components/toReadShelf";
-import currentlyReadingShelf from "./components/currentlyReadingShelf";
+import ReadShelf from "./components/ReadShelf";
+import ToReadShelf from "./components/ToReadShelf";
+import ReadingShelf from "./components/ReadingShelf";
 import UserProfile from "./components/UserProfile";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
@@ -140,7 +140,7 @@ function UsersShelvesStack() {
       />
       <UserStack.Screen
         name="Read"
-        component={haveReadShelf}
+        component={ReadShelf}
         options={{
           headerTitle: (props) => <LogoTitle {...props} />,
           headerBackTitleVisible: false,
@@ -148,7 +148,7 @@ function UsersShelvesStack() {
       />
       <UserStack.Screen
         name="To Be Read"
-        component={toReadShelf}
+        component={ToReadShelf}
         options={{
           headerTitle: (props) => <LogoTitle {...props} />,
           headerBackTitleVisible: false,
@@ -156,7 +156,7 @@ function UsersShelvesStack() {
       />
       <UserStack.Screen
         name="Reading"
-        component={currentlyReadingShelf}
+        component={ReadingShelf}
         options={{
           headerTitle: (props) => <LogoTitle {...props} />,
           headerBackTitleVisible: false,

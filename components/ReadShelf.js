@@ -12,13 +12,13 @@ import axios from "axios";
 import { auth, db } from "../firebase";
 import { collection, getDocs, query } from "firebase/firestore";
 
-const ToReadShelf = ({ navigation }) => {
+const ReadShelf = ({ navigation }) => {
   const [books, setBook] = useState([]);
 
   const fetchBooks = async () => {
     let isbnArr = [];
     const bookShelf = query(
-      collection(db, "users", auth.currentUser.uid, "toReadBooks")
+      collection(db, "users", auth.currentUser.uid, "readBooks")
     );
     const shelfContents = await getDocs(bookShelf);
     shelfContents.forEach((book) => {
@@ -81,4 +81,4 @@ const ToReadShelf = ({ navigation }) => {
   );
 };
 
-export default ToReadShelf;
+export default ReadShelf;
