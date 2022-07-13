@@ -1,5 +1,5 @@
 import React from "react";
-import { NativeBaseProvider, Box, Stack } from "native-base";
+import { NativeBaseProvider, Box, Stack, Center } from "native-base";
 import { NavigationContainer, TabRouter } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -19,6 +19,7 @@ import { Image } from "native-base";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Scanner from "./components/Scanner";
 import { auth } from "./firebase";
+import theme from "./components/Theme.js";
 
 const MainStack = createNativeStackNavigator();
 const UserStack = createNativeStackNavigator();
@@ -29,11 +30,15 @@ const Tab = createBottomTabNavigator();
 
 function LogoTitle() {
   return (
-    <Image
-      alt="bookbound logo"
-      style={{ width: 65, height: 40 }}
-      source={require("./assets/logo.png")}
-    />
+    <NativeBaseProvider theme={theme}>
+      <Center>
+        <Image
+          alt="bookbound logo"
+          style={theme.smallLogo}
+          source={require("./assets/logo.png")}
+        />
+      </Center>
+    </NativeBaseProvider>
   );
 }
 

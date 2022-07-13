@@ -2,6 +2,41 @@ import React from "react";
 import { extendTheme } from "native-base";
 
 const customTheme = extendTheme({
+  components: {
+    Button: {
+      variants: {
+        ghost: ({ rosey }) => {
+          return {
+            bg: `${rosey}.200`,
+            rounded: "full",
+          };
+        },
+      },
+      
+    },
+  },
+  Text: {
+    baseStyle: {
+      color: "rosey.400",
+    },
+    defaultProps: {
+      size: "lg",
+    },
+    sizes: {
+      xl: {
+        fontSize: "64px",
+      },
+      lg: {
+        fontSize: "32px",
+      },
+      md: {
+        fontSize: "16px",
+      },
+      sm: {
+        fontSize: "12px",
+      },
+    },
+  },
   colors: {
     rosey: {
       50: "#ea8c55",
@@ -54,36 +89,31 @@ const customTheme = extendTheme({
     height: 80,
     flex: "center",
   },
-  button: {
-    size: "md",
-    variant: "ghost",
-  },
-  buttonText: {
-    color: "#B36A5E",
-  },
-  typography: {
-    100: {
-      normal: "Roboto-Light",
-      italic: "Roboto-LightItalic",
-    },
-    200: {
-      normal: "Roboto-Light",
-      italic: "Roboto-LightItalic",
-    },
-    300: {
-      normal: "Roboto-Light",
-      italic: "Roboto-LightItalic",
-    },
-    400: {
-      normal: "Roboto-Regular",
-      italic: "Roboto-Italic",
-    },
-    500: {
-      normal: "Roboto-Medium",
-    },
-    600: {
-      normal: "Roboto-Medium",
-      italic: "Roboto-MediumItalic",
+  fontConfig: {
+    Roboto: {
+      100: {
+        normal: "Roboto-Light",
+        italic: "Roboto-LightItalic",
+      },
+      200: {
+        normal: "Roboto-Light",
+        italic: "Roboto-LightItalic",
+      },
+      300: {
+        normal: "Roboto-Light",
+        italic: "Roboto-LightItalic",
+      },
+      400: {
+        normal: "Roboto-Regular",
+        italic: "Roboto-Italic",
+      },
+      500: {
+        normal: "Roboto-Medium",
+      },
+      600: {
+        normal: "Roboto-Medium",
+        italic: "Roboto-MediumItalic",
+      },
     },
     letterSpacings: {
       xs: "-0.05em",
@@ -159,13 +189,15 @@ const customTheme = extendTheme({
 });
 
 const theme = extendTheme({
-  color: customTheme.colors,
+  rosey: customTheme.colors.rosey,
   smallLogo: customTheme.smallLogo,
   loginLogo: customTheme.loginLogo,
   typography: customTheme.typography,
   opacity: customTheme.opacity,
-  button: customTheme.button,
-  buttonText: customTheme.buttonText,
+  font: customTheme.fontConfig.Roboto,
+  heading: customTheme.fonts.heading,
+  button: customTheme.components.Button,
+  text: customTheme.components.Text,
 });
 
 export default theme;

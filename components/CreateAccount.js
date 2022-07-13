@@ -17,7 +17,7 @@ import {
   View,
   VStack,
   NativeBaseProvider,
-  Footer
+  Footer,
 } from "native-base";
 import { Animated, SafeAreaView } from "react-native";
 import LottieView from "lottie-react-native";
@@ -83,7 +83,7 @@ const CreateAccount = ({ navigation }) => {
               </SafeAreaView>
               <Text
                 mt="5"
-                style={theme.typography[300].normal}
+                
                 color={theme.color.rosey[600]}
               >
                 Create an account to continue!
@@ -150,7 +150,7 @@ const CreateAccount = ({ navigation }) => {
                       colorScheme={theme.color.rosey}
                       onPress={handleSignUp}
                     >
-                      <Text color={theme.buttonText.color}> Sign Up</Text>
+                      <Text color={theme.color.rosey[300]}> Sign Up</Text>
                     </Button>
                     <Button
                       mt="2"
@@ -160,7 +160,7 @@ const CreateAccount = ({ navigation }) => {
                       colorScheme={theme.color.rosey}
                       onPress={() => navigation.goBack()}
                     >
-                      <Text color={theme.buttonText.color}>Back to Login</Text>
+                      <Text color={theme.color.rosey[300]}>Back to Login</Text>
                     </Button>
                   </HStack>
                 </Center>
