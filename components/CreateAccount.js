@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import theme from "./Theme.js";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
@@ -45,14 +46,13 @@ const CreateAccount = ({ navigation }) => {
   return (
     <ScrollView>
       <Box safeAreaTop="20" alignItems="center">
-        <Image
-          source={require("../assets/bookboundtestlogo.png")}
-          alt="bookbound logo"
-          justifyContent="center"
-          alignItems="center"
-          width="200"
-          height="100"
-        ></Image>
+      <Center>
+            <Image
+              source={require("../assets/logo.png")}
+              style={theme.loginLogo}
+              alt="bookbound logo"
+            ></Image>
+          </Center>
         <Center w="100%">
           <Box safeArea p="2" py="8" w="90%" maxW="290">
             <Heading

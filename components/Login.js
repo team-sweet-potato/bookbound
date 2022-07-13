@@ -1,23 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import theme from "./Theme.js";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import {
-  Box,
   Button,
   Center,
   FormControl,
-  Heading,
-  HStack,
-  Link,
   Image,
   Input,
-  ScrollView,
-  Text,
   VStack,
   NativeBaseProvider,
+  Text,
+  HStack,
 } from "native-base";
-import { SafeAreaView, View, Animated } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  Animated,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import LottieView from "lottie-react-native";
 
 const Login = ({ navigation }) => {
@@ -57,7 +60,7 @@ const Login = ({ navigation }) => {
           <View style={{ height: 200, width: 200 }}>
             <LottieView
               progress={progress}
-              source={require("../assets/lottieWithCoffee.json")}
+              source={require("../assets/Lottie/lottieWithCoffee.json")}
             />
           </View>
 
@@ -70,37 +73,62 @@ const Login = ({ navigation }) => {
           </Center>
         </SafeAreaView>
       </Center>
-      <Box>
-        <Center w="100%">
-          <View>
-            <VStack space={7} mt="20">
-              <FormControl>
-                <FormControl.Label>Email ID</FormControl.Label>
-                <Input
-                  value={email}
-                  placeholder="email"
-                  onChangeText={(text) => setEmail(text)}
-                />
-              </FormControl>
-              <FormControl>
-                <FormControl.Label>Password</FormControl.Label>
-                <Input
-                  value={password}
-                  placeholder="password"
-                  onChangeText={(text) => setPassword(text)}
-                  secureTextEntry
-                />
-              </FormControl>
-              <Button mt="2" colorScheme="indigo" onPress={handleLogin}>
-                Sign in
-              </Button>
-              <Button mt="2" colorScheme="indigo" onPress={handleGoToSignUp}>
-                Sign Up
-              </Button>
-            </VStack>
-          </View>
-        </Center>
-      </Box>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        style={"flex"}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <Center w="100%">
+            <View>
+              <VStack space={7} mt="20">
+                <FormControl height="10" width="250">
+                  <FormControl.Label>Email ID</FormControl.Label>
+                  <Input
+                    value={email}
+                    placeholder="email"
+                    onChangeText={(text) => setEmail(text)}
+                  />
+                </FormControl>
+                <FormControl>
+                  <FormControl.Label>Password</FormControl.Label>
+                  <Input
+                    value={password}
+                    placeholder="password"
+                    onChangeText={(text) => setPassword(text)}
+                    secureTextEntry
+                  />
+                </FormControl>
+                <Button
+                  size="md"
+                  variant="ghost"
+                  onPress={handleLogin}
+                  colorScheme={theme.color.rose}
+                >
+                  <Text
+                    colorScheme={theme.color.rose}
+                    color={theme.buttonText.color}
+                  >
+                    Sign in
+                  </Text>
+                </Button>
+                <VStack>
+                  <Center>
+                    <Text>New user?</Text>
+                    <Button
+                      size="md"
+                      variant="ghost"
+                      colorScheme={theme.color.rose}
+                      onPress={handleGoToSignUp}
+                    >
+                      <Text color={theme.color.rose[600]}>Sign Up</Text>
+                    </Button>
+                  </Center>
+                </VStack>
+              </VStack>
+            </View>
+          </Center>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
     </NativeBaseProvider>
   );
 };
