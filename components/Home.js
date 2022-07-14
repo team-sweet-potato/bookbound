@@ -91,7 +91,7 @@ const Home = ({ navigation }) => {
                   shadow={3}
                   onPress={() =>
                     navigation.navigate("Currently Reading", {
-                      screen: "Currently Reading",
+                      screen: "ReadingShelf",
                       params: { book },
                     })
                   }
@@ -100,7 +100,7 @@ const Home = ({ navigation }) => {
                 </Center>
               </View>
               <View>
-                <Center
+                <Button
                   w="64"
                   h="20"
                   bgColor={theme.browns[100]}
@@ -114,7 +114,7 @@ const Home = ({ navigation }) => {
                   }
                 >
                   <Text>Recommendations</Text>
-                </Center>
+                </Button>
               </View>
             </VStack>
           </Container>
