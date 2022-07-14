@@ -15,7 +15,7 @@ books_df = pd.read_csv("books.csv")
 ratings_df.head()
 
 from sklearn.model_selection import train_test_split
-Xtrain, Xtest = train_test_split(ratings_df, test_size=0.4, random_state=1)
+Xtrain, Xtest = train_test_split(ratings_df, test_size=0.2, random_state=1)
 
 #Get the number of unique entities in books and users columns
 nbook_id = ratings_df.book_id.nunique()
@@ -47,3 +47,27 @@ hist = model.fit([Xtrain.book_id, Xtrain.user_id], Xtrain.rating,
 
 # save the model
 model.save('recommenderModel')
+
+books_df_copy = books_df.copy()
+books_df_copy = books_df_copy.set_index("book_id")
+# Extract embeddings
+book_em = model.get_layer('embedding')
+book_em_weights = book_em.get_weights()[0]
+book_em_weights.shape
+
+b_id =list(ratings_df.book_id.unique())
+b_id.remove(10000)
+dict_map = {}
+for i in b_id:
+    dict_map[i] = books_df_copy.iloc[i]['title']
+
+out_v = open('vecs.tsv', 'w')
+out_m = open('meta.tsv', 'w')
+for i in b_id:
+    book = dict_map[i]
+    embeddings = book_em_weights[i]
+    out_m.write(book + "\n")
+    out_v.write('\t'.join([str(x) for x in embeddings]) + "\n")
+
+out_v.close()
+out_m.close()
