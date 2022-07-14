@@ -34,7 +34,6 @@ def initiate_find(name):
   books_df_copy = books_df.copy()
   # Setting index equal to the book_id
   books_df_copy = books_df_copy.set_index("book_id")
-#   print(books_df_copy.head())
   index_book = {}
   book_index = {}
   index_isbn = {}
@@ -64,7 +63,6 @@ def initiate_find(name):
           # Calculate dot product between book and all others
           dists = np.dot(weights, weights[index[name]])
       except KeyError:
-          print(f'{name} Not Found.')
           return None
 
       # Sort distance indexes from smallest to largest
@@ -78,7 +76,6 @@ def initiate_find(name):
       for c in reversed(closest):
           obj = {"book":rindex[c], "isbn": iindex[c], "similarity": float(dists[c]) }
           list.append(obj)
-      print("list of similar books", list)
       return list
 
   return find_similar(name, book_em_weightsExperiment)
