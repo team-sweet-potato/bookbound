@@ -40,8 +40,11 @@ const ReadingShelf = ({ navigation }) => {
   };
 
   useEffect(() => {
-    fetchBooks();
-  }, []);
+    const updateBooks = navigation.addListener('focus', () => {
+      fetchBooks();
+    });
+    return updateBooks;
+  }, [navigation]);
 
   return (
     <ScrollView>
