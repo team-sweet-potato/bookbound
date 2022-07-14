@@ -78,7 +78,7 @@ def initiate_find(name):
       for c in reversed(closest):
           obj = {"book":rindex[c], "isbn": iindex[c], "similarity": float(dists[c]) }
           list.append(obj)
-      print(list)
+      print("list of similar books", list)
       return list
 
   return find_similar(name, book_em_weightsExperiment)
