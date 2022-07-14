@@ -64,7 +64,7 @@ const ReadShelf = ({ navigation }) => {
         <VStack space={4} alignItems="center">
           {books.map((book) => {
             return (
-              <Container>
+              <Container key={book.industryIdentifiers[1].identifier}>
                 <Pressable
                   onPress={() => navigation.navigate("Single Book", { book })}
                 >
