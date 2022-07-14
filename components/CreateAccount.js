@@ -28,35 +28,40 @@ const CreateAccount = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
-  const [errors, setErrors] = useState({email: "", password: "", firstName: "", lastName: "", username: ""});
+  const [firstNameError, setFirstNameError] =useState("");
+  const [lastNameError, setLastNameError] =useState("");
+  const [usernameError, setUsernameError] =useState("");
+  const [emailError, setEmailError] =useState("");
+  const [passwordError, setPasswordError] =useState("");
 
   const validate = () => {
     if (email === "") {
-      setErrors({...errors, email: "Please enter a valid email."});
+      setEmailError("Please enter a valid email.");
     }
     if (password === "" || verifyPassword === "") {
-      setErrors({...errors, password: "Please enter a password."});
+      setPasswordError("Please enter a password.");
     } else if (password !== verifyPassword) {
-      setErrors({...errors, password: "Passwords do not match."});
+      setPasswordError("Passwords do not match.");
     }
     if (firstName === "") {
-      setErrors({...errors, firstName: "Please enter your first name."});
+      setFirstNameError("Please enter your first name.");
     }
     if (lastName === "") {
-      setErrors({...errors, lastName: "Please enter your last name."});
+      setLastNameError("Please enter your last name.");
     }
     if (username === "") {
-      setErrors({...errors, username: "Please enter a valid username."});
+      setUsernameError("Please enter a valid username.");
     }
-    if (errors.email || errors.password || errors.firstName || errors.lastName || errors.username) {
-      return false
+    if (firstNameError || lastNameError || usernameError || emailError || passwordError) {
+      return false;
+    } else {
+      return true;
     }
-    return true;
   };
 
   async function handleSignUp() {
-    try {
-      if (validate()) {
+    if (validate()) {
+      try {
         await createUserWithEmailAndPassword(auth, email, password);
         await setDoc(doc(db, "users", auth.currentUser.uid), {
           firstName: firstName,
@@ -64,9 +69,9 @@ const CreateAccount = ({ navigation }) => {
           username: username,
         });
         navigation.push("Nav Bar");
-      }
-    } catch (error) {
-      Alert.alert("Sign up failed", "Please try again.");
+        } catch (error) {
+          Alert.alert("Sign up failed", "Please try again.");
+        }
     }
   }
 
@@ -105,79 +110,79 @@ const CreateAccount = ({ navigation }) => {
               Create an account to continue!
             </Heading>
             <VStack space={3} mt="5">
-              <FormControl isRequired isInvalid={!!errors.firstName}>
+              <FormControl isRequired isInvalid={firstNameError}>
                 <FormControl.Label>First Name</FormControl.Label>
                 <Input
                   value={firstName}
                   placeholder="firstName"
                   onChangeText={(text) => {
                     setFirstName(text)
-                    setErrors({...errors, firstName: ""})
+                    setFirstNameError("")
                   }}
                 />
-                {errors.firstName && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{errors.firstName}</FormControl.ErrorMessage>}
+                {firstNameError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{firstNameError}</FormControl.ErrorMessage>}
               </FormControl>
-              <FormControl isRequired isInvalid={!!errors.lastName}>
+              <FormControl isRequired isInvalid={lastNameError}>
                 <FormControl.Label>Last Name</FormControl.Label>
                 <Input
                   value={lastName}
                   placeholder="lastName"
                   onChangeText={(text) => {
                     setLastName(text)
-                    setErrors({...errors, lastName: ""})
+                    setLastNameError("")
                   }}
                 />
-                {errors.lastName && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{errors.lastName}</FormControl.ErrorMessage>}
+                {lastNameError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{lastNameError}</FormControl.ErrorMessage>}
               </FormControl>
-              <FormControl isRequired isInvalid={!!errors.username}>
+              <FormControl isRequired isInvalid={usernameError}>
                 <FormControl.Label>Username</FormControl.Label>
                 <Input
                   value={username}
                   placeholder="username"
                   onChangeText={(text) => {
                     setUsername(text)
-                    setErrors({...errors, username: ""})
+                    setUsernameError("")
                   }}
                 />
-                {errors.username && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{errors.username}</FormControl.ErrorMessage>}
+                {usernameError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{usernameError}</FormControl.ErrorMessage>}
               </FormControl>
-              <FormControl isRequired isInvalid={!!errors.email}>
+              <FormControl isRequired isInvalid={emailError}>
                 <FormControl.Label>Email</FormControl.Label>
                 <Input
                   value={email}
                   placeholder="email"
                   onChangeText={(text) => {
                     setEmail(text)
-                    setErrors({...errors, email: ""})
+                    setEmailError("")
                   }}
                 />
-                {errors.email && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{errors.email}</FormControl.ErrorMessage>}
+                {emailError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{emailError}</FormControl.ErrorMessage>}
               </FormControl>
-              <FormControl isRequired isInvalid={!!errors.password}>
+              <FormControl isRequired isInvalid={passwordError}>
                 <FormControl.Label>Password</FormControl.Label>
                 <Input
                   value={password}
                   placeholder="password"
                   onChangeText={(text) => {
                     setPassword(text)
-                    setErrors({...errors, password: ""})
+                    setPasswordError("")
                   }}
                   secureTextEntry
                 />
-                {errors.password && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{errors.password}</FormControl.ErrorMessage>}
+                {passwordError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{passwordError}</FormControl.ErrorMessage>}
               </FormControl>
-              <FormControl isRequired isInvalid={!!errors.password}>
+              <FormControl isRequired isInvalid={passwordError}>
                 <FormControl.Label>Verify Password</FormControl.Label>
                 <Input
                   value={verifyPassword}
                   placeholder="password"
                   onChangeText={(text) => {
                     setVerifyPassword(text)
-                    setErrors({...errors, password: ""})
+                    setPasswordError("")
                   }}
                   secureTextEntry
                 />
-                {errors.password && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{errors.password}</FormControl.ErrorMessage>}
+                {passwordError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{passwordError}</FormControl.ErrorMessage>}
               </FormControl>
               <Button mt="2" colorScheme="indigo" onPress={handleSignUp}>
                 Sign up
