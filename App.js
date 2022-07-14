@@ -20,6 +20,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Scanner from "./components/Scanner";
 import { auth } from "./firebase";
 import theme from "./components/Theme.js";
+import IndividualSearchResult from "./components/IndividualSearchResult";
 
 const MainStack = createNativeStackNavigator();
 const UserStack = createNativeStackNavigator();
@@ -84,6 +85,7 @@ function SearchStack() {
           headerBackTitleVisible: false,
         }}
       />
+      <SearchTabStack.Screen name="Individual Search Result" component={IndividualSearchResult}/>
       <SearchTabStack.Screen
         name="Single Book"
         component={SingleBook}

@@ -32,6 +32,7 @@ const Recommendations = ({ navigation }) => {
       setRecommendedBooks(prev => [...prev, data.items[0].volumeInfo])
 
       data.items[0].volumeInfo.categories.forEach(genre => {
+        // check that genre isn't alread included
         setGenres(prev => [...prev, genre])
       })
     });
@@ -42,8 +43,8 @@ const Recommendations = ({ navigation }) => {
   }, [])
 
   return (
-    <SafeAreaView>
-      <View safeAreaView >
+    <ScrollView>
+      <Box safeAreaView >
         <VStack alignItems="center">
           <Container>
             <Text fontSize="lg" fontWeight="medium">
@@ -95,17 +96,15 @@ const Recommendations = ({ navigation }) => {
                     <Image
                       h="70"
                       source={{
-                        uri: book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png'
+                        uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png'
                       }} alt="Alternate Text" size="xl" />
                     <VStack
                       paddingLeft={3}
                     >
                       <Text>{book.title}</Text>
-                      <Text color="coolGray.600" _dark={{
+                      {book.authors && <Text color="coolGray.600" _dark={{
                         color: 'warmGray.200'
-                      }}>
-                        Authors: {book.authors.join(", ")}
-                      </Text>
+                      }}>Authors: {book.authors.join(", ")}</Text>}
                     </VStack>
                   </HStack>
                 </Pressable>
@@ -119,17 +118,15 @@ const Recommendations = ({ navigation }) => {
                     <Image
                       h="70"
                       source={{
-                        uri: book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png'
+                        uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://historyexplorer.si.edu/sites/default/files/book-158.jpg'
                       }} alt="Alternate Text" size="xl" />
                     <VStack
                       paddingLeft={3}
                     >
                       <Text>{book.title}</Text>
-                      <Text color="coolGray.600" _dark={{
+                      {book.authors && <Text color="coolGray.600" _dark={{
                         color: 'warmGray.200'
-                      }}>
-                        Authors: {book.authors.join(", ")}
-                      </Text>
+                      }}>Authors: {book.authors.join(", ")}</Text>}
                     </VStack>
                   </HStack>
                 </Pressable>
@@ -139,8 +136,8 @@ const Recommendations = ({ navigation }) => {
 
           </ScrollView>
         </View>
-      </View >
-    </SafeAreaView >
+      </Box >
+    </ScrollView >
   );
 };
 

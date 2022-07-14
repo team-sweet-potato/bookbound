@@ -15,7 +15,7 @@ const SingleBook = ({ route }) => {
 
   const fetchBook = async () => {
     setBook(route.params.book);
-    setIsbn(route.params.book.industryIdentifiers.filter(isbn => isbn.type === "ISBN_13")[0].identifier);
+    setIsbn(route.params.book.industryIdentifiers.filter(isbn => isbn.type === "ISBN_10")[0].identifier);
   }
 
   const fetchList = async () => {
@@ -108,20 +108,20 @@ const SingleBook = ({ route }) => {
               {list === "currentlyReading" && <Badge colorScheme="info" rounded="full" mb={-4} mr={-4} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>Reading</Badge>}
               {list === "toReadBooks" && <Badge colorScheme="warning" rounded="full" mb={-4} mr={-4} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>To Read</Badge>}
               <Image source={{
-                uri: book.imageLinks !== undefined ? book.imageLinks.smallThumbnail : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png'
+                uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://historyexplorer.si.edu/sites/default/files/book-158.jpg'
               }} alt={`${book.title} book cover`} size="2xl" />
             </Container>
             <Container>
               <Heading size="xl">{book.title}</Heading>
-              <Heading size="md">By {book.authors.join(", ")}</Heading>
+              {book.authors && <Heading size="md">By {book.authors.join(", ")}</Heading>}
               <Divider my="2" _light={{
                 bg: "muted.800"
               }} _dark={{
                 bg: "muted.50"
               }} />
-              <Text fontSize="sm">{book.description}</Text>
+              {book.description && <Text fontSize="sm">{book.description}</Text>}
             </Container>
-            {list === "readBooks" ? (
+            {list === "readBooks" && (
               <Container>
                 <Heading size="sm">Your Rating:</Heading>
                 <Row>
@@ -132,7 +132,7 @@ const SingleBook = ({ route }) => {
                   <Icon as={FontAwesome} name={rating === 5 ? "star" : "star-o"} onPress={() => handlePress(5)} />
                 </Row>
               </Container>
-            ) : <Text></Text>}
+            )}
             <Center>
               <Box w="3/4" maxW="300">
                 <Select selectedValue={list} minWidth="200" accessibilityLabel="Add to List" placeholder="Add to List" _selectedItem={{

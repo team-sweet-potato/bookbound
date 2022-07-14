@@ -42,9 +42,11 @@ const ToReadShelf = ({ navigation }) => {
   };
 
   useEffect(() => {
-    fetchBooks();
-    console.log("BOOKS", books);
-  }, []);
+    const updateBooks = navigation.addListener('focus', () => {
+      fetchBooks();
+    });
+    return updateBooks;
+  }, [navigation]);
 
   return (
     <ScrollView>
@@ -70,7 +72,7 @@ const ToReadShelf = ({ navigation }) => {
                 >
                   <Image
                     source={{
-                      uri: book.imageLinks.thumbnail,
+                      uri: book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
                     }}
                     alt={`${book.title} book cover`}
                     size="2xl"
@@ -81,7 +83,7 @@ const ToReadShelf = ({ navigation }) => {
                 >
                   <Heading>{book.title}</Heading>
                 </Pressable>
-                <Text>{book.authors.join(", ")}</Text>
+                {book.authors && <Text>Authors: {book.authors.join(", ")}</Text>}
               </Container>
             );
           })}
