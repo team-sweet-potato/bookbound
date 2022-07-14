@@ -15,7 +15,7 @@ const SingleBook = ({ route }) => {
 
   const fetchBook = async () => {
     setBook(route.params.book);
-    setIsbn(route.params.book.industryIdentifiers.filter(isbn => isbn.type === "ISBN_13")[0].identifier);
+    setIsbn(route.params.book.industryIdentifiers.filter(isbn => isbn.type === "ISBN_10")[0].identifier);
   }
 
   const fetchList = async () => {
