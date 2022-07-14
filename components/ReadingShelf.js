@@ -14,6 +14,7 @@ import { collection, getDocs, query } from "firebase/firestore";
 
 const ReadingShelf = ({ navigation }) => {
   const [books, setBook] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   const fetchBooks = async () => {
     let isbnArr = [];
@@ -34,12 +35,14 @@ const ReadingShelf = ({ navigation }) => {
         booksArr.push(data.items[0].volumeInfo);
       }
       setBook(booksArr);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
+
     const updateBooks = navigation.addListener('focus', () => {
       fetchBooks();
     });
@@ -49,14 +52,22 @@ const ReadingShelf = ({ navigation }) => {
   return (
     <ScrollView>
       {books.length < 1 ? (
-        <VStack space={4} alignItems="center">
-          <Text>Oh no! You don't have any books saved in this shelf yet.</Text>
-        </VStack>
+        isLoading ? (
+          <Text>Loading</Text>
+        ) : (
+          <VStack space={4} alignItems="center">
+            <Text>
+              Oh no! You don't have any books saved in this shelf yet.
+            </Text>
+          </VStack>
+        )
+      ) : isLoading ? (
+        <Text>Loading</Text>
       ) : (
         <VStack space={4} alignItems="center">
           {books.map((book) => {
             return (
-              <Container key={book.industryIdentifiers[0].identifier}>
+              <Container key={book.industryIdentifiers[1].identifier}>
                 <Pressable
                   onPress={() => navigation.navigate("Single Book", { book })}
                 >
