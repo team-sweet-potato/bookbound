@@ -53,7 +53,18 @@ const SearchResults = ({ navigation, route }) => {
         }}
         scrollEventThrottle={400}>
           {books ? books.map(book => (
-            <IndividualSearchResult key={book.id} book={book} />
+            <Box key={book.id} >
+              <Pressable onPress={() => navigation.navigate("Single Book", {book: book.volumeInfo})} _dark={{
+                  bg: 'coolGray.800'
+                }}
+                paddingTop={2}
+                paddingBottom={2}
+                _light={{
+                  bg: 'white'
+                }}>
+                <IndividualSearchResult book={book} />
+              </Pressable>
+            </Box>
           )) : <Text>No Results</Text>}
         </ScrollView>
       </Box>
