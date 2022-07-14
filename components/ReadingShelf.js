@@ -42,7 +42,6 @@ const ReadingShelf = ({ navigation }) => {
   };
 
   useEffect(() => {
-
     const updateBooks = navigation.addListener('focus', () => {
       fetchBooks();
     });
