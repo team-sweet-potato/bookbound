@@ -32,6 +32,7 @@ const Recommendations = ({ navigation }) => {
       setRecommendedBooks(prev => [...prev, data.items[0].volumeInfo])
 
       data.items[0].volumeInfo.categories.forEach(genre => {
+        // check that genre isn't alread included
         setGenres(prev => [...prev, genre])
       })
     });
@@ -42,8 +43,8 @@ const Recommendations = ({ navigation }) => {
   }, [])
 
   return (
-    <SafeAreaView>
-      <View safeAreaView >
+    <ScrollView>
+      <Box safeAreaView >
         <VStack alignItems="center">
           <Container>
             <Text fontSize="lg" fontWeight="medium">
@@ -139,8 +140,8 @@ const Recommendations = ({ navigation }) => {
 
           </ScrollView>
         </View>
-      </View >
-    </SafeAreaView >
+      </Box >
+    </ScrollView >
   );
 };
 
