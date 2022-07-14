@@ -14,9 +14,11 @@ import {
   Input,
   ScrollView,
   Text,
-  VStack
+  VStack,
+  WarningOutlineIcon
 } from "native-base";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Alert } from 'react-native';
 
 const UserProfile = ({ navigation, route }) => {
   // Variables to sign up
@@ -26,6 +28,11 @@ const UserProfile = ({ navigation, route }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [verifyPassword, setVerifyPassword] = useState("");
+  const [firstNameError, setFirstNameError] =useState("");
+  const [lastNameError, setLastNameError] =useState("");
+  const [usernameError, setUsernameError] =useState("");
+  const [emailError, setEmailError] =useState("");
+  const [passwordError, setPasswordError] =useState("");
 
   const fetchUser = async () => {
     setFirstName(route.params.user.firstName);
@@ -38,11 +45,36 @@ const UserProfile = ({ navigation, route }) => {
     fetchUser();
   }, [])
 
+  const validate = () => {
+    if (email === "") {
+      setEmailError("Please enter a valid email.");
+    }
+    if (password !== verifyPassword) {
+      setPasswordError("Passwords do not match.");
+    }
+    if (firstName === "") {
+      setFirstNameError("Please enter your first name.");
+    }
+    if (lastName === "") {
+      setLastNameError("Please enter your last name.");
+    }
+    if (username === "") {
+      setUsernameError("Please enter a valid username.");
+    }
+    if (firstNameError || lastNameError || usernameError || emailError || passwordError) {
+      return false;
+    } else {
+      return true;
+    }
+  };
+
   async function handleSignUp() {
-    if (password === verifyPassword && firstName && lastName && username) {
+    if (validate()) {
       try {
         await updateEmail(auth.currentUser, email);
-        await updatePassword(auth.currentUser, password);
+        if (password) {
+          await updatePassword(auth.currentUser, password);
+        }
         await setDoc(doc(db, "users", auth.currentUser.uid), {
           firstName: firstName,
           lastName: lastName,
@@ -50,7 +82,7 @@ const UserProfile = ({ navigation, route }) => {
         });
         navigation.push("All Shelves")
       } catch (error) {
-        console.log(error)
+        Alert.alert("Account Update Failed", "Please try again.");
       }
     }
   }
@@ -72,60 +104,84 @@ const UserProfile = ({ navigation, route }) => {
                 Update Account Info
               </Heading>
               <VStack space={3} mt="5">
-                <FormControl>
-                  <FormControl.Label>First Name</FormControl.Label>
-                  <Input
-                    value={firstName}
-                    placeholder="firstName"
-                    onChangeText={(text) => setFirstName(text)}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormControl.Label>Last Name</FormControl.Label>
-                  <Input
-                    value={lastName}
-                    placeholder="lastName"
-                    onChangeText={(text) => setLastName(text)}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormControl.Label>Username</FormControl.Label>
-                  <Input
-                    value={username}
-                    placeholder="username"
-                    onChangeText={(text) => setUsername(text)}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormControl.Label>Email</FormControl.Label>
-                  <Input
-                    value={email}
-                    placeholder="email"
-                    onChangeText={(text) => setEmail(text)}
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormControl.Label>Change Password</FormControl.Label>
-                  <Input
-                    value={password}
-                    placeholder="password"
-                    onChangeText={(text) => setPassword(text)}
-                    secureTextEntry
-                  />
-                </FormControl>
-                <FormControl>
-                  <FormControl.Label>Verify New Password</FormControl.Label>
-                  <Input
-                    value={verifyPassword}
-                    placeholder="password"
-                    onChangeText={(text) => setVerifyPassword(text)}
-                    secureTextEntry
-                  />
-                </FormControl>
-                <Button mt="2" colorScheme="indigo" onPress={handleSignUp}>
-                  Submit
-                </Button>
-              </VStack>
+              <FormControl isRequired isInvalid={firstNameError}>
+                <FormControl.Label>First Name</FormControl.Label>
+                <Input
+                  value={firstName}
+                  placeholder="firstName"
+                  onChangeText={(text) => {
+                    setFirstName(text)
+                    setFirstNameError("")
+                  }}
+                />
+                {firstNameError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{firstNameError}</FormControl.ErrorMessage>}
+              </FormControl>
+              <FormControl isRequired isInvalid={lastNameError}>
+                <FormControl.Label>Last Name</FormControl.Label>
+                <Input
+                  value={lastName}
+                  placeholder="lastName"
+                  onChangeText={(text) => {
+                    setLastName(text)
+                    setLastNameError("")
+                  }}
+                />
+                {lastNameError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{lastNameError}</FormControl.ErrorMessage>}
+              </FormControl>
+              <FormControl isRequired isInvalid={usernameError}>
+                <FormControl.Label>Username</FormControl.Label>
+                <Input
+                  value={username}
+                  placeholder="username"
+                  onChangeText={(text) => {
+                    setUsername(text)
+                    setUsernameError("")
+                  }}
+                />
+                {usernameError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{usernameError}</FormControl.ErrorMessage>}
+              </FormControl>
+              <FormControl isRequired isInvalid={emailError}>
+                <FormControl.Label>Email</FormControl.Label>
+                <Input
+                  value={email}
+                  placeholder="email"
+                  onChangeText={(text) => {
+                    setEmail(text)
+                    setEmailError("")
+                  }}
+                />
+                {emailError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{emailError}</FormControl.ErrorMessage>}
+              </FormControl>
+              <FormControl isInvalid={passwordError}>
+                <FormControl.Label>Change Password</FormControl.Label>
+                <Input
+                  value={password}
+                  placeholder="password"
+                  onChangeText={(text) => {
+                    setPassword(text)
+                    setPasswordError("")
+                  }}
+                  secureTextEntry
+                />
+                {passwordError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{passwordError}</FormControl.ErrorMessage>}
+              </FormControl>
+              <FormControl isInvalid={passwordError}>
+                <FormControl.Label>Verify New Password</FormControl.Label>
+                <Input
+                  value={verifyPassword}
+                  placeholder="password"
+                  onChangeText={(text) => {
+                    setVerifyPassword(text)
+                    setPasswordError("")
+                  }}
+                  secureTextEntry
+                />
+                {passwordError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{passwordError}</FormControl.ErrorMessage>}
+              </FormControl>
+              <Button mt="2" colorScheme="indigo" onPress={handleSignUp}>
+                Update
+              </Button>
+            </VStack>
             </Box>
           </Center>
         </Box>
