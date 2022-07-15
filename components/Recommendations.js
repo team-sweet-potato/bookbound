@@ -100,7 +100,7 @@ const Recommendations = ({ navigation }) => {
           </Text>
           <ScrollView>
             {currentSelect === "All Books" ? recommendedBooks.map(book => (
-              <Box color="blue" key={book.id}>
+              <Box color="blue" key={book.id} paddingBottom={5}>
                 <Pressable
                   onPress={() => navigation.push("Single Book", { book: book })}
                 >
@@ -111,7 +111,8 @@ const Recommendations = ({ navigation }) => {
                         uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://historyexplorer.si.edu/sites/default/files/book-158.jpg'
                       }} alt="Alternate Text" size="xl" resizeMode="contain" />
                     <VStack
-                      paddingLeft={3}
+                      width="70%"
+                      paddingRight={5}
                     >
                       <Text>{book.title}</Text>
                       {book.authors && <Text color="coolGray.600" _dark={{
@@ -122,7 +123,7 @@ const Recommendations = ({ navigation }) => {
                 </Pressable>
               </Box>
             )) : recommendedBooks.filter(book => book.categories.includes(currentSelect)).map(book => (
-              <Box color="blue" key={book.id}>
+              <Box color="blue" key={book.id} paddingBottom={5}>
                 <Pressable
                   onPress={() => navigation.push("Single Book", { book: book })}
                 >
@@ -133,7 +134,8 @@ const Recommendations = ({ navigation }) => {
                         uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://historyexplorer.si.edu/sites/default/files/book-158.jpg'
                       }} alt="Alternate Text" size="xl" resizeMode="contain" />
                     <VStack
-                      paddingLeft={3}
+                      width="70%"
+                      paddingRight={5}
                     >
                       <Text>{book.title}</Text>
                       {book.authors && <Text color="coolGray.600" _dark={{
