@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import theme from "./Theme.js";
-import { Center, Image, NativeBaseProvider, Footer } from "native-base";
+import { Center, Image, NativeBaseProvider } from "native-base";
 
 const HeaderLogo = ({ navigation }) => {
   return (

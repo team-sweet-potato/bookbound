@@ -22,7 +22,7 @@ import {
 } from "native-base";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Alert } from "react-native";
-import { Animated, SafeAreaView } from "react-native";
+import { Animated, SafeAreaView, ImageBackground } from "react-native";
 import LottieView from "lottie-react-native";
 
 const CreateAccount = ({ navigation }) => {
@@ -100,19 +100,28 @@ const CreateAccount = ({ navigation }) => {
   return (
     <NativeBaseProvider theme={theme}>
       <ScrollView>
-        <Box safeAreaTop="10" alignItems="center">
-          <Center>
-            <Image
-              source={require("../assets/logo.png")}
-              style={theme.smallLogo}
-              alt="bookbound logo"
-            ></Image>
-          </Center>
+        <Box safeAreaTop="10">
           <Center w="100%">
             <Box p="1" py="3" w="90%" maxW="290">
               <SafeAreaView>
                 <Center>
-                  <View style={{ height: 75, width: 100 }}>
+                  <Button
+                    mt="2"
+                    size="md"
+                    variant="ghost"
+                    style={theme.backArrow}
+                    colorScheme={theme.rosey}
+                    onPress={() => navigation.goBack()}
+                  >
+                    <Text
+                      fontSize="20"
+                      fontWeight="500"
+                      color={theme.rosey[300]}
+                    >
+                      ←
+                    </Text>
+                  </Button>
+                  <View style={{ height: 55, width: 70 }}>
                     <LottieView
                       progress={progress}
                       source={require("../assets/Lottie/hello.json")}
@@ -120,11 +129,11 @@ const CreateAccount = ({ navigation }) => {
                   </View>
                 </Center>
               </SafeAreaView>
-              <Text mt="5" color={theme.rosey[600]}>
+              <Text mt="5" color={theme.rosey[300]}>
                 Create an account to continue!
               </Text>
 
-              <VStack space={3} mt="5">
+              <VStack space={1} mt="3">
                 <FormControl isRequired isInvalid={firstNameError}>
                   <FormControl.Label>First Name</FormControl.Label>
                   <Input
@@ -238,24 +247,13 @@ const CreateAccount = ({ navigation }) => {
                 <Center>
                   <HStack>
                     <Button
-                      mt="2"
-                      size="md"
+                      size="lg"
                       variant="ghost"
-                      style={theme.button}
                       colorScheme={theme.rosey}
+                      style={theme.button.variants.ghost}
                       onPress={handleSignUp}
                     >
                       <Text color={theme.rosey[300]}> Sign Up</Text>
-                    </Button>
-                    <Button
-                      mt="2"
-                      size="md"
-                      variant="ghost"
-                      style={theme.button}
-                      colorScheme={theme.rosey}
-                      onPress={() => navigation.goBack()}
-                    >
-                      <Text color={theme.rosey[300]}>Back to Login</Text>
                     </Button>
                   </HStack>
                 </Center>
@@ -264,6 +262,13 @@ const CreateAccount = ({ navigation }) => {
           </Center>
         </Box>
       </ScrollView>
+      <Center>
+        <ImageBackground
+          source={require("../assets/morepastelbooks.png")}
+          alt="books"
+          style={theme.books}
+        ></ImageBackground>
+      </Center>
     </NativeBaseProvider>
   );
 };
