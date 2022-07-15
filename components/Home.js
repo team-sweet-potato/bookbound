@@ -14,10 +14,10 @@ import {
   HStack,
   Pressable,
   Flex,
-  Stack
+  Stack,
 } from "native-base";
 import axios from "axios";
-import { SafeAreaView, View, Animated } from "react-native";
+import { SafeAreaView, View, Animated, ImageBackground } from "react-native";
 import LottieView from "lottie-react-native";
 import { auth, db } from "../firebase";
 import { collection, getDocs, query } from "firebase/firestore";
@@ -28,7 +28,6 @@ const Home = ({ navigation }) => {
 
   const fetchBooks = async () => {
     try {
-      // fetch current
       let curIsbnArr = [];
       const curBookShelf = query(
         collection(db, "users", auth.currentUser.uid, "currentlyReading")
@@ -63,15 +62,13 @@ const Home = ({ navigation }) => {
         recBooksArr.push(data.items[0].volumeInfo);
       }
       setRecommended(recBooksArr);
-
-
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    const updateBooks = navigation.addListener('focus', () => {
+    const updateBooks = navigation.addListener("focus", () => {
       fetchBooks();
     });
     return updateBooks;
@@ -93,157 +90,158 @@ const Home = ({ navigation }) => {
   return (
     <NativeBaseProvider theme={theme}>
       <ScrollView>
-        <Center>
-          <VStack alignItems="center">
-            <Center>
-              <Container mt="10">
-                <Image
-                  source={require("../assets/logo.png")}
-                  style={theme.loginLogo}
-                  alt="bookbound logo"
-                ></Image>
-              </Container>
-            </Center>
-            <Box mt="10">
-              <SafeAreaView>
-                <Center>
-                  <View style={{ height: 75, width: 100 }}>
-                    <LottieView
-                      progress={progress}
-                      source={require("../assets/Lottie/hello.json")}
-                    />
-                  </View>
-                </Center>
-              </SafeAreaView>
-            </Box>
-            <Image
-              mt="10"
-              mb="7"
-              source={require("../assets/bookshelfandclock.png")}
-              style={theme.clockImage}
-              alt="bookbound logo"
-            ></Image>
-            <Container p="5">
-              <VStack space={4} alignItems="center" mb="3">
-                <View>
-                  <Button
-                    w="64"
-                    h="20"
-                    bgColor={theme.browns[100]}
-                    rounded="md"
-                    shadow={3}
-                    onPress={() =>
-                      navigation.navigate("My Shelves", {screen: "Reading"})
-                    }
-                  >
-                    <Text>Currently Reading</Text>
-                  </Button>
+        <VStack alignItems="center">
+          <Box mt="5" mb="1">
+            <SafeAreaView>
+              <Center>
+                <View style={{ height: 50, width: 75 }}>
+                  <LottieView
+                    progress={progress}
+                    source={require("../assets/Lottie/hello.json")}
+                  />
                 </View>
-                <HStack justifyContent="space-evenly">
-                  {current && current.slice(0,3).map((book) => (
-                    <Box key={book.industryIdentifiers[1].identifier}>
-                      <Pressable
-                        onPress={() => navigation.navigate("Single Book", {book})}>
-                        <Image
-                            source={{
-                            uri: book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
-                          }}
-                          resizeMode="contain"
-                          alt={`${book.title} book cover`}
-                          size="xl"
-                        />
-                      </Pressable>
-                    </Box>
-                  ))}
-                </HStack>
-                {current.length !== 0 ? (
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onPress={() => {
-                      navigation.navigate("My Shelves", {screen: "Reading"})
-                    }}
-                  >
-                    View All Currently Reading
-                  </Button>
-                  ) : (
-                    <View>
-                      <Text>
-                        Add books to your Currently Reading List!
-                      </Text>
-                      <Button
+              </Center>
+            </SafeAreaView>
+          </Box>
+          <SafeAreaView>
+            <Container p="5">
+              <View mt="2" mb="2">
+                <Text>Currently Reading...</Text>
+              </View>
+              <VStack space={4} alignItems="center" mt="3" mb="3">
+                <SafeAreaView>
+                  <HStack justifyContent="space-evenly">
+                    {current &&
+                      current.slice(0, 3).map((book) => (
+                        <Box key={book.industryIdentifiers[1].identifier}>
+                          <Pressable
+                            onPress={() =>
+                              navigation.navigate("Single Book", { book })
+                            }
+                          >
+                            <Image
+                              source={{
+                                uri:
+                                  book.imageLinks && book.imageLinks.thumbnail
+                                    ? book.imageLinks.thumbnail
+                                    : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                              }}
+                              resizeMode="contain"
+                              alt={`${book.title} book cover`}
+                              size="xl"
+                            />
+                          </Pressable>
+                        </Box>
+                      ))}
+                  </HStack>
+                  {current.length !== 0 ? (
+                    <Button
                       size="sm"
                       variant="ghost"
-                      onPress={() =>
-                        navigation.navigate("Search")
-                      }
+                      onPress={() => {
+                        navigation.navigate("My Shelves", {
+                          screen: "Reading",
+                        });
+                      }}
+                    >
+                      <Text fontSize="12" color={theme.rosey[300]}>
+                        View All Currently Reading
+                      </Text>
+                    </Button>
+                  ) : (
+                    <View>
+                      <Text>Add books to your Currently Reading List!</Text>
+                      <Button
+                        size="sm"
+                        variant="ghost"
+                        onPress={() => navigation.navigate("Search")}
                       >
-                        Search for Books
+                        <Text fontSize="12" color={theme.rosey[300]}></Text>
                       </Button>
                     </View>
                   )}
-                <View>
-                  <Button
-                    w="64"
-                    h="20"
-                    bgColor={theme.browns[100]}
-                    rounded="md"
-                    shadow={3}
-                    onPress={() =>
-                      navigation.navigate("For You")
-                    }
-                  >
-                    <Text>Recommendations</Text>
-                  </Button>
-                </View>
-                <HStack justifyContent="space-evenly">
-                  {recommended && recommended.slice(0,3).map((book) => (
-                    <Box key={book.industryIdentifiers[1].identifier}>
-                      <Pressable
-                        onPress={() => navigation.navigate("Single Book", {book})}>
-                        <Image
-                            source={{
-                            uri: book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
-                          }}
-                          resizeMode="contain"
-                          alt={`${book.title} book cover`}
-                          size="xl"
-                        />
-                      </Pressable>
-                    </Box>
-                  ))}
-                </HStack>
+                  <HStack justifyContent="space-evenly">
+                    {recommended &&
+                      recommended.slice(0, 3).map((book) => (
+                        <Box key={book.industryIdentifiers[1].identifier}>
+                          <Pressable
+                            onPress={() =>
+                              navigation.navigate("Single Book", { book })
+                            }
+                          >
+                            <Image
+                              source={{
+                                uri:
+                                  book.imageLinks && book.imageLinks.thumbnail
+                                    ? book.imageLinks.thumbnail
+                                    : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                              }}
+                              resizeMode="contain"
+                              alt={`${book.title} book cover`}
+                              size="xl"
+                            />
+                          </Pressable>
+                        </Box>
+                      ))}
+                  </HStack>
+                  <View
+                    style={{
+                      borderBottomColor: "black",
+                      borderBottomWidth: 0.5,
+                    }}
+                  />
+                </SafeAreaView>
+              </VStack>
+              <VStack>
+                <SafeAreaView>
+                  <Container>
+                    <View mt="2" mb="2">
+                      <Text>Recommendations</Text>
+                    </View>
+                  </Container>
+                </SafeAreaView>
                 {recommended.length !== 0 ? (
                   <Button
                     size="sm"
                     variant="ghost"
-                    onPress={() =>
-                      navigation.navigate("For You")
-                    }
+                    onPress={() => navigation.navigate("For You")}
                   >
-                    View All Recommended
+                    <Text fontSize="12" color={theme.rosey[300]}>
+                      View All Recommended
+                    </Text>
                   </Button>
-                  ) : (
+                ) : (
+                  <View>
                     <View>
-                      <Text>
-                        Add books to your Read List and rate them to receive personalized recommendations!
+                      <Text mt="3">
+                        Add books to your 'Read' shelf and rate them to receive
+                        personalized recommendations!
                       </Text>
+                    </View>
+
+                    <View>
                       <Button
-                      size="sm"
-                      variant="ghost"
-                      onPress={() =>
-                        navigation.navigate("Search")
-                      }
+                        size="sm"
+                        variant="ghost"
+                        onPress={() => navigation.navigate("Search")}
                       >
-                        Search for Books
+                        <Text fontSize="12" color={theme.rosey[300]}>
+                          Search for Books
+                        </Text>
                       </Button>
                     </View>
-                  )}
+                  </View>
+                )}
               </VStack>
             </Container>
-          </VStack>
-        </Center>
+          </SafeAreaView>
+        </VStack>
       </ScrollView>
+      <ImageBackground
+        source={require("../assets/morepastelbooks.png")}
+        alt="books"
+        style={theme.homeBooks}
+      ></ImageBackground>
     </NativeBaseProvider>
   );
 };

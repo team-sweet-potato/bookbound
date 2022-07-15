@@ -79,6 +79,18 @@ const customTheme = extendTheme({
     width: 130,
     height: 20,
   },
+  books: {
+    width: 400,
+    height: 350,
+    bottom: 10,
+    position: "absolute",
+  },
+  homeBooks: {
+    width: 400,
+    height: 350,
+    bottom: -7,
+    position: "absolute",
+  },
   loginLogo: {
     width: 150,
     height: 29,
@@ -87,9 +99,26 @@ const customTheme = extendTheme({
     width: 200,
     height: 130,
   },
+  button: {
+    paddingHorizontal: 8,
+    paddingVertical: 6,
+    borderRadius: 4,
+    backgroundColor: "oldlace",
+    alignSelf: "flex-start",
+    marginHorizontal: "1%",
+    marginBottom: 6,
+    minWidth: "48%",
+    textAlign: "center",
+  },
+  backArrow: {
+    alignSelf: "flex-start",
+    marginTop: -5,
+    position: "absolute",
+    marginHorizontal: "1%",
+  },
   arch: {
-    width: 40,
-    height: 80,
+    width: "100%",
+    height: "100%",
     flex: "center",
   },
   fontConfig: {
@@ -203,6 +232,10 @@ const theme = extendTheme({
   heading: customTheme.fonts.heading,
   button: customTheme.components.Button,
   text: customTheme.components.Text,
+  books: customTheme.books,
+  backArrow: customTheme.backArrow,
+  homeBooks: customTheme.homeBooks,
+  fontSize: customTheme.fontConfig.fontSizes
 });
 
 export default theme;

@@ -12,12 +12,12 @@ import {
   NativeBaseProvider,
   Text,
   HStack,
-  WarningOutlineIcon
+  WarningOutlineIcon,
 } from "native-base";
-import { Alert } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Alert } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import axios from "axios";
-import { SafeAreaView, View, Animated } from "react-native";
+import { SafeAreaView, View, Animated, ImageBackground } from "react-native";
 import LottieView from "lottie-react-native";
 
 const Login = ({ navigation }) => {
@@ -34,7 +34,7 @@ const Login = ({ navigation }) => {
       setPasswordError("Please enter your password.");
     }
     if (emailError || passwordError) {
-      return false
+      return false;
     }
     return true;
   };
@@ -105,17 +105,28 @@ const Login = ({ navigation }) => {
         <Center w="100%">
           <View>
             <VStack space={7} mt="20">
-              <FormControl width="250" isRequired isInvalid={emailError}>
+              <FormControl
+                height="10"
+                width="250"
+                isRequired
+                isInvalid={emailError}
+              >
                 <FormControl.Label>Email</FormControl.Label>
                 <Input
                   value={email}
                   placeholder="email"
                   onChangeText={(text) => {
-                      setEmail(text)
-                      setEmailError("")
-                    }}
+                    setEmail(text);
+                    setEmailError("");
+                  }}
                 />
-                {emailError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{emailError}</FormControl.ErrorMessage>}
+                {emailError && (
+                  <FormControl.ErrorMessage
+                    leftIcon={<WarningOutlineIcon size="xs" />}
+                  >
+                    {emailError}
+                  </FormControl.ErrorMessage>
+                )}
               </FormControl>
               <FormControl isRequired isInvalid={passwordError}>
                 <FormControl.Label>Password</FormControl.Label>
@@ -123,12 +134,18 @@ const Login = ({ navigation }) => {
                   value={password}
                   placeholder="password"
                   onChangeText={(text) => {
-                      setPassword(text)
-                      setPasswordError("")
-                    }}
+                    setPassword(text);
+                    setPasswordError("");
+                  }}
                   secureTextEntry
                 />
-                {passwordError && <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>{passwordError}</FormControl.ErrorMessage>}
+                {passwordError && (
+                  <FormControl.ErrorMessage
+                    leftIcon={<WarningOutlineIcon size="xs" />}
+                  >
+                    {passwordError}
+                  </FormControl.ErrorMessage>
+                )}
               </FormControl>
               <Button
                 size="md"
@@ -141,23 +158,31 @@ const Login = ({ navigation }) => {
                   Sign in
                 </Text>
               </Button>
-              <VStack>
-                <Center>
-                  <Text>New user?</Text>
-                  <Button
-                    size="lg"
-                    variant="ghost"
-                    colorScheme={theme.rosey[300]}
-                    style={theme.button.variants.ghost}
-                    onPress={handleGoToSignUp}
-                  >
-                    <Text color={theme.rosey[300]}>Sign Up</Text>
-                  </Button>
-                </Center>
-              </VStack>
             </VStack>
+            <Center>
+              <Text>New user?</Text>
+              <Button
+                size="lg"
+                variant="ghost"
+                colorScheme={theme.rosey}
+                style={theme.button.variants.ghost}
+                onPress={handleGoToSignUp}
+              >
+                <Text color={theme.rosey[300]}>Sign Up</Text>
+              </Button>
+            </Center>
           </View>
         </Center>
+        <View>
+          <Center>
+            {/* <View> */}
+            {/* <Image
+                source={require("../assets/room.png")}
+                style={theme.trees}
+              ></Image>
+            </View> */}
+          </Center>
+        </View>
       </KeyboardAwareScrollView>
     </NativeBaseProvider>
   );
