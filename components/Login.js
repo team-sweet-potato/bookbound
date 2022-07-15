@@ -105,7 +105,7 @@ const Login = ({ navigation }) => {
         <Center w="100%">
           <View>
             <VStack space={7} mt="20">
-              <FormControl height="10" width="250" isRequired isInvalid={emailError}>
+              <FormControl width="250" isRequired isInvalid={emailError}>
                 <FormControl.Label>Email</FormControl.Label>
                 <Input
                   value={email}

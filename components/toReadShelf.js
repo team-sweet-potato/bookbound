@@ -76,6 +76,7 @@ const ToReadShelf = ({ navigation }) => {
                     }}
                     alt={`${book.title} book cover`}
                     size="2xl"
+                    resizeMode="contain"
                   />
                 </Pressable>
                 <Pressable
