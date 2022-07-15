@@ -136,7 +136,7 @@ const Home = ({ navigation }) => {
                       ))}
                   </HStack>
                   {current.length !== 0 ? (
-                    <VStack>
+                    <VStack mb="1">
                       <Button
                         alignSelf={"flex-start"}
                         size="sm"
@@ -168,7 +168,7 @@ const Home = ({ navigation }) => {
                   )}
                   <View style={theme.thinLine} />
                   <SafeAreaView mb="2">
-                    <Text>Recommendations</Text>
+                    <Text mt="3">Recommendations</Text>
                   </SafeAreaView>
                   <SafeAreaView>
                     <HStack mt="2" justifyContent="space-evenly">
