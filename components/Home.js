@@ -94,7 +94,7 @@ const Home = ({ navigation }) => {
           <Box mt="5" mb="1">
             <SafeAreaView>
               <Center>
-                <View style={{ height: 50, width: 75 }}>
+                <View style={{ height: 45, width: 75 }}>
                   <LottieView
                     progress={progress}
                     source={require("../assets/Lottie/hello.json")}
@@ -107,7 +107,7 @@ const Home = ({ navigation }) => {
           <SafeAreaView>
             <Container p="5">
               <View mt="2" mb="2">
-                <Text>Currently Reading...</Text>
+                <Text>Currently Reading</Text>
               </View>
               <VStack space={4} mt="3" mb="3">
                 <SafeAreaView>
