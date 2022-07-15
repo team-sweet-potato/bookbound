@@ -14,7 +14,7 @@ import {
   HStack,
   Pressable,
   Flex,
-  Stack
+  Stack,
 } from "native-base";
 import axios from "axios";
 import { SafeAreaView, View, Animated } from "react-native";
@@ -63,15 +63,13 @@ const Home = ({ navigation }) => {
         recBooksArr.push(data.items[0].volumeInfo);
       }
       setRecommended(recBooksArr);
-
-
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    const updateBooks = navigation.addListener('focus', () => {
+    const updateBooks = navigation.addListener("focus", () => {
       fetchBooks();
     });
     return updateBooks;
@@ -95,15 +93,6 @@ const Home = ({ navigation }) => {
       <ScrollView>
         <Center>
           <VStack alignItems="center">
-            <Center>
-              <Container mt="10">
-                <Image
-                  source={require("../assets/logo.png")}
-                  style={theme.loginLogo}
-                  alt="bookbound logo"
-                ></Image>
-              </Container>
-            </Center>
             <Box mt="10">
               <SafeAreaView>
                 <Center>
@@ -116,13 +105,6 @@ const Home = ({ navigation }) => {
                 </Center>
               </SafeAreaView>
             </Box>
-            <Image
-              mt="10"
-              mb="7"
-              source={require("../assets/bookshelfandclock.png")}
-              style={theme.clockImage}
-              alt="bookbound logo"
-            ></Image>
             <Container p="5">
               <VStack space={4} alignItems="center" mb="3">
                 <View>
@@ -133,55 +115,58 @@ const Home = ({ navigation }) => {
                     rounded="md"
                     shadow={3}
                     onPress={() =>
-                      navigation.navigate("My Shelves", {screen: "Reading"})
+                      navigation.navigate("My Shelves", { screen: "Reading" })
                     }
                   >
                     <Text>Currently Reading</Text>
                   </Button>
                 </View>
                 <HStack justifyContent="space-evenly">
-                  {current && current.slice(0,3).map((book) => (
-                    <Box key={book.industryIdentifiers[1].identifier}>
-                      <Pressable
-                        onPress={() => navigation.navigate("Single Book", {book})}>
-                        <Image
+                  {current &&
+                    current.slice(0, 3).map((book) => (
+                      <Box key={book.industryIdentifiers[1].identifier}>
+                        <Pressable
+                          onPress={() =>
+                            navigation.navigate("Single Book", { book })
+                          }
+                        >
+                          <Image
                             source={{
-                            uri: book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
-                          }}
-                          resizeMode="contain"
-                          alt={`${book.title} book cover`}
-                          size="xl"
-                        />
-                      </Pressable>
-                    </Box>
-                  ))}
+                              uri:
+                                book.imageLinks && book.imageLinks.thumbnail
+                                  ? book.imageLinks.thumbnail
+                                  : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                            }}
+                            resizeMode="contain"
+                            alt={`${book.title} book cover`}
+                            size="xl"
+                          />
+                        </Pressable>
+                      </Box>
+                    ))}
                 </HStack>
                 {current.length !== 0 ? (
                   <Button
                     size="sm"
                     variant="ghost"
                     onPress={() => {
-                      navigation.navigate("My Shelves", {screen: "Reading"})
+                      navigation.navigate("My Shelves", { screen: "Reading" });
                     }}
                   >
                     View All Currently Reading
                   </Button>
-                  ) : (
-                    <View>
-                      <Text>
-                        Add books to your Currently Reading List!
-                      </Text>
-                      <Button
+                ) : (
+                  <View>
+                    <Text>Add books to your Currently Reading List!</Text>
+                    <Button
                       size="sm"
                       variant="ghost"
-                      onPress={() =>
-                        navigation.navigate("Search")
-                      }
-                      >
-                        Search for Books
-                      </Button>
-                    </View>
-                  )}
+                      onPress={() => navigation.navigate("Search")}
+                    >
+                      Search for Books
+                    </Button>
+                  </View>
+                )}
                 <View>
                   <Button
                     w="64"
@@ -189,56 +174,58 @@ const Home = ({ navigation }) => {
                     bgColor={theme.browns[100]}
                     rounded="md"
                     shadow={3}
-                    onPress={() =>
-                      navigation.navigate("For You")
-                    }
+                    onPress={() => navigation.navigate("For You")}
                   >
                     <Text>Recommendations</Text>
                   </Button>
                 </View>
                 <HStack justifyContent="space-evenly">
-                  {recommended && recommended.slice(0,3).map((book) => (
-                    <Box key={book.industryIdentifiers[1].identifier}>
-                      <Pressable
-                        onPress={() => navigation.navigate("Single Book", {book})}>
-                        <Image
+                  {recommended &&
+                    recommended.slice(0, 3).map((book) => (
+                      <Box key={book.industryIdentifiers[1].identifier}>
+                        <Pressable
+                          onPress={() =>
+                            navigation.navigate("Single Book", { book })
+                          }
+                        >
+                          <Image
                             source={{
-                            uri: book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
-                          }}
-                          resizeMode="contain"
-                          alt={`${book.title} book cover`}
-                          size="xl"
-                        />
-                      </Pressable>
-                    </Box>
-                  ))}
+                              uri:
+                                book.imageLinks && book.imageLinks.thumbnail
+                                  ? book.imageLinks.thumbnail
+                                  : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                            }}
+                            resizeMode="contain"
+                            alt={`${book.title} book cover`}
+                            size="xl"
+                          />
+                        </Pressable>
+                      </Box>
+                    ))}
                 </HStack>
                 {recommended.length !== 0 ? (
                   <Button
                     size="sm"
                     variant="ghost"
-                    onPress={() =>
-                      navigation.navigate("For You")
-                    }
+                    onPress={() => navigation.navigate("For You")}
                   >
                     View All Recommended
                   </Button>
-                  ) : (
-                    <View>
-                      <Text>
-                        Add books to your Read List and rate them to receive personalized recommendations!
-                      </Text>
-                      <Button
+                ) : (
+                  <View>
+                    <Text>
+                      Add books to your Read List and rate them to receive
+                      personalized recommendations!
+                    </Text>
+                    <Button
                       size="sm"
                       variant="ghost"
-                      onPress={() =>
-                        navigation.navigate("Search")
-                      }
-                      >
-                        Search for Books
-                      </Button>
-                    </View>
-                  )}
+                      onPress={() => navigation.navigate("Search")}
+                    >
+                      Search for Books
+                    </Button>
+                  </View>
+                )}
               </VStack>
             </Container>
           </VStack>
