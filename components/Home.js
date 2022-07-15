@@ -103,12 +103,13 @@ const Home = ({ navigation }) => {
               </Center>
             </SafeAreaView>
           </Box>
+
           <SafeAreaView>
             <Container p="5">
               <View mt="2" mb="2">
                 <Text>Currently Reading...</Text>
               </View>
-              <VStack space={4} alignItems="center" mt="3" mb="3">
+              <VStack space={4} mt="3" mb="3">
                 <SafeAreaView>
                   <HStack justifyContent="space-evenly">
                     {current &&
@@ -135,71 +136,70 @@ const Home = ({ navigation }) => {
                       ))}
                   </HStack>
                   {current.length !== 0 ? (
-                    <Button
-                      size="sm"
-                      variant="ghost"
-                      onPress={() => {
-                        navigation.navigate("My Shelves", {
-                          screen: "Reading",
-                        });
-                      }}
-                    >
-                      <Text fontSize="12" color={theme.rosey[300]}>
-                        View All Currently Reading
-                      </Text>
-                    </Button>
-                  ) : (
-                    <View>
-                      <Text>Add books to your Currently Reading List!</Text>
+                    <VStack>
                       <Button
+                        alignSelf={"flex-start"}
                         size="sm"
                         variant="ghost"
-                        onPress={() => navigation.navigate("Search")}
+                        onPress={() => {
+                          navigation.navigate("My Shelves", {
+                            screen: "Reading",
+                          });
+                        }}
                       >
-                        <Text fontSize="12" color={theme.rosey[300]}></Text>
+                        <Text fontSize="12" color={theme.rosey[300]}>
+                          View All Currently Reading
+                        </Text>
                       </Button>
-                    </View>
+                    </VStack>
+                  ) : (
+                    <SafeAreaView style={theme.thinLine}>
+                      <View>
+                        <Text>Add books to your Currently Reading List!</Text>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onPress={() => navigation.navigate("Search")}
+                        >
+                          <Text fontSize="12" color={theme.rosey[300]}></Text>
+                        </Button>
+                      </View>
+                    </SafeAreaView>
                   )}
-                  <HStack justifyContent="space-evenly">
-                    {recommended &&
-                      recommended.slice(0, 3).map((book) => (
-                        <Box key={book.industryIdentifiers[1].identifier}>
-                          <Pressable
-                            onPress={() =>
-                              navigation.navigate("Single Book", { book })
-                            }
-                          >
-                            <Image
-                              source={{
-                                uri:
-                                  book.imageLinks && book.imageLinks.thumbnail
-                                    ? book.imageLinks.thumbnail
-                                    : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
-                              }}
-                              resizeMode="contain"
-                              alt={`${book.title} book cover`}
-                              size="xl"
-                            />
-                          </Pressable>
-                        </Box>
-                      ))}
-                  </HStack>
-                  <View
-                    style={{
-                      borderBottomColor: "black",
-                      borderBottomWidth: 0.5,
-                    }}
-                  />
+                  <View style={theme.thinLine} />
+                  <SafeAreaView mb="2">
+                    <Text>Recommendations</Text>
+                  </SafeAreaView>
+                  <SafeAreaView>
+                    <HStack mt="2" justifyContent="space-evenly">
+                      {recommended &&
+                        recommended.slice(0, 3).map((book) => (
+                          <Box key={book.industryIdentifiers[1].identifier}>
+                            <Pressable
+                              onPress={() =>
+                                navigation.navigate("Single Book", { book })
+                              }
+                            >
+                              <Image
+                                source={{
+                                  uri:
+                                    book.imageLinks && book.imageLinks.thumbnail
+                                      ? book.imageLinks.thumbnail
+                                      : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                                }}
+                                resizeMode="contain"
+                                alt={`${book.title} book cover`}
+                                size="xl"
+                              />
+                            </Pressable>
+                          </Box>
+                        ))}
+                    </HStack>
+                  </SafeAreaView>
                 </SafeAreaView>
               </VStack>
+
               <VStack>
-                <SafeAreaView>
-                  <Container>
-                    <View mt="2" mb="2">
-                      <Text>Recommendations</Text>
-                    </View>
-                  </Container>
-                </SafeAreaView>
                 {recommended.length !== 0 ? (
                   <Button
                     size="sm"
@@ -219,7 +219,7 @@ const Home = ({ navigation }) => {
                       </Text>
                     </View>
 
-                    <View>
+                    <View style={theme.thinLine}>
                       <Button
                         size="sm"
                         variant="ghost"
@@ -237,6 +237,7 @@ const Home = ({ navigation }) => {
           </SafeAreaView>
         </VStack>
       </ScrollView>
+
       <ImageBackground
         source={require("../assets/morepastelbooks.png")}
         alt="books"

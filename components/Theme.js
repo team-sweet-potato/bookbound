@@ -99,6 +99,10 @@ const customTheme = extendTheme({
     width: 200,
     height: 130,
   },
+  thinLine: {
+    borderBottomColor: "black",
+    borderBottomWidth: 0.5,
+  },
   button: {
     paddingHorizontal: 8,
     paddingVertical: 6,
@@ -235,7 +239,8 @@ const theme = extendTheme({
   books: customTheme.books,
   backArrow: customTheme.backArrow,
   homeBooks: customTheme.homeBooks,
-  fontSize: customTheme.fontConfig.fontSizes
+  fontSize: customTheme.fontConfig.fontSizes,
+  thinLine: customTheme.thinLine,
 });
 
 export default theme;
