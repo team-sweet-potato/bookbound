@@ -104,12 +104,12 @@ const SingleBook = ({ route }) => {
         <ScrollView>
           <VStack space={4} alignItems="center">
             <Container>
-              {list === "readBooks" && <Badge colorScheme="success" rounded="full" mb={-4} mr={-4} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>Read</Badge>}
-              {list === "currentlyReading" && <Badge colorScheme="info" rounded="full" mb={-4} mr={-4} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>Reading</Badge>}
-              {list === "toReadBooks" && <Badge colorScheme="warning" rounded="full" mb={-4} mr={-4} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>To Read</Badge>}
+              {list === "readBooks" && <Badge colorScheme="success" rounded="full" mb={-4} mr={6} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>Read</Badge>}
+              {list === "currentlyReading" && <Badge colorScheme="info" rounded="full" mb={-4} mr={6} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>Reading</Badge>}
+              {list === "toReadBooks" && <Badge colorScheme="warning" rounded="full" mb={-4} mr={6} zIndex={1} variant="solid" alignSelf="flex-end" _text={{ fontSize: 12 }}>To Read</Badge>}
               <Image source={{
                 uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://historyexplorer.si.edu/sites/default/files/book-158.jpg'
-              }} alt={`${book.title} book cover`} size="2xl" />
+              }} alt={`${book.title} book cover`} size="2xl" resizeMode="contain" />
             </Container>
             <Container>
               <Heading size="xl">{book.title}</Heading>
