@@ -21,6 +21,7 @@ import Scanner from "./components/Scanner";
 import { auth } from "./firebase";
 import theme from "./components/Theme.js";
 import IndividualSearchResult from "./components/IndividualSearchResult";
+import HeaderLogo from "./components/HeaderLogo";
 
 const MainStack = createNativeStackNavigator();
 const UserStack = createNativeStackNavigator();
@@ -33,11 +34,7 @@ function LogoTitle() {
   return (
     <NativeBaseProvider theme={theme}>
       <Center>
-        <Image
-          alt="bookbound logo"
-          style={theme.smallLogo}
-          source={require("./assets/logo.png")}
-        />
+       <HeaderLogo/>
       </Center>
     </NativeBaseProvider>
   );
@@ -47,12 +44,9 @@ function HomePageStack() {
   return (
     <HomeStack.Navigator initialRouteName="Homepage">
       <HomeStack.Screen
-        options={{
-          headerShown: false,
-        }}
         name="Homepage"
         component={Home}
-        // options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
+        options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
       />
       <HomeStack.Screen
         name="Single Book"
