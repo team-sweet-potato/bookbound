@@ -96,8 +96,8 @@ const Recommendations = ({ navigation }) => {
                     <Image
                       h="70"
                       source={{
-                        uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://www.freeiconspng.com/thumbs/no-image-icon/no-image-icon-15.png'
-                      }} alt="Alternate Text" size="xl" />
+                        uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://historyexplorer.si.edu/sites/default/files/book-158.jpg'
+                      }} alt="Alternate Text" size="xl" resizeMode="contain" />
                     <VStack
                       paddingLeft={3}
                     >
@@ -119,7 +119,7 @@ const Recommendations = ({ navigation }) => {
                       h="70"
                       source={{
                         uri: book.imageLinks && book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : 'https://historyexplorer.si.edu/sites/default/files/book-158.jpg'
-                      }} alt="Alternate Text" size="xl" />
+                      }} alt="Alternate Text" size="xl" resizeMode="contain" />
                     <VStack
                       paddingLeft={3}
                     >

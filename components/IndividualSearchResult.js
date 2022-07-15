@@ -25,9 +25,9 @@ const IndividualSearchResult = ({ book }) => {
         uri: image
       }}
         width="20%"
-        alt="Alternate Text"
+        alt={`${book.volumeInfo.title} book cover`}
         size="xl"
-
+        resizeMode="contain"
       />
 
       <VStack
