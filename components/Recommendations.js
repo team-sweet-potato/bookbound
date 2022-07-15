@@ -9,10 +9,12 @@ import {
   ScrollView,
   Text,
   VStack,
-  View
+  View,
+  SwipeListView,
+  Avatar
 } from "native-base";
 import { collection, doc, query, where, getDocs } from "firebase/firestore";
-import { SafeAreaView } from 'react-native';
+import { SafeAreaView, SwipeableListView } from 'react-native';
 import { auth, db } from '../firebase';
 import axios from 'axios'
 
@@ -24,23 +26,33 @@ const Recommendations = ({ navigation }) => {
   const backgroundColors = ["#cb997e", "#ddbea9", "#ffe8d6", "#b7b7a4", "#ddbea9"]
 
   const fetchAllBooks = async () => {
-    setRecommendedBooks([])
-    setGenres(["All Books"])
-    const allDocs = await getDocs(query(collection(doc(db, "users", auth.currentUser.uid), "recommended")))
-    allDocs.forEach(async (collection) => {
-      const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${collection.id}`);
-      setRecommendedBooks(prev => [...prev, data.items[0].volumeInfo])
+    try {
+      setRecommendedBooks([])
+      setGenres(["All Books"])
+      const allDocs = await getDocs(query(collection(doc(db, "users", auth.currentUser.uid), "recommended")))
+      const allGenres = ["All Books"]
+      allDocs.forEach(async (collection) => {
+        const { data } = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${collection.id}`);
+        setRecommendedBooks(prev => [...prev, data.items[0].volumeInfo])
 
-      data.items[0].volumeInfo.categories.forEach(genre => {
-        // check that genre isn't alread included
-        setGenres(prev => [...prev, genre])
-      })
-    });
+        data.items[0].volumeInfo.categories.map(genre => {
+          if (!allGenres.includes(genre)) {
+            allGenres.push(genre)
+          }
+        })
+      });
+      setGenres(allGenres)
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   useEffect(() => {
-    fetchAllBooks();
-  }, [])
+    const updateBooks = navigation.addListener('state', () => {
+      fetchAllBooks()
+    });
+    return updateBooks
+  }, [navigation])
 
   return (
     <ScrollView>
