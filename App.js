@@ -54,6 +54,14 @@ function HomePageStack() {
         component={Home}
         // options={{ headerTitle: (props) => <LogoTitle {...props} /> }}
       />
+      <HomeStack.Screen
+        name="Single Book"
+        component={SingleBook}
+        options={{
+          headerTitle: (props) => <LogoTitle {...props} />,
+          headerBackTitleVisible: false,
+        }}
+      />
     </HomeStack.Navigator>
   );
 }
@@ -180,6 +188,7 @@ function NavBar() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
+      lazy={false}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           if (route.name === "Home") {
