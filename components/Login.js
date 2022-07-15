@@ -189,20 +189,3 @@ const Login = ({ navigation }) => {
 };
 
 export default Login;
-
-{
-  /* <VStack>
-                <Center>
-                  <Text>New user?</Text>
-                  <Button
-                    size="lg"
-                    variant="ghost"
-                    colorScheme={theme.rosey[300]}
-                    style={theme.button.variants.ghost}
-                    onPress={handleGoToSignUp}
-                  >
-                    <Text color={theme.rosey[300]}>Sign Up</Text>
-                  </Button>
-                </Center>
-              </VStack> */
-}
