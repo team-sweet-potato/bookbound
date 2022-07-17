@@ -6,11 +6,14 @@ import {
   Input,
   ScrollView,
   VStack,
-  Button
+  Button,
+  NativeBaseProvider
 } from "native-base";
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons';
 import axios from 'axios';
 import { api_key } from '../apikey';
+import { ImageBackground } from "react-native";
+import theme from "./Theme";
 
 const Search = ({ navigation }) => {
   const [search, setSearch] = useState("");
@@ -26,6 +29,7 @@ const Search = ({ navigation }) => {
   }
 
   return (
+    <NativeBaseProvider>
     <ScrollView>
       <Box safeArea>
         <Center
@@ -55,6 +59,12 @@ const Search = ({ navigation }) => {
         <Button onPress={() => navigation.navigate("Scanner")}>Scan Barcode</Button>
       </Box>
     </ScrollView >
+        <ImageBackground
+        source={require("../assets/morepastelbooks.png")}
+        alt="books"
+        style={theme.homeBooks}
+      ></ImageBackground>
+      </NativeBaseProvider>
   );
 };
 

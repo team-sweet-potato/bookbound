@@ -105,7 +105,7 @@ const Home = ({ navigation }) => {
           </Box>
 
           <SafeAreaView>
-            <Container p="5">
+            <Container p="4">
               <View mt="2" mb="2">
                 <Text>Currently Reading</Text>
               </View>
@@ -237,7 +237,6 @@ const Home = ({ navigation }) => {
           </SafeAreaView>
         </VStack>
       </ScrollView>
-
       <ImageBackground
         source={require("../assets/morepastelbooks.png")}
         alt="books"

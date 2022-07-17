@@ -91,6 +91,12 @@ const customTheme = extendTheme({
     bottom: -7,
     position: "absolute",
   },
+  bookStack: {
+    width: 150,
+    height: 200,
+    bottom: 0,
+    position: "absolute",
+  },
   loginLogo: {
     width: 150,
     height: 29,
@@ -241,6 +247,7 @@ const theme = extendTheme({
   homeBooks: customTheme.homeBooks,
   fontSize: customTheme.fontConfig.fontSizes,
   thinLine: customTheme.thinLine,
+  bookStack: customTheme.bookStack,
 });
 
 export default theme;
