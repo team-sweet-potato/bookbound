@@ -7,6 +7,7 @@ import {
   Heading,
   Pressable,
 } from "native-base";
+import LoadingAnimation from "./Loading";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { auth, db } from "../firebase";
@@ -42,7 +43,7 @@ const ReadingShelf = ({ navigation }) => {
   };
 
   useEffect(() => {
-    const updateBooks = navigation.addListener('focus', () => {
+    const updateBooks = navigation.addListener("focus", () => {
       fetchBooks();
     });
     return updateBooks;
@@ -52,7 +53,7 @@ const ReadingShelf = ({ navigation }) => {
     <ScrollView>
       {books.length < 1 ? (
         isLoading ? (
-          <Text>Loading</Text>
+          <LoadingAnimation />
         ) : (
           <VStack space={4} alignItems="center">
             <Text>
@@ -61,7 +62,7 @@ const ReadingShelf = ({ navigation }) => {
           </VStack>
         )
       ) : isLoading ? (
-        <Text>Loading</Text>
+        <LoadingAnimation />
       ) : (
         <VStack space={4} alignItems="center">
           {books.map((book) => {
@@ -72,7 +73,10 @@ const ReadingShelf = ({ navigation }) => {
                 >
                   <Image
                     source={{
-                      uri: book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                      uri:
+                        book.imageLinks && book.imageLinks.thumbnail
+                          ? book.imageLinks.thumbnail
+                          : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
                     }}
                     alt={`${book.title} book cover`}
                     size="2xl"
@@ -84,7 +88,9 @@ const ReadingShelf = ({ navigation }) => {
                 >
                   <Heading>{book.title}</Heading>
                 </Pressable>
-                {book.authors && <Text>Authors: {book.authors.join(", ")}</Text>}
+                {book.authors && (
+                  <Text>Authors: {book.authors.join(", ")}</Text>
+                )}
               </Container>
             );
           })}
