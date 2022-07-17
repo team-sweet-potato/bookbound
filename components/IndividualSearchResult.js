@@ -19,25 +19,23 @@ const IndividualSearchResult = ({ book }) => {
   return (
     <HStack
       alignItems="center"
-    // width="100%"
+      width="100%"
     >
       <Image source={{
         uri: image
       }}
         width="20%"
-        alt="Alternate Text"
+        alt={`${book.volumeInfo.title} book cover`}
         size="xl"
-
+        resizeMode="contain"
       />
 
       <VStack
-        paddingRight={4}
+        paddingRight={7}
         paddingLeft={3}
         width="70%"
         style={{ flexDirection: 'row', textAlignVertical: 'top' }}>
         <Text
-          // style={{ textAlignVertical: 'top'  }}
-          // width={20}
           style={{ justifyContent: 'flex-start', flexWrap: 'wrap', }}>
           <View>
             <Text style={{ textAlignVertical: 'top' }} bold>{book.volumeInfo.title}</Text>
