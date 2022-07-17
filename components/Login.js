@@ -108,6 +108,7 @@ const Login = ({ navigation }) => {
               <FormControl width="250" isRequired isInvalid={emailError}>
                 <FormControl.Label>Email</FormControl.Label>
                 <Input
+                  style={theme.textInput}
                   value={email}
                   placeholder="email"
                   onChangeText={(text) => {
@@ -126,6 +127,7 @@ const Login = ({ navigation }) => {
               <FormControl isRequired isInvalid={passwordError}>
                 <FormControl.Label>Password</FormControl.Label>
                 <Input
+                  style={theme.textInput}
                   value={password}
                   placeholder="password"
                   onChangeText={(text) => {

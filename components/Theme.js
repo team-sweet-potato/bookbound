@@ -79,6 +79,18 @@ const customTheme = extendTheme({
     width: 130,
     height: 20,
   },
+  mediumLogo: {
+    width: 180,
+    height: 30,
+  },
+  largeLogo: {
+    width: 200,
+    height: 100,
+  },
+  recLogo: {
+    width: 200,
+    height: 50,
+  },
   books: {
     width: 400,
     height: 350,
@@ -97,13 +109,18 @@ const customTheme = extendTheme({
     bottom: 0,
     position: "absolute",
   },
+  bigBookStack: {
+    width: 390,
+    height: 390,
+    bottom: -7,
+    position: "absolute",
+  },
   loginLogo: {
     width: 150,
     height: 29,
   },
-  clockImage: {
-    width: 200,
-    height: 130,
+  textInput: {
+    backgroundColor: "white",
   },
   thinLine: {
     borderBottomColor: "black",
@@ -248,6 +265,12 @@ const theme = extendTheme({
   fontSize: customTheme.fontConfig.fontSizes,
   thinLine: customTheme.thinLine,
   bookStack: customTheme.bookStack,
+  bigBookStack: customTheme.bigBookStack,
+  textInput: customTheme.textInput,
+  inputBorder: customTheme.inputBorder,
+  mediumLogo: customTheme.mediumLogo,
+  largeLogo: customTheme.largeLogo,
+  recLogo: customTheme.recLogo,
 });
 
 export default theme;

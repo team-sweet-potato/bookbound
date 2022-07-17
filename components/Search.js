@@ -101,11 +101,12 @@ const Search = ({ navigation }) => {
   return (
     <NativeBaseProvider>
       <ScrollView>
+        <Box pb={8}></Box>
         <Box safeArea>
           <Center flex={1} px="2">
             <VStack w="100%" space={5} alignSelf="center">
-              {/* <Heading fontSize="lg">Material</Heading> */}
               <Input
+                style={theme.textInput}
                 placeholder="Search Books"
                 width="100%"
                 borderRadius="4"
@@ -130,8 +131,14 @@ const Search = ({ navigation }) => {
           </Center>
         </Box>
         <Box pb={5}>
-          <Button onPress={() => navigation.navigate("Scanner")}>
-            Scan Barcode
+          <Button
+            size="sm"
+            variant="ghost"
+            onPress={() => navigation.navigate("Scanner")}
+          >
+            <Text fontSize="12" color={theme.rosey[300]}>
+              Scan Barcode
+            </Text>
           </Button>
         </Box>
         <Stack direction="column" divider={<Divider my="2" />}>
@@ -151,14 +158,16 @@ const Search = ({ navigation }) => {
         </Stack>
         {history && history.length > 0 && (
           <Button size="sm" variant="ghost" onPress={clearHistory}>
-            Clear History
+            <Text fontSize="12" color={theme.rosey[300]}>
+              Clear History
+            </Text>
           </Button>
         )}
       </ScrollView>
       <ImageBackground
-        source={require("../assets/morepastelbooks.png")}
+        source={require("../assets/bigbookstack.png")}
         alt="books"
-        style={theme.homeBooks}
+        style={theme.bigBookStack}
       ></ImageBackground>
     </NativeBaseProvider>
   );

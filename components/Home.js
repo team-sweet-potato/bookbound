@@ -198,41 +198,43 @@ const Home = ({ navigation }) => {
                   </SafeAreaView>
                 </SafeAreaView>
               </VStack>
-
-              <VStack>
-                {recommended.length !== 0 ? (
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onPress={() => navigation.navigate("For You")}
-                  >
-                    <Text fontSize="12" color={theme.rosey[300]}>
-                      View All Recommended
-                    </Text>
-                  </Button>
-                ) : (
-                  <View>
-                    <View>
-                      <Text mt="3">
-                        Add books to your 'Read' shelf and rate them to receive
-                        personalized recommendations!
+              <SafeAreaView>
+                <VStack>
+                  {recommended.length !== 0 ? (
+                    <Button
+                      alignSelf={"flex-start"}
+                      size="sm"
+                      variant="ghost"
+                      onPress={() => navigation.navigate("For You")}
+                    >
+                      <Text fontSize="12" color={theme.rosey[300]}>
+                        View All Recommended
                       </Text>
-                    </View>
-
-                    <View style={theme.thinLine}>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onPress={() => navigation.navigate("Search")}
-                      >
-                        <Text fontSize="12" color={theme.rosey[300]}>
-                          Search for Books
+                    </Button>
+                  ) : (
+                    <View>
+                      <View>
+                        <Text mt="3">
+                          Add books to your 'Read' shelf and rate them to
+                          receive personalized recommendations!
                         </Text>
-                      </Button>
+                      </View>
+
+                      <View style={theme.thinLine}>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onPress={() => navigation.navigate("Search")}
+                        >
+                          <Text fontSize="12" color={theme.rosey[300]}>
+                            Search for Books
+                          </Text>
+                        </Button>
+                      </View>
                     </View>
-                  </View>
-                )}
-              </VStack>
+                  )}
+                </VStack>
+              </SafeAreaView>
             </Container>
           </SafeAreaView>
         </VStack>
