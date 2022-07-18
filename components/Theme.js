@@ -272,6 +272,7 @@ const theme = extendTheme({
   rosey: customTheme.colors.rosey,
   browns: customTheme.colors.browns,
   ambers: customTheme.colors.ambers,
+  deepRed: customTheme.colors.deepRed,
   smallLogo: customTheme.smallLogo,
   loginLogo: customTheme.loginLogo,
   typography: customTheme.typography,

@@ -9,7 +9,6 @@ import {
   NativeBaseProvider,
   Center,
   Box,
-  Divider,
 } from "native-base";
 import LoadingAnimation from "./Loading";
 import React, { useEffect, useState } from "react";

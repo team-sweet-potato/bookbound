@@ -8,8 +8,8 @@ import {
   Center,
   NativeBaseProvider,
   Pressable,
-  Box,
   View,
+  Box,
 } from "native-base";
 import LoadingAnimation from "./Loading";
 import React, { useEffect, useState } from "react";
@@ -55,7 +55,7 @@ const ReadShelf = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <NativeBaseProvider>
+<View>
       <Box mt={"5"} mb={"3"}>
         <Center>
           <Image
@@ -119,7 +119,8 @@ const ReadShelf = ({ navigation }) => {
           )}
         </ScrollView>
       </Center>
-    </NativeBaseProvider>
+      </View>
+
   );
 };
 

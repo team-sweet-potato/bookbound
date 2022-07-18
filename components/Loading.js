@@ -12,6 +12,7 @@ const LoadingAnimation = ({}) => {
       toValue: 1,
       duration: 6000,
       useNativeDriver: true,
+      speed: 1
     }).start();
   };
   useEffect(() => {

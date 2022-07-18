@@ -8,7 +8,7 @@ import {
   Heading,
   Box,
   Pressable,
-  NativeBaseProvider,
+  View,
 } from "native-base";
 import LoadingAnimation from "./Loading";
 import React, { useEffect, useState } from "react";
@@ -54,7 +54,7 @@ const ReadingShelf = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <NativeBaseProvider>
+    <View>
       <Box mt={"5"} mb={"3"}>
         <Center>
           <Image
@@ -121,7 +121,7 @@ const ReadingShelf = ({ navigation }) => {
         </ScrollView>
         <Box style={theme.readLogo} />
       </Center>
-    </NativeBaseProvider>
+    </View>
   );
 };
 

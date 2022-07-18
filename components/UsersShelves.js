@@ -63,23 +63,22 @@ const UsersShelves = ({ navigation }) => {
                 size="sm"
                 colorScheme="rose"
                 variant="outline"
-                borderColor={theme.browns[100]}
+                borderColor={theme.browns[500]}
                 borderRadius={"100"}
                 mb={"2"}
                 onPress={() => navigation.navigate("User Profile", { user })}
               >
-                <Text fontSize="12" color={theme.rosey[800]}>
+                <Text fontSize="12" color={theme.browns[500]}>
                   Edit Account
                 </Text>
               </Button>
               <Button
-                backgroundColor={theme.browns[100]}
                 flexDirection="row-reverse"
+                colorScheme="rose"
                 size="sm"
                 variant="outline"
                 borderRadius={"100"}
                 borderColor={theme.rosey[800]}
-                colorScheme="rose"
                 onPress={handleSignOut}
               >
                 <Text fontSize="12" color={theme.rosey[800]}>
@@ -120,6 +119,7 @@ const UsersShelves = ({ navigation }) => {
             <Button
               marginRight={"4"}
               variant={"ghost"}
+              colorScheme={theme.browns}
               h="40"
               w="20"
               bg="#cb997e"
@@ -131,6 +131,8 @@ const UsersShelves = ({ navigation }) => {
             </Button>
             <Button
               marginRight={"4"}
+              variant={"ghost"}
+              colorScheme={theme.browns}
               h="40"
               w="20"
               bg="#b7b7a4"
@@ -141,6 +143,8 @@ const UsersShelves = ({ navigation }) => {
               <Center>Reading</Center>
             </Button>
             <Button
+              variant={"ghost"}
+              colorScheme={theme.browns}
               h="40"
               w="20"
               bg="#6b705c"
