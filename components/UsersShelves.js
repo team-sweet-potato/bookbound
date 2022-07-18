@@ -70,7 +70,7 @@ const UsersShelves = ({ navigation }) => {
                 </Text>
               </Button>
               <Button
-                backgroundColor="#ddbea9"
+                backgroundColor="#e6ccb2"
                 flexDirection="row-reverse"
                 size="sm"
                 variant="outline"

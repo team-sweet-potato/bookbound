@@ -91,13 +91,25 @@ const customTheme = extendTheme({
     width: 200,
     height: 50,
   },
+  tbrLogo: {
+    width: 190,
+    height: 75,
+  },
+  readingLogo: {
+    width: 190,
+    height: 85,
+  },
+  readLogo: {
+    width: 130,
+    height: 75,
+  },
   singleStacks: {
     width: 400,
     height: 150,
     bottom: 1,
   },
   myshelves: {
-    width: 240,
+    width: 220,
     height: 80,
   },
   shelfImage: { width: 390, height: 50, alignSelf: "flex-start" },
@@ -284,6 +296,9 @@ const theme = extendTheme({
   myshelves: customTheme.myshelves,
   avatar: customTheme.avatar,
   shelfImage: customTheme.shelfImage,
+  tbrLogo: customTheme.tbrLogo,
+  readingLogo: customTheme.readingLogo,
+  readLogo: customTheme.readLogo,
 });
 
 export default theme;
