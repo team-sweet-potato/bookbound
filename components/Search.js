@@ -158,16 +158,27 @@ const Search = ({ navigation }) => {
             </VStack>
           </Center>
         </Box>
-        <Box pb={5}>
-          <Button
-            size="sm"
-            variant="ghost"
-            onPress={() => navigation.navigate("Scanner")}
-          >
-            <Text fontSize="12" color={theme.rosey[300]}>
-              Scan Barcode
-            </Text>
-          </Button>
+        <Box pb={5} mt={5}>
+          <Center>
+            <Button
+              borderBottomColor={theme.rosey[300]}
+              borderTopColor={theme.rosey[300]}
+              borderLeftColor={theme.rosey[300]}
+              borderRightColor={theme.rosey[300]}
+              size="sm"
+              colorScheme="rose"
+              style={theme.button.variants.ghost}
+              variant="outline"
+              width={"200"}
+              height={"60"}
+              mb="10"
+              onPress={() => navigation.navigate("Scanner")}
+            >
+              <Text fontSize="14" color={theme.ambers[200]}>
+                Scan Barcode
+              </Text>
+            </Button>
+          </Center>
         </Box>
         <Stack direction="column" divider={<Divider my="2" />}>
           {history &&
