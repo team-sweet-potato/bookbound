@@ -12,6 +12,7 @@ import {
   Center,
   Button,
   Stack,
+  View,
   Divider,
   NativeBaseProvider,
 } from "native-base";
@@ -47,103 +48,106 @@ const UsersShelves = ({ navigation }) => {
   ) : (
     <NativeBaseProvider>
       <SafeAreaView>
-        <HStack>
-          <Image
-            mt="0.5"
-            source={require("../assets/avatarbb.png")}
-            alt="books"
-            style={theme.avatar}
-          ></Image>
-          <Box flex="row-reverse" mb="2.5" mt="5" w="40" padding="3">
-            <Button
-              alignSelf={"flex-center"}
-              size="sm"
-              variant="ghost"
-              onPress={() => navigation.navigate("User Profile", { user })}
-            >
-              <Text fontSize="14" color={theme.rosey[300]}>
-                Edit Account
-              </Text>
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              colorScheme="secondary"
-              onPress={handleSignOut}
-            >
-               <Text fontSize="14" color={theme.rosey[300]}>
-                Logout
-              </Text>
-            </Button>
-          </Box>
-        </HStack>
-      </SafeAreaView>
-      <ScrollView>
-        <SafeAreaView>
-          <Container>
-            <Box space={4} w="100%" px="3" padding="3">
-              <Text fontSize="lg" fontWeight="medium">
-                {`${user.firstName ? user.firstName : ""} ${
-                  user.lastName ? user.lastName : ""
-                }`}
-              </Text>
-              <Text fontSize="sm" fontWeight="medium">
-                {`@${user.username}`}
-              </Text>
+        <Center>
+          <HStack>
+            <Image
+              mt="3"
+              source={require("../assets/avatarbb.png")}
+              alt="books"
+              style={theme.avatar}
+            ></Image>
+            <Box mb="2.5" mt="4" w="40" padding="3">
+              <Button
+                flexDirection={"row-reverse"}
+                size="sm"
+                variant="outline"
+                onPress={() => navigation.navigate("User Profile", { user })}
+              >
+                <Text fontSize="12" color={theme.rosey[300]}>
+                  Edit Account
+                </Text>
+              </Button>
+              <Button
+                flexDirection="row-reverse"
+                size="sm"
+                variant="outline"
+                colorScheme="secondary"
+                onPress={handleSignOut}
+              >
+                <Text fontSize="12" color={theme.rosey[300]}>
+                  Logout
+                </Text>
+              </Button>
             </Box>
-          </Container>
-
-          <Box>
-            <Center>
-              <Image
-                source={require("../assets/myshelveslogo.png")}
-                alt="my shelves"
-                style={theme.myshelves}
-                mb="2"
-              ></Image>
-            </Center>
+          </HStack>
+        </Center>
+        <View>
+          <Box marginLeft={10} mb="2" space={1} w="100%" px="3" >
+            <Text fontSize="lg" fontWeight="medium">
+              {`${user.firstName ? user.firstName : ""} ${
+                user.lastName ? user.lastName : ""
+              }`}
+            </Text>
+            <Text fontSize="sm" fontWeight="medium">
+              {`@${user.username}`}
+            </Text>
           </Box>
-          <Flex>
-            <HStack justifyContent="space-evenly" mb="2" mt="1.5">
-              <Button
-                h="40"
-                w="20"
-                bg="#cb997e"
-                rounded="md"
-                shadow={3}
-                onPress={() => navigation.navigate("To Be Read")}
-              >
-                <Center>To Be Read</Center>
-              </Button>
-              <Button
-                h="40"
-                w="20"
-                bg="#b7b7a4"
-                rounded="md"
-                shadow={3}
-                onPress={() => navigation.navigate("Reading")}
-              >
-                <Center>Reading</Center>
-              </Button>
-              <Button
-                h="40"
-                w="20"
-                bg="#6b705c"
-                rounded="md"
-                shadow={3}
-                onPress={() => navigation.navigate("Read")}
-              >
-                <Center>Read</Center>
-              </Button>
-            </HStack>
-          </Flex>
-        </SafeAreaView>
-        <ImageBackground
-          source={require("../assets/stacksforshelves.png")}
-          alt="books"
-          style={theme.singleStacks}
-        ></ImageBackground>
-      </ScrollView>
+        </View>
+      </SafeAreaView>
+
+      <SafeAreaView>
+        <Divider />
+        <Box mt="4">
+          <Center>
+            <Image
+              source={require("../assets/myshelveslogo.png")}
+              alt="my shelves"
+              style={theme.myshelves}
+              mb="7"
+              mt="5"
+            ></Image>
+          </Center>
+        </Box>
+        <Flex>
+          <HStack justifyContent="space-evenly" mb="2" mt="1.5">
+            <Button
+              h="40"
+              w="20"
+              bg="#cb997e"
+              rounded="md"
+              shadow={3}
+              onPress={() => navigation.navigate("To Be Read")}
+            >
+              <Center>To Be Read</Center>
+            </Button>
+            <Button
+              h="40"
+              w="20"
+              bg="#b7b7a4"
+              rounded="md"
+              shadow={3}
+              onPress={() => navigation.navigate("Reading")}
+            >
+              <Center>Reading</Center>
+            </Button>
+            <Button
+              h="40"
+              w="20"
+              bg="#6b705c"
+              rounded="md"
+              shadow={3}
+              onPress={() => navigation.navigate("Read")}
+            >
+              <Center>Read</Center>
+            </Button>
+          </HStack>
+        </Flex>
+      </SafeAreaView>
+      <ImageBackground
+        source={require("../assets/stacksforshelves.png")}
+        alt="books"
+        style={theme.singleStacks}
+      ></ImageBackground>
     </NativeBaseProvider>
   );
 };
