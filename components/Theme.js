@@ -97,9 +97,10 @@ const customTheme = extendTheme({
     bottom: 1,
   },
   myshelves: {
-    width: 200,
-    height: 75,
+    width: 240,
+    height: 80,
   },
+  shelfImage: { width: 390, height: 50, alignSelf: "flex-start" },
   books: {
     width: 400,
     height: 300,
@@ -282,6 +283,7 @@ const theme = extendTheme({
   singleStacks: customTheme.singleStacks,
   myshelves: customTheme.myshelves,
   avatar: customTheme.avatar,
+  shelfImage: customTheme.shelfImage,
 });
 
 export default theme;

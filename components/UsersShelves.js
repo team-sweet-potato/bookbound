@@ -57,7 +57,7 @@ const UsersShelves = ({ navigation }) => {
               alt="books"
               style={theme.avatar}
             ></Image>
-            <Box mb="2.5" mt="4" w="40" padding="3">
+            <Box mb="2.5" mt="3" w="40" padding="3">
               <Button
                 flexDirection={"row-reverse"}
                 size="sm"
@@ -85,7 +85,7 @@ const UsersShelves = ({ navigation }) => {
           </HStack>
         </Center>
         <View>
-          <Box marginLeft={10} mb="2" space={1} w="100%" px="3">
+          <Box marginLeft={10} mb="7" space={1} w="100%" px="3">
             <Text fontSize="lg" fontWeight="medium">
               {`${user.firstName ? user.firstName : ""} ${
                 user.lastName ? user.lastName : ""
@@ -99,7 +99,7 @@ const UsersShelves = ({ navigation }) => {
       </SafeAreaView>
       <SafeAreaView>
         <Divider />
-        <Box mt="4">
+        <Box mt="7">
           <Center>
             <Image
               source={require("../assets/myshelveslogo.png")}
@@ -111,8 +111,9 @@ const UsersShelves = ({ navigation }) => {
           </Center>
         </Box>
         <Flex>
-          <HStack justifyContent="space-evenly" mb="2" mt="1.5">
+          <HStack justifyContent="center" mb="2" mt="7">
             <Button
+              marginRight={"4"}
               h="40"
               w="20"
               bg="#cb997e"
@@ -123,6 +124,7 @@ const UsersShelves = ({ navigation }) => {
               <Center>To Be Read</Center>
             </Button>
             <Button
+              marginRight={"4"}
               h="40"
               w="20"
               bg="#b7b7a4"
@@ -145,11 +147,15 @@ const UsersShelves = ({ navigation }) => {
           </HStack>
         </Flex>
       </SafeAreaView>
-      <ImageBackground
-        source={require("../assets/stacksforshelves.png")}
-        alt="books"
-        style={theme.singleStacks}
-      ></ImageBackground>
+      <Box>
+        <Center>
+          <Image
+            source={require("../assets/shelf.png")}
+            alt="books"
+            style={theme.shelfImage}
+          ></Image>
+        </Center>
+      </Box>
     </NativeBaseProvider>
   );
 };
