@@ -84,17 +84,20 @@ const Home = ({ navigation }) => {
   };
 
   useEffect(() => {
-    handleLikeAnimation();
-  }, []);
+    const load = navigation.addListener("focus", () => {
+      handleLikeAnimation();
+      return load;
+    });
+  }, [navigation]);
 
-  return (
+  return (  
     <NativeBaseProvider theme={theme}>
       <ScrollView>
         <VStack alignItems="center">
           <Box mt="5" mb="1">
             <SafeAreaView>
               <Center>
-                <View style={{ height: 50, width: 75 }}>
+                <View style={{ height: 45, width: 75 }}>
                   <LottieView
                     progress={progress}
                     source={require("../assets/Lottie/hello.json")}
@@ -103,12 +106,13 @@ const Home = ({ navigation }) => {
               </Center>
             </SafeAreaView>
           </Box>
+
           <SafeAreaView>
-            <Container p="5">
+            <Container p="4">
               <View mt="2" mb="2">
-                <Text>Currently Reading...</Text>
+                <Text>Currently Reading</Text>
               </View>
-              <VStack space={4} alignItems="center" mt="3" mb="3">
+              <VStack space={4} mt="3" mb="3">
                 <SafeAreaView>
                   <HStack justifyContent="space-evenly">
                     {current &&
@@ -135,104 +139,105 @@ const Home = ({ navigation }) => {
                       ))}
                   </HStack>
                   {current.length !== 0 ? (
+                    <VStack mb="1">
+                      <Button
+                        alignSelf={"flex-start"}
+                        size="sm"
+                        variant="ghost"
+                        onPress={() => {
+                          navigation.navigate("My Shelves", {
+                            screen: "Reading",
+                          });
+                        }}
+                      >
+                        <Text fontSize="12" color={theme.rosey[300]}>
+                          View All Currently Reading
+                        </Text>
+                      </Button>
+                    </VStack>
+                  ) : (
+                    <SafeAreaView style={theme.thinLine}>
+                      <View>
+                        <Text>Add books to your Currently Reading List!</Text>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onPress={() => navigation.navigate("Search")}
+                        >
+                          <Text fontSize="12" color={theme.rosey[300]}></Text>
+                        </Button>
+                      </View>
+                    </SafeAreaView>
+                  )}
+                  <View style={theme.thinLine} />
+                  <SafeAreaView mb="2">
+                    <Text mt="3">Recommendations</Text>
+                  </SafeAreaView>
+                  <SafeAreaView>
+                    <HStack mt="2" justifyContent="space-evenly">
+                      {recommended &&
+                        recommended.slice(0, 3).map((book) => (
+                          <Box key={book.industryIdentifiers[1].identifier}>
+                            <Pressable
+                              onPress={() =>
+                                navigation.navigate("Single Book", { book })
+                              }
+                            >
+                              <Image
+                                source={{
+                                  uri:
+                                    book.imageLinks && book.imageLinks.thumbnail
+                                      ? book.imageLinks.thumbnail
+                                      : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                                }}
+                                resizeMode="contain"
+                                alt={`${book.title} book cover`}
+                                size="xl"
+                              />
+                            </Pressable>
+                          </Box>
+                        ))}
+                    </HStack>
+                  </SafeAreaView>
+                </SafeAreaView>
+              </VStack>
+              <SafeAreaView>
+                <VStack>
+                  {recommended.length !== 0 ? (
                     <Button
+                      alignSelf={"flex-start"}
                       size="sm"
                       variant="ghost"
-                      onPress={() => {
-                        navigation.navigate("My Shelves", {
-                          screen: "Reading",
-                        });
-                      }}
+                      onPress={() => navigation.navigate("For You")}
                     >
                       <Text fontSize="12" color={theme.rosey[300]}>
-                        View All Currently Reading
+                        View All Recommended
                       </Text>
                     </Button>
                   ) : (
                     <View>
-                      <Text>Add books to your Currently Reading List!</Text>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onPress={() => navigation.navigate("Search")}
-                      >
-                        <Text fontSize="12" color={theme.rosey[300]}></Text>
-                      </Button>
+                      <View>
+                        <Text mt="3">
+                          Add books to your 'Read' shelf and rate them to
+                          receive personalized recommendations!
+                        </Text>
+                      </View>
+
+                      <View style={theme.thinLine}>
+                        <Button
+                          size="sm"
+                          variant="ghost"
+                          onPress={() => navigation.navigate("Search")}
+                        >
+                          <Text fontSize="12" color={theme.rosey[300]}>
+                            Search for Books
+                          </Text>
+                        </Button>
+                      </View>
                     </View>
                   )}
-                  <HStack justifyContent="space-evenly">
-                    {recommended &&
-                      recommended.slice(0, 3).map((book) => (
-                        <Box key={book.industryIdentifiers[1].identifier}>
-                          <Pressable
-                            onPress={() =>
-                              navigation.navigate("Single Book", { book })
-                            }
-                          >
-                            <Image
-                              source={{
-                                uri:
-                                  book.imageLinks && book.imageLinks.thumbnail
-                                    ? book.imageLinks.thumbnail
-                                    : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
-                              }}
-                              resizeMode="contain"
-                              alt={`${book.title} book cover`}
-                              size="xl"
-                            />
-                          </Pressable>
-                        </Box>
-                      ))}
-                  </HStack>
-                  <View
-                    style={{
-                      borderBottomColor: "black",
-                      borderBottomWidth: 0.5,
-                    }}
-                  />
-                </SafeAreaView>
-              </VStack>
-              <VStack>
-                <SafeAreaView>
-                  <Container>
-                    <View mt="2" mb="2">
-                      <Text>Recommendations</Text>
-                    </View>
-                  </Container>
-                </SafeAreaView>
-                {recommended.length !== 0 ? (
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    onPress={() => navigation.navigate("For You")}
-                  >
-                    <Text fontSize="12" color={theme.rosey[300]}>
-                      View All Recommended
-                    </Text>
-                  </Button>
-                ) : (
-                  <View>
-                    <View>
-                      <Text mt="3">
-                        Add books to your 'Read' shelf and rate them to receive
-                        personalized recommendations!
-                      </Text>
-                    </View>
-
-                    <View>
-                      <Button
-                        size="sm"
-                        variant="ghost"
-                        onPress={() => navigation.navigate("Search")}
-                      >
-                        <Text fontSize="12" color={theme.rosey[300]}>
-                          Search for Books
-                        </Text>
-                      </Button>
-                    </View>
-                  </View>
-                )}
-              </VStack>
+                </VStack>
+              </SafeAreaView>
             </Container>
           </SafeAreaView>
         </VStack>

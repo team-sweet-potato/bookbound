@@ -79,15 +79,48 @@ const customTheme = extendTheme({
     width: 130,
     height: 20,
   },
+  mediumLogo: {
+    width: 180,
+    height: 30,
+  },
+  largeLogo: {
+    width: 200,
+    height: 100,
+  },
+  recLogo: {
+    width: 200,
+    height: 50,
+  },
+  singleStacks: {
+    width: 400,
+    height: 150,
+    bottom: 1,
+  },
+  myshelves: {
+    width: 200,
+    height: 75,
+  },
   books: {
     width: 400,
-    height: 350,
+    height: 300,
     bottom: 10,
     position: "absolute",
   },
   homeBooks: {
     width: 400,
-    height: 350,
+    height: 275,
+    bottom: -7,
+    position: "absolute",
+  },
+  bookStack: {
+    width: 150,
+    height: 200,
+    bottom: 0,
+    position: "absolute",
+  },
+  bigBookStack: {
+    width: 390,
+    height: 390,
     bottom: -7,
     position: "absolute",
   },
@@ -95,9 +128,16 @@ const customTheme = extendTheme({
     width: 150,
     height: 29,
   },
-  clockImage: {
-    width: 200,
-    height: 130,
+  avatar: {
+    width: 150,
+    height: 100,
+  },
+  textInput: {
+    backgroundColor: "white",
+  },
+  thinLine: {
+    borderBottomColor: "black",
+    borderBottomWidth: 0.5,
   },
   button: {
     paddingHorizontal: 8,
@@ -115,11 +155,6 @@ const customTheme = extendTheme({
     marginTop: -5,
     position: "absolute",
     marginHorizontal: "1%",
-  },
-  arch: {
-    width: "100%",
-    height: "100%",
-    flex: "center",
   },
   fontConfig: {
     Roboto: {
@@ -224,7 +259,6 @@ const theme = extendTheme({
   rosey: customTheme.colors.rosey,
   browns: customTheme.colors.browns,
   smallLogo: customTheme.smallLogo,
-  clockImage: customTheme.clockImage,
   loginLogo: customTheme.loginLogo,
   typography: customTheme.typography,
   opacity: customTheme.opacity,
@@ -235,7 +269,18 @@ const theme = extendTheme({
   books: customTheme.books,
   backArrow: customTheme.backArrow,
   homeBooks: customTheme.homeBooks,
-  fontSize: customTheme.fontConfig.fontSizes
+  fontSize: customTheme.fontConfig.fontSizes,
+  thinLine: customTheme.thinLine,
+  bookStack: customTheme.bookStack,
+  bigBookStack: customTheme.bigBookStack,
+  textInput: customTheme.textInput,
+  inputBorder: customTheme.inputBorder,
+  mediumLogo: customTheme.mediumLogo,
+  largeLogo: customTheme.largeLogo,
+  recLogo: customTheme.recLogo,
+  singleStacks: customTheme.singleStacks,
+  myshelves: customTheme.myshelves,
+  avatar: customTheme.avatar,
 });
 
 export default theme;

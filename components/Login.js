@@ -12,6 +12,7 @@ import {
   NativeBaseProvider,
   Text,
   HStack,
+  Box,
   WarningOutlineIcon,
 } from "native-base";
 import { Alert } from "react-native";
@@ -92,7 +93,6 @@ const Login = ({ navigation }) => {
                 source={require("../assets/Lottie/lottieWithCoffee.json")}
               />
             </View>
-
             <Center>
               <Image
                 source={require("../assets/logo.png")}
@@ -105,14 +105,10 @@ const Login = ({ navigation }) => {
         <Center w="100%">
           <View>
             <VStack space={7} mt="20">
-              <FormControl
-                height="10"
-                width="250"
-                isRequired
-                isInvalid={emailError}
-              >
+              <FormControl width="250" isRequired isInvalid={emailError}>
                 <FormControl.Label>Email</FormControl.Label>
                 <Input
+                  style={theme.textInput}
                   value={email}
                   placeholder="email"
                   onChangeText={(text) => {
@@ -131,6 +127,7 @@ const Login = ({ navigation }) => {
               <FormControl isRequired isInvalid={passwordError}>
                 <FormControl.Label>Password</FormControl.Label>
                 <Input
+                  style={theme.textInput}
                   value={password}
                   placeholder="password"
                   onChangeText={(text) => {
@@ -147,42 +144,37 @@ const Login = ({ navigation }) => {
                   </FormControl.ErrorMessage>
                 )}
               </FormControl>
-              <Button
-                size="md"
-                variant="ghost"
-                colorScheme={theme.rosey[300]}
-                style={theme.button.variants.ghost}
-                onPress={handleLogin}
-              >
-                <Text fontSize="lg" color={theme.rosey[300]}>
-                  Sign in
-                </Text>
-              </Button>
+              <View>
+                <Button
+                  size="sm"
+                  colorScheme="rose"
+                  style={theme.button.variants.ghost}
+                  onPress={handleLogin}
+                  variant="outline"
+                  mb="10"
+                >
+                  <Text fontSize="lg" color={theme.rosey[300]}>
+                    Sign in
+                  </Text>
+                </Button>
+              </View>
             </VStack>
-            <Center>
-              <Text>New user?</Text>
-              <Button
-                size="lg"
-                variant="ghost"
-                colorScheme={theme.rosey}
-                style={theme.button.variants.ghost}
-                onPress={handleGoToSignUp}
-              >
-                <Text color={theme.rosey[300]}>Sign Up</Text>
-              </Button>
-            </Center>
           </View>
         </Center>
-        <View>
+        <Box bottom=".1" justifyContent={"center"}>
           <Center>
-            {/* <View> */}
-            {/* <Image
-                source={require("../assets/room.png")}
-                style={theme.trees}
-              ></Image>
-            </View> */}
+            <Text>New user?</Text>
+            <Button
+              size="lg"
+              variant="ghost"
+              colorScheme={theme.rosey}
+              style={theme.button.variants.ghost}
+              onPress={handleGoToSignUp}
+            >
+              <Text color={theme.rosey[300]}>Sign Up</Text>
+            </Button>
           </Center>
-        </View>
+        </Box>
       </KeyboardAwareScrollView>
     </NativeBaseProvider>
   );
