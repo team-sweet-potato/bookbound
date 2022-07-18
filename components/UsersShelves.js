@@ -63,6 +63,9 @@ const UsersShelves = ({ navigation }) => {
                 size="sm"
                 colorScheme="rose"
                 variant="outline"
+                borderColor={theme.browns[100]}
+                borderRadius={"100"}
+                mb={"2"}
                 onPress={() => navigation.navigate("User Profile", { user })}
               >
                 <Text fontSize="12" color={theme.rosey[800]}>
@@ -70,10 +73,12 @@ const UsersShelves = ({ navigation }) => {
                 </Text>
               </Button>
               <Button
-                backgroundColor="#e6ccb2"
+                backgroundColor={theme.browns[100]}
                 flexDirection="row-reverse"
                 size="sm"
                 variant="outline"
+                borderRadius={"100"}
+                borderColor={theme.rosey[800]}
                 colorScheme="rose"
                 onPress={handleSignOut}
               >
@@ -114,6 +119,7 @@ const UsersShelves = ({ navigation }) => {
           <HStack justifyContent="center" mb="2" mt="7">
             <Button
               marginRight={"4"}
+              variant={"ghost"}
               h="40"
               w="20"
               bg="#cb997e"

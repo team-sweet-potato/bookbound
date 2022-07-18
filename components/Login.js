@@ -148,6 +148,7 @@ const Login = ({ navigation }) => {
                 <Button
                   size="sm"
                   colorScheme="rose"
+                  borderRadius={"100"}
                   style={theme.button.variants.ghost}
                   onPress={handleLogin}
                   variant="outline"

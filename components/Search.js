@@ -118,95 +118,93 @@ const Search = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
-    <ImageBackground
-      source={require("../assets/bigbookstack.png")}
-      alt="books"
-      style={theme.bigBookStack}
-    >
-      <SafeAreaView>
-        <Center mt="5" mb="5">
-          <View style={{ height: 75, width: 100 }}>
-            <LottieView
-              progress={progress}
-              source={require("../assets/Lottie/lightbulb.json")}
-            />
-          </View>
-        </Center>
-      </SafeAreaView>
-      <ScrollView>
-        <Box safeArea>
-          <Center flex={1} px="2">
-            <VStack w="100%" space={5} alignSelf="center">
-              <Input
-                style={theme.textInput}
-                placeholder="Search Books"
-                width="100%"
-                borderRadius="4"
-                py="3"
-                px="1"
-                fontSize="14"
-                value={search}
-                InputLeftElement={
-                  <Icon
-                    m="2"
-                    ml="3"
-                    size="6"
-                    color="gray.400"
-                    as={<MaterialIcons name="search" />}
-                  />
-                }
-                returnKeyType="done"
-                onSubmitEditing={onSubmitEditing}
-                onChangeText={(text) => setSearch(text)}
+      <ImageBackground
+        source={require("../assets/bigbookstack.png")}
+        alt="books"
+        style={theme.bigBookStack}
+      >
+        <SafeAreaView>
+          <Center mt="5" mb="5">
+            <View style={{ height: 75, width: 100 }}>
+              <LottieView
+                progress={progress}
+                source={require("../assets/Lottie/lightbulb.json")}
               />
-            </VStack>
+            </View>
           </Center>
-        </Box>
-        <Box pb={5} mt={5}>
-          <Center>
-            <Button
-              borderBottomColor={theme.rosey[300]}
-              borderTopColor={theme.rosey[300]}
-              borderLeftColor={theme.rosey[300]}
-              borderRightColor={theme.rosey[300]}
-              size="sm"
-              colorScheme="rose"
-              style={theme.button.variants.ghost}
-              variant="outline"
-              width={"200"}
-              height={"60"}
-              mb="10"
-              onPress={() => navigation.navigate("Scanner")}
-            >
-              <Text fontSize="14" color={theme.ambers[200]}>
-                Scan Barcode
+        </SafeAreaView>
+        <ScrollView>
+          <Box safeArea>
+            <Center flex={1} px="2">
+              <VStack w="100%" space={5} alignSelf="center">
+                <Input
+                  style={theme.textInput}
+                  placeholder="Search Books"
+                  width="100%"
+                  borderRadius="4"
+                  py="3"
+                  px="1"
+                  fontSize="14"
+                  value={search}
+                  InputLeftElement={
+                    <Icon
+                      m="2"
+                      ml="3"
+                      size="6"
+                      color="gray.400"
+                      as={<MaterialIcons name="search" />}
+                    />
+                  }
+                  returnKeyType="done"
+                  onSubmitEditing={onSubmitEditing}
+                  onChangeText={(text) => setSearch(text)}
+                />
+              </VStack>
+            </Center>
+          </Box>
+          <Box pb={5} mt={5}>
+            <Center>
+              <Button
+                borderColor={"amber.400"}
+                size="sm"
+                colorScheme="rose"
+                style={theme.button.variants.ghost}
+                variant="outline"
+                width={"200"}
+                height={"60"}
+                borderRadius={"100"}
+                mb="10"
+                onPress={() => navigation.navigate("Scanner")}
+              >
+                <Text fontSize="14" color={theme.rosey[800]}>
+                  Scan Barcode
+                </Text>
+              </Button>
+            </Center>
+          </Box>
+          <Stack direction="column" divider={<Divider my="2" />}>
+            {history &&
+              history.length > 0 &&
+              history.map((searchRes, index) => {
+                return (
+                  <Button
+                    key={index}
+                    variant="ghost"
+                    onPress={() => onPressHistory(searchRes.search)}
+                  >
+                    <Text>{searchRes.search}</Text>
+                  </Button>
+                );
+              })}
+          </Stack>
+          {history && history.length > 0 && (
+            <Button size="sm" variant="ghost" onPress={clearHistory}>
+              <Text fontSize="12" color={theme.rosey[300]}>
+                Clear History
               </Text>
             </Button>
-          </Center>
-        </Box>
-        <Stack direction="column" divider={<Divider my="2" />}>
-          {history &&
-            history.length > 0 &&
-            history.map((searchRes, index) => {
-              return (
-                <Button
-                  key={index}
-                  variant="ghost"
-                  onPress={() => onPressHistory(searchRes.search)}
-                >
-                  <Text>{searchRes.search}</Text>
-                </Button>
-              );
-            })}
-        </Stack>
-        {history && history.length > 0 && (
-          <Button size="sm" variant="ghost" onPress={clearHistory}>
-            <Text fontSize="12" color={theme.rosey[300]}>
-              Clear History
-            </Text>
-          </Button>
-        )}
-      </ScrollView>
+          )}
+        </ScrollView>
       </ImageBackground>
     </NativeBaseProvider>
   );
