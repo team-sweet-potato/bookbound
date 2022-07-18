@@ -7,6 +7,7 @@ import {
   Heading,
   Pressable,
 } from "native-base";
+import LoadingAnimation from "./Loading";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { auth, db } from "../firebase";
@@ -52,7 +53,7 @@ const ToReadShelf = ({ navigation }) => {
     <ScrollView>
       {books.length < 1 ? (
         isLoading ? (
-          <Text>Loading</Text>
+          <LoadingAnimation />
         ) : (
           <VStack space={4} alignItems="center">
             <Text>
@@ -61,7 +62,7 @@ const ToReadShelf = ({ navigation }) => {
           </VStack>
         )
       ) : isLoading ? (
-        <Text>Loading</Text>
+        <LoadingAnimation />
       ) : (
         <VStack space={4} alignItems="center">
           {books.map((book) => {

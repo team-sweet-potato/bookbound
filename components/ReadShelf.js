@@ -43,7 +43,7 @@ const ReadShelf = ({ navigation }) => {
   };
 
   useEffect(() => {
-    const updateBooks = navigation.addListener('focus', () => {
+    const updateBooks = navigation.addListener("focus", () => {
       fetchBooks();
     });
     return updateBooks;
@@ -53,7 +53,7 @@ const ReadShelf = ({ navigation }) => {
     <ScrollView>
       {books.length < 1 ? (
         isLoading ? (
-          <Text>Loading</Text>
+          <LoadingAnimation />
         ) : (
           <VStack space={4} alignItems="center">
             <Text>
@@ -62,7 +62,7 @@ const ReadShelf = ({ navigation }) => {
           </VStack>
         )
       ) : isLoading ? (
-        <Text>Loading</Text>
+        <LoadingAnimation />
       ) : (
         <VStack space={4} alignItems="center">
           {books.map((book) => {
@@ -73,7 +73,10 @@ const ReadShelf = ({ navigation }) => {
                 >
                   <Image
                     source={{
-                      uri: book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                      uri:
+                        book.imageLinks && book.imageLinks.thumbnail
+                          ? book.imageLinks.thumbnail
+                          : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
                     }}
                     alt={`${book.title} book cover`}
                     size="2xl"
@@ -85,7 +88,9 @@ const ReadShelf = ({ navigation }) => {
                 >
                   <Heading>{book.title}</Heading>
                 </Pressable>
-                {book.authors && <Text>Authors: {book.authors.join(", ")}</Text>}
+                {book.authors && (
+                  <Text>Authors: {book.authors.join(", ")}</Text>
+                )}
               </Container>
             );
           })}
