@@ -120,7 +120,7 @@ const customTheme = extendTheme({
   },
   bigBookStack: {
     width: 390,
-    height: 390,
+    height: 693,
     bottom: -7,
     position: "absolute",
   },
