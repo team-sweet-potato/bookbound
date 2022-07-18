@@ -96,6 +96,10 @@ const customTheme = extendTheme({
     height: 150,
     bottom: 1,
   },
+  myshelves: {
+    width: 200,
+    height: 75,
+  },
   books: {
     width: 400,
     height: 300,
@@ -124,6 +128,10 @@ const customTheme = extendTheme({
     width: 150,
     height: 29,
   },
+  avatar: {
+    width: 150,
+    height: 100,
+  },
   textInput: {
     backgroundColor: "white",
   },
@@ -147,11 +155,6 @@ const customTheme = extendTheme({
     marginTop: -5,
     position: "absolute",
     marginHorizontal: "1%",
-  },
-  arch: {
-    width: "100%",
-    height: "100%",
-    flex: "center",
   },
   fontConfig: {
     Roboto: {
@@ -256,7 +259,6 @@ const theme = extendTheme({
   rosey: customTheme.colors.rosey,
   browns: customTheme.colors.browns,
   smallLogo: customTheme.smallLogo,
-  clockImage: customTheme.clockImage,
   loginLogo: customTheme.loginLogo,
   typography: customTheme.typography,
   opacity: customTheme.opacity,
@@ -277,6 +279,8 @@ const theme = extendTheme({
   largeLogo: customTheme.largeLogo,
   recLogo: customTheme.recLogo,
   singleStacks: customTheme.singleStacks,
+  myshelves: customTheme.myshelves,
+  avatar: customTheme.avatar,
 });
 
 export default theme;
