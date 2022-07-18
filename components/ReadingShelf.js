@@ -9,6 +9,7 @@ import {
   Pressable,
   NativeBaseProvider,
 } from "native-base";
+import LoadingAnimation from "./Loading";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { auth, db } from "../firebase";
@@ -57,7 +58,7 @@ const ReadingShelf = ({ navigation }) => {
         <Center mt="5">
           {books.length < 1 ? (
             isLoading ? (
-              <Text>Loading</Text>
+              <LoadingAnimation />
             ) : (
               <VStack space={4} alignItems="center">
                 <Text>
@@ -66,7 +67,7 @@ const ReadingShelf = ({ navigation }) => {
               </VStack>
             )
           ) : isLoading ? (
-            <Text>Loading</Text>
+              <LoadingAnimation />
           ) : (
             <VStack space={4} alignItems="center">
               {books.map((book) => {
