@@ -43,6 +43,7 @@ const UsersShelves = ({ navigation }) => {
     getUser();
   }, []);
 
+
   return Object.keys(user).length === 0 ? (
     <Text>Loading...</Text>
   ) : (
@@ -96,7 +97,6 @@ const UsersShelves = ({ navigation }) => {
           </Box>
         </View>
       </SafeAreaView>
-
       <SafeAreaView>
         <Divider />
         <Box mt="4">
