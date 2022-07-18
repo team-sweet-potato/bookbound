@@ -12,7 +12,7 @@ import {
   Text,
   Divider,
 } from "native-base";
-import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 import axios from "axios";
 import { api_key } from "../apikey";
 import theme from "./Theme";

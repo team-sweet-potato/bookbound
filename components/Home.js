@@ -13,8 +13,6 @@ import {
   Center,
   HStack,
   Pressable,
-  Flex,
-  Stack,
 } from "native-base";
 import axios from "axios";
 import { SafeAreaView, View, Animated, ImageBackground } from "react-native";
@@ -90,7 +88,7 @@ const Home = ({ navigation }) => {
     });
   }, [navigation]);
 
-  return (  
+  return (
     <NativeBaseProvider theme={theme}>
       <ScrollView>
         <VStack alignItems="center">

@@ -49,7 +49,7 @@ const customTheme = extendTheme({
       800: "#81171b",
       900: "#540804",
     },
-    amber: {
+    ambers: {
       50: "#ffc971",
       100: "#ffb627",
       200: "#ff9505",
@@ -258,6 +258,7 @@ const customTheme = extendTheme({
 const theme = extendTheme({
   rosey: customTheme.colors.rosey,
   browns: customTheme.colors.browns,
+  ambers: customTheme.colors.ambers,
   smallLogo: customTheme.smallLogo,
   loginLogo: customTheme.loginLogo,
   typography: customTheme.typography,

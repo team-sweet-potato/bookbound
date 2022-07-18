@@ -5,6 +5,8 @@ import {
   VStack,
   Text,
   Heading,
+  Center,
+  NativeBaseProvider,
   Pressable,
 } from "native-base";
 import LoadingAnimation from "./Loading";

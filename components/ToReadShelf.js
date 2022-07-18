@@ -6,6 +6,8 @@ import {
   Text,
   Heading,
   Pressable,
+  NativeBaseProvider,
+  Center,
 } from "native-base";
 import LoadingAnimation from "./Loading";
 import React, { useEffect, useState } from "react";
