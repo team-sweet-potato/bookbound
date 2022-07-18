@@ -86,11 +86,11 @@ const Home = ({ navigation }) => {
   useEffect(() => {
     const load = navigation.addListener("focus", () => {
       handleLikeAnimation();
+      return load;
     });
-    return load;
   }, [navigation]);
 
-  return (
+  return (  
     <NativeBaseProvider theme={theme}>
       <ScrollView>
         <VStack alignItems="center">

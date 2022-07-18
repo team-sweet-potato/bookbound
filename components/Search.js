@@ -110,8 +110,9 @@ const Search = ({ navigation }) => {
   };
 
   useEffect(() => {
-    navigation.addListener("focus", () => {
+    const load = navigation.addListener("focus", () => {
       handleLikeAnimation();
+      return load;
     });
   }, [navigation]);
 

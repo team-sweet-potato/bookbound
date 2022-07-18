@@ -147,7 +147,7 @@ const Login = ({ navigation }) => {
               <View>
                 <Button
                   size="sm"
-                  colorScheme={theme.rosey[300]}
+                  colorScheme="rose"
                   style={theme.button.variants.ghost}
                   onPress={handleLogin}
                   variant="outline"

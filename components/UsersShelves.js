@@ -60,6 +60,7 @@ const UsersShelves = ({ navigation }) => {
               <Button
                 flexDirection={"row-reverse"}
                 size="sm"
+                colorScheme="rose"
                 variant="outline"
                 onPress={() => navigation.navigate("User Profile", { user })}
               >
@@ -71,7 +72,7 @@ const UsersShelves = ({ navigation }) => {
                 flexDirection="row-reverse"
                 size="sm"
                 variant="outline"
-                colorScheme="secondary"
+                colorScheme="rose"
                 onPress={handleSignOut}
               >
                 <Text fontSize="12" color={theme.rosey[300]}>
@@ -82,7 +83,7 @@ const UsersShelves = ({ navigation }) => {
           </HStack>
         </Center>
         <View>
-          <Box marginLeft={10} mb="2" space={1} w="100%" px="3" >
+          <Box marginLeft={10} mb="2" space={1} w="100%" px="3">
             <Text fontSize="lg" fontWeight="medium">
               {`${user.firstName ? user.firstName : ""} ${
                 user.lastName ? user.lastName : ""
