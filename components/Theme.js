@@ -93,13 +93,13 @@ const customTheme = extendTheme({
   },
   books: {
     width: 400,
-    height: 350,
+    height: 300,
     bottom: 10,
     position: "absolute",
   },
   homeBooks: {
     width: 400,
-    height: 350,
+    height: 275,
     bottom: -7,
     position: "absolute",
   },

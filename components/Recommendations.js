@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Center,
@@ -15,8 +15,7 @@ import { collection, doc, query, where, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import axios from "axios";
 import theme from "./Theme";
-import { SafeAreaView, View, Animated } from "react-native";
-import LottieView from "lottie-react-native";
+import { View } from "react-native";
 
 const Recommendations = ({ navigation }) => {
   const [currentSelect, setCurrentSelect] = useState("All Books");
@@ -26,9 +25,11 @@ const Recommendations = ({ navigation }) => {
   const backgroundColors = [
     "#cb997e",
     "#ddbea9",
+    "#b7b7a4",
     "#ffe8d6",
     "#b7b7a4",
     "#ddbea9",
+    "#b7b7a4",
   ];
 
   const fetchAllBooks = async () => {
@@ -64,19 +65,6 @@ const Recommendations = ({ navigation }) => {
     return updateBooks;
   }, [navigation]);
 
-  const progress = useRef(new Animated.Value(0)).current;
-
-  const handleLikeAnimation = () => {
-    Animated.timing(progress, {
-      toValue: 1,
-      duration: 6000,
-      useNativeDriver: true,
-    }).start();
-  };
-  useEffect(() => {
-    handleLikeAnimation();
-  }, []);
-
   return (
     <NativeBaseProvider>
       <ScrollView>
@@ -88,9 +76,9 @@ const Recommendations = ({ navigation }) => {
             source={require("../assets/Recommendedscript.png")}
           ></Image>
           <Image
-            mt="2"
-            mb="4"
-            alt="open book"
+            mt="1"
+            mb="2"
+            alt="recommended"
             style={theme.largeLogo}
             source={require("../assets/openbook.png")}
           ></Image>
@@ -99,13 +87,14 @@ const Recommendations = ({ navigation }) => {
           <Text fontSize="lg" fontWeight="medium" padding="3">
             Filter by Genre
           </Text>
+          <View style={theme.thinLine} mt="3"></View>
           <ScrollView horizontal={true}>
             <HStack
-              p="4"
+              p="3"
               space={3}
               justifyContent="center"
               mb="2"
-              mt="1.5"
+              mt=".5"
               paddingBottom={4}
             >
               {genres.length > 0 ? (
@@ -117,8 +106,8 @@ const Recommendations = ({ navigation }) => {
                     {({ isPressed }) => {
                       return (
                         <Center
-                          h="40"
-                          w="20"
+                          h="20"
+                          w="40"
                           bg="#cb997e"
                           rounded="md"
                           borderWidth="1"
@@ -152,8 +141,10 @@ const Recommendations = ({ navigation }) => {
             <Text fontSize="lg" fontWeight="medium" padding="3">
               {currentSelect}
             </Text>
-            <View style={theme.thinLine} mt="3" mb="4"></View>
-            <ScrollView>
+
+            <View style={theme.thinLine} mt="3"></View>
+
+            <ScrollView mt="5">
               {currentSelect === "All Books"
                 ? recommendedBooks.map((book) => (
                     <Box color="blue" key={book.id} paddingBottom={5}>
