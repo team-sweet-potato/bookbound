@@ -91,6 +91,11 @@ const customTheme = extendTheme({
     width: 200,
     height: 50,
   },
+  singleStacks: {
+    width: 400,
+    height: 150,
+    bottom: 1,
+  },
   books: {
     width: 400,
     height: 300,
@@ -271,6 +276,7 @@ const theme = extendTheme({
   mediumLogo: customTheme.mediumLogo,
   largeLogo: customTheme.largeLogo,
   recLogo: customTheme.recLogo,
+  singleStacks: customTheme.singleStacks,
 });
 
 export default theme;

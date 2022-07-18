@@ -133,9 +133,9 @@ const UsersShelves = ({ navigation }) => {
         </Flex>
       </SafeAreaView>
       <ImageBackground
-        source={require("../assets/bookstack.png")}
+        source={require("../assets/stacksforshelves.png")}
         alt="books"
-        style={theme.bookStack}
+        style={theme.singleStacks}
       ></ImageBackground>
     </NativeBaseProvider>
   );

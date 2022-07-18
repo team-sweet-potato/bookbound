@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef, Component } from "react";
 import {
   Box,
   Center,
@@ -15,8 +15,9 @@ import {
 import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import { api_key } from "../apikey";
-import { ImageBackground } from "react-native";
 import theme from "./Theme";
+import { SafeAreaView, View, Animated, ImageBackground } from "react-native";
+import LottieView from "lottie-react-native";
 
 import { auth, db } from "../firebase";
 import {
@@ -98,10 +99,36 @@ const Search = ({ navigation }) => {
     return updateHistory;
   }, [navigation]);
 
+  const progress = useRef(new Animated.Value(0)).current;
+
+  const handleLikeAnimation = () => {
+    Animated.timing(progress, {
+      toValue: 1,
+      duration: 6000,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      handleLikeAnimation();
+    });
+  }, [navigation]);
+
   return (
     <NativeBaseProvider>
+      <SafeAreaView>
+        <Center mt="5" mb="5">
+          <View style={{ height: 75, width: 100 }}>
+            <LottieView
+              progress={progress}
+              source={require("../assets/Lottie/lightbulb.json")}
+            />
+          </View>
+        </Center>
+      </SafeAreaView>
+
       <ScrollView>
-        <Box pb={8}></Box>
         <Box safeArea>
           <Center flex={1} px="2">
             <VStack w="100%" space={5} alignSelf="center">

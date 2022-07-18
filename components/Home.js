@@ -84,8 +84,11 @@ const Home = ({ navigation }) => {
   };
 
   useEffect(() => {
-    handleLikeAnimation();
-  }, []);
+    const load = navigation.addListener("focus", () => {
+      handleLikeAnimation();
+    });
+    return load;
+  }, [navigation]);
 
   return (
     <NativeBaseProvider theme={theme}>
