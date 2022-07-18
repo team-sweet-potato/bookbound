@@ -90,7 +90,7 @@ const Home = ({ navigation }) => {
     });
   }, [navigation]);
 
-  return (  
+  return (
     <NativeBaseProvider theme={theme}>
       <ScrollView>
         <VStack alignItems="center">

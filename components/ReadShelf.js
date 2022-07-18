@@ -5,6 +5,8 @@ import {
   VStack,
   Text,
   Heading,
+  Center,
+  NativeBaseProvider,
   Pressable,
 } from "native-base";
 import LoadingAnimation from "./Loading";
@@ -43,55 +45,70 @@ const ReadShelf = ({ navigation }) => {
   };
 
   useEffect(() => {
-    const updateBooks = navigation.addListener('focus', () => {
+    const updateBooks = navigation.addListener("focus", () => {
       fetchBooks();
     });
     return updateBooks;
   }, [navigation]);
 
   return (
-    <ScrollView>
-      {books.length < 1 ? (
-        isLoading ? (
-          <Text>Loading</Text>
-        ) : (
-          <VStack space={4} alignItems="center">
-            <Text>
-              Oh no! You don't have any books saved in this shelf yet.
-            </Text>
-          </VStack>
-        )
-      ) : isLoading ? (
-        <Text>Loading</Text>
-      ) : (
-        <VStack space={4} alignItems="center">
-          {books.map((book) => {
-            return (
-              <Container key={book.industryIdentifiers[1].identifier}>
-                <Pressable
-                  onPress={() => navigation.navigate("Single Book", { book })}
-                >
-                  <Image
-                    source={{
-                      uri: book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
-                    }}
-                    alt={`${book.title} book cover`}
-                    size="2xl"
-                    resizeMode="contain"
-                  />
-                </Pressable>
-                <Pressable
-                  onPress={() => navigation.navigate("Single Book", { book })}
-                >
-                  <Heading>{book.title}</Heading>
-                </Pressable>
-                {book.authors && <Text>Authors: {book.authors.join(", ")}</Text>}
-              </Container>
-            );
-          })}
-        </VStack>
-      )}
-    </ScrollView>
+    <NativeBaseProvider>
+      <Center mt="5">
+        <ScrollView>
+          {books.length < 1 ? (
+            isLoading ? (
+              <Text>Loading</Text>
+            ) : (
+              <VStack space={4} alignItems="center">
+                <Text>
+                  Oh no! You don't have any books saved in this shelf yet.
+                </Text>
+              </VStack>
+            )
+          ) : isLoading ? (
+            <Text>Loading</Text>
+          ) : (
+            <VStack space={4} alignItems="center">
+              {books.map((book) => {
+                return (
+                  <Container key={book.industryIdentifiers[1].identifier}>
+                    <Pressable
+                      onPress={() =>
+                        navigation.navigate("Single Book", { book })
+                      }
+                    >
+                      <Image
+                        mb="4"
+                        mt="3"
+                        source={{
+                          uri:
+                            book.imageLinks && book.imageLinks.thumbnail
+                              ? book.imageLinks.thumbnail
+                              : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
+                        }}
+                        alt={`${book.title} book cover`}
+                        size="2xl"
+                        resizeMode="contain"
+                      />
+                    </Pressable>
+                    <Pressable
+                      onPress={() =>
+                        navigation.navigate("Single Book", { book })
+                      }
+                    >
+                      <Heading>{book.title}</Heading>
+                    </Pressable>
+                    {book.authors && (
+                      <Text>Authors: {book.authors.join(", ")}</Text>
+                    )}
+                  </Container>
+                );
+              })}
+            </VStack>
+          )}
+        </ScrollView>
+      </Center>
+    </NativeBaseProvider>
   );
 };
 

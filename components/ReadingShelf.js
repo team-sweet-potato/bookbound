@@ -52,7 +52,6 @@ const ReadingShelf = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
-      <HeaderLogo />
       <ScrollView>
         <Center mt="5">
           {books.length < 1 ? (
@@ -79,6 +78,7 @@ const ReadingShelf = ({ navigation }) => {
                     >
                       <Image
                         mb="4"
+                        mt="3"
                         source={{
                           uri:
                             book.imageLinks && book.imageLinks.thumbnail
