@@ -64,18 +64,19 @@ const UsersShelves = ({ navigation }) => {
                 variant="outline"
                 onPress={() => navigation.navigate("User Profile", { user })}
               >
-                <Text fontSize="12" color={theme.rosey[300]}>
+                <Text fontSize="12" color={theme.rosey[800]}>
                   Edit Account
                 </Text>
               </Button>
               <Button
+                backgroundColor="#ddbea9"
                 flexDirection="row-reverse"
                 size="sm"
                 variant="outline"
                 colorScheme="rose"
                 onPress={handleSignOut}
               >
-                <Text fontSize="12" color={theme.rosey[300]}>
+                <Text fontSize="12" color={theme.rosey[800]}>
                   Logout
                 </Text>
               </Button>
