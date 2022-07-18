@@ -118,6 +118,11 @@ const Search = ({ navigation }) => {
 
   return (
     <NativeBaseProvider>
+    <ImageBackground
+      source={require("../assets/bigbookstack.png")}
+      alt="books"
+      style={theme.bigBookStack}
+    >
       <SafeAreaView>
         <Center mt="5" mb="5">
           <View style={{ height: 75, width: 100 }}>
@@ -128,7 +133,6 @@ const Search = ({ navigation }) => {
           </View>
         </Center>
       </SafeAreaView>
-
       <ScrollView>
         <Box safeArea>
           <Center flex={1} px="2">
@@ -203,11 +207,7 @@ const Search = ({ navigation }) => {
           </Button>
         )}
       </ScrollView>
-      <ImageBackground
-        source={require("../assets/bigbookstack.png")}
-        alt="books"
-        style={theme.bigBookStack}
-      ></ImageBackground>
+      </ImageBackground>
     </NativeBaseProvider>
   );
 };
