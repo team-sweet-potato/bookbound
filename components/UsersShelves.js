@@ -21,6 +21,7 @@ import theme from "./Theme";
 import { auth, db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
+import LoadingAnimation from "./Loading";
 
 const UsersShelves = ({ navigation }) => {
   const [user, setUser] = useState({});
@@ -43,9 +44,8 @@ const UsersShelves = ({ navigation }) => {
     getUser();
   }, []);
 
-
   return Object.keys(user).length === 0 ? (
-    <Text>Loading...</Text>
+    <LoadingAnimation />
   ) : (
     <NativeBaseProvider>
       <SafeAreaView>
