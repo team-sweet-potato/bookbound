@@ -121,7 +121,7 @@ const customTheme = extendTheme({
   },
   homeBooks: {
     width: 400,
-    height: 275,
+    height: 690,
     bottom: -7,
     position: "absolute",
   },

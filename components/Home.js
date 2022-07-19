@@ -89,6 +89,11 @@ const Home = ({ navigation }) => {
 
   return (
     <NativeBaseProvider theme={theme}>
+      <ImageBackground
+        source={require("../assets/morepastelbooks2.png")}
+        alt="books"
+        style={theme.homeBooks}
+      >
       <ScrollView>
         <VStack alignItems="center">
           <Box mt="5" mb="1">
@@ -239,11 +244,7 @@ const Home = ({ navigation }) => {
           </SafeAreaView>
         </VStack>
       </ScrollView>
-      <ImageBackground
-        source={require("../assets/morepastelbooks.png")}
-        alt="books"
-        style={theme.homeBooks}
-      ></ImageBackground>
+      </ImageBackground>
     </NativeBaseProvider>
   );
 };
