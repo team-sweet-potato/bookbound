@@ -1,16 +1,10 @@
 import React from "react";
 import {
-  ArrowBackIcon,
-  Avatar,
-  Box,
   Container,
-  Heading,
   HStack,
   Image,
   NativeBaseProvider,
-  Pressable,
   ScrollView,
-  Spacer,
   Text,
   View,
   VStack,

@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Avatar,
-  ScrollView,
-  Container,
-  VStack,
   Text,
   HStack,
   Box,
@@ -11,12 +7,11 @@ import {
   Image,
   Center,
   Button,
-  Stack,
   View,
   Divider,
   NativeBaseProvider,
 } from "native-base";
-import { SafeAreaView, ImageBackground } from "react-native";
+import { SafeAreaView } from "react-native";
 import theme from "./Theme";
 import { auth, db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
@@ -57,24 +52,28 @@ const UsersShelves = ({ navigation }) => {
               alt="books"
               style={theme.avatar}
             ></Image>
-            <Box mb="2.5" mt="4" w="40" padding="3">
+            <Box mb="2.5" mt="3" w="40" padding="3">
               <Button
                 flexDirection={"row-reverse"}
                 size="sm"
                 colorScheme="rose"
                 variant="outline"
+                borderColor={theme.browns[500]}
+                borderRadius={"100"}
+                mb={"2"}
                 onPress={() => navigation.navigate("User Profile", { user })}
               >
-                <Text fontSize="12" color={theme.rosey[800]}>
+                <Text fontSize="12" color={theme.browns[500]}>
                   Edit Account
                 </Text>
               </Button>
               <Button
-                backgroundColor="#ddbea9"
                 flexDirection="row-reverse"
+                colorScheme="rose"
                 size="sm"
                 variant="outline"
-                colorScheme="rose"
+                borderRadius={"100"}
+                borderColor={theme.rosey[800]}
                 onPress={handleSignOut}
               >
                 <Text fontSize="12" color={theme.rosey[800]}>
@@ -85,7 +84,7 @@ const UsersShelves = ({ navigation }) => {
           </HStack>
         </Center>
         <View>
-          <Box marginLeft={10} mb="2" space={1} w="100%" px="3">
+          <Box marginLeft={10} mb="7" space={1} w="100%" px="3">
             <Text fontSize="lg" fontWeight="medium">
               {`${user.firstName ? user.firstName : ""} ${
                 user.lastName ? user.lastName : ""
@@ -99,7 +98,7 @@ const UsersShelves = ({ navigation }) => {
       </SafeAreaView>
       <SafeAreaView>
         <Divider />
-        <Box mt="4">
+        <Box mt="7">
           <Center>
             <Image
               source={require("../assets/myshelveslogo.png")}
@@ -111,8 +110,11 @@ const UsersShelves = ({ navigation }) => {
           </Center>
         </Box>
         <Flex>
-          <HStack justifyContent="space-evenly" mb="2" mt="1.5">
+          <HStack justifyContent="center" mb="2" mt="7">
             <Button
+              marginRight={"4"}
+              variant={"ghost"}
+              colorScheme={theme.browns}
               h="40"
               w="20"
               bg="#cb997e"
@@ -123,6 +125,9 @@ const UsersShelves = ({ navigation }) => {
               <Center>To Be Read</Center>
             </Button>
             <Button
+              marginRight={"4"}
+              variant={"ghost"}
+              colorScheme={theme.browns}
               h="40"
               w="20"
               bg="#b7b7a4"
@@ -133,6 +138,8 @@ const UsersShelves = ({ navigation }) => {
               <Center>Reading</Center>
             </Button>
             <Button
+              variant={"ghost"}
+              colorScheme={theme.browns}
               h="40"
               w="20"
               bg="#6b705c"
@@ -145,11 +152,15 @@ const UsersShelves = ({ navigation }) => {
           </HStack>
         </Flex>
       </SafeAreaView>
-      <ImageBackground
-        source={require("../assets/stacksforshelves.png")}
-        alt="books"
-        style={theme.singleStacks}
-      ></ImageBackground>
+      <Box>
+        <Center>
+          <Image
+            source={require("../assets/shelf.png")}
+            alt="books"
+            style={theme.shelfImage}
+          ></Image>
+        </Center>
+      </Box>
     </NativeBaseProvider>
   );
 };

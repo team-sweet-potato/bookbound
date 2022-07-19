@@ -6,7 +6,6 @@ import {
   ScrollView,
   Text,
   VStack,
-  Heading,
   NativeBaseProvider,
   Box,
   Image,

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import theme from "./Theme.js";
 import { Center, NativeBaseProvider } from "native-base";
-import { SafeAreaView, View, Animated } from "react-native";
+import { SafeAreaView, Animated } from "react-native";
 import LottieView from "lottie-react-native";
 
 const LoadingAnimation = ({}) => {
@@ -12,6 +12,7 @@ const LoadingAnimation = ({}) => {
       toValue: 1,
       duration: 6000,
       useNativeDriver: true,
+      speed: 1
     }).start();
   };
   useEffect(() => {

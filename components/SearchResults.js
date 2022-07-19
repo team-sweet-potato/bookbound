@@ -1,13 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  ArrowBackIcon,
-  Box,
-  Heading,
-  Pressable,
-  Text,
-  HStack,
-  ScrollView,
-} from "native-base";
+import { Box, Pressable, Text, ScrollView } from "native-base";
 import IndividualSearchResult from "./IndividualSearchResult";
 import axios from "axios";
 

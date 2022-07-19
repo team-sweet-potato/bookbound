@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import theme from "./Theme.js";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import {
   Button,
   Center,
@@ -11,14 +11,12 @@ import {
   VStack,
   NativeBaseProvider,
   Text,
-  HStack,
   Box,
   WarningOutlineIcon,
 } from "native-base";
 import { Alert } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import axios from "axios";
-import { SafeAreaView, View, Animated, ImageBackground } from "react-native";
+import { SafeAreaView, View, Animated } from "react-native";
 import LottieView from "lottie-react-native";
 
 const Login = ({ navigation }) => {
@@ -148,6 +146,7 @@ const Login = ({ navigation }) => {
                 <Button
                   size="sm"
                   colorScheme="rose"
+                  borderRadius={"100"}
                   style={theme.button.variants.ghost}
                   onPress={handleLogin}
                   variant="outline"

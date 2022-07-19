@@ -10,14 +10,14 @@ import {
   VStack,
   NativeBaseProvider,
   View,
-  FlatList
+  FlatList,
 } from "native-base";
-import { SafeAreaView } from 'react-native'
+import { SafeAreaView } from "react-native";
 import { collection, doc, query, deleteDoc, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import axios from "axios";
 import theme from "./Theme";
-import Swipeable from 'react-native-gesture-handler/Swipeable';
+import Swipeable from "react-native-gesture-handler/Swipeable";
 
 const Recommendations = ({ navigation }) => {
   const [currentSelect, setCurrentSelect] = useState("All Books");
@@ -47,12 +47,17 @@ const Recommendations = ({ navigation }) => {
           `https://www.googleapis.com/books/v1/volumes?q=isbn:${collection.id}`
         );
         if (data.items !== undefined) {
-          data.items.length === 0 ? '' : setRecommendedBooks((prev) => [...prev, { book: data.items[0].volumeInfo, id: collection.id }]);
+          data.items.length === 0
+            ? ""
+            : setRecommendedBooks((prev) => [
+                ...prev,
+                { book: data.items[0].volumeInfo, id: collection.id },
+              ]);
           data.items[0].volumeInfo.categories.forEach((genre) => {
             if (!allGenres.includes(genre)) {
               allGenres.push(genre);
             }
-          })
+          });
         }
       });
       setGenres(allGenres);
@@ -103,10 +108,7 @@ const Recommendations = ({ navigation }) => {
             data={genres}
             renderItem={({ item, index }) => {
               return (
-                <Pressable
-                  value={index}
-                  onPress={() => setCurrentSelect(item)}
-                >
+                <Pressable value={index} onPress={() => setCurrentSelect(item)}>
                   {({ isPressed }) => {
                     return (
                       <Center
@@ -135,41 +137,42 @@ const Recommendations = ({ navigation }) => {
                     );
                   }}
                 </Pressable>
-              )
+              );
             }}
             horizontal
           />
         </HStack>
       </Box>
-    )
-  }
+    );
+  };
 
   const rightSwipeActions = (progress, id) => {
-
     return (
       <Pressable
         onPress={async () => {
-          await deleteDoc(doc(doc(db, "users", auth.currentUser.uid), "recommended", id));
-          const newbooks = recommendedBooks.filter(book => book.id !== id)
-          fetchAllBooks()
+          await deleteDoc(
+            doc(doc(db, "users", auth.currentUser.uid), "recommended", id)
+          );
+          const newbooks = recommendedBooks.filter((book) => book.id !== id);
+          fetchAllBooks();
         }}
       >
         <View
           style={{
-            backgroundColor: '#ff8303',
-            justifyContent: 'center',
-            alignItems: 'flex-end',
+            backgroundColor: "#ff8303",
+            justifyContent: "center",
+            alignItems: "flex-end",
           }}
         >
           <Center>
             <Text
               style={{
-                color: '#1b1a17',
+                color: "#1b1a17",
                 paddingHorizontal: 10,
-                fontWeight: '600',
+                fontWeight: "600",
                 paddingHorizontal: 30,
                 paddingVertical: 20,
-                height: "100%"
+                height: "100%",
               }}
             >
               Delete
@@ -181,24 +184,23 @@ const Recommendations = ({ navigation }) => {
   };
 
   const BookList = ({ bookItem }) => {
-    const book = bookItem.book
+    const book = bookItem.book;
     return (
       <Swipeable
-        renderRightActions={(progress) => rightSwipeActions(progress, bookItem.id)}
+        renderRightActions={(progress) =>
+          rightSwipeActions(progress, bookItem.id)
+        }
       >
         <Box color="blue" key={book.id} paddingBottom={5}>
           <Pressable
-            onPress={() =>
-              navigation.push("Single Book", { book: book })
-            }
+            onPress={() => navigation.push("Single Book", { book: book })}
           >
             <HStack>
               <Image
                 h="70"
                 source={{
                   uri:
-                    book.imageLinks &&
-                      book.imageLinks.smallThumbnail
+                    book.imageLinks && book.imageLinks.smallThumbnail
                       ? book.imageLinks.smallThumbnail
                       : "https://historyexplorer.si.edu/sites/default/files/book-158.jpg",
                 }}
@@ -223,17 +225,21 @@ const Recommendations = ({ navigation }) => {
           </Pressable>
         </Box>
       </Swipeable>
-    )
-  }
+    );
+  };
 
   return (
     <NativeBaseProvider>
       <SafeAreaView style={{ flex: 1 }}>
         <FlatList
-          data={currentSelect === "All Books" ? recommendedBooks : recommendedBooks.filter(book => book.book.categories.includes(currentSelect))}
-          renderItem={({ item }) => (
-            <BookList bookItem={item} />
-          )}
+          data={
+            currentSelect === "All Books"
+              ? recommendedBooks
+              : recommendedBooks.filter((book) =>
+                  book.book.categories.includes(currentSelect)
+                )
+          }
+          renderItem={({ item }) => <BookList bookItem={item} />}
           ListHeaderComponent={Headers}
           scrollEnabled={true}
         />

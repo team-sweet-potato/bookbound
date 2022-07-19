@@ -1,18 +1,14 @@
 import React from "react";
 import theme from "./Theme.js";
-import { Center, Image, NativeBaseProvider } from "native-base";
+import { Image } from "native-base";
 
-const HeaderLogo = ({ navigation }) => {
+const HeaderLogo = ({}) => {
   return (
-    <NativeBaseProvider>
-      <Center>
-        <Image
-          alt="bookbound logo"
-          style={theme.smallLogo}
-          source={require("../assets/logo.png")}
-        />
-      </Center>
-    </NativeBaseProvider>
+    <Image
+      alt="bookbound logo"
+      style={theme.smallLogo}
+      source={require("../assets/logo.png")}
+    />
   );
 };
 
