@@ -46,13 +46,14 @@ const Recommendations = ({ navigation }) => {
         const { data } = await axios.get(
           `https://www.googleapis.com/books/v1/volumes?q=isbn:${collection.id}`
         );
-        data.items.length === 0 ? '' : setRecommendedBooks((prev) => [...prev, { book: data.items[0].volumeInfo, id: collection.id }]);
-
-        data.items[0].volumeInfo.categories.map((genre) => {
-          if (!allGenres.includes(genre)) {
-            allGenres.push(genre);
-          }
-        });
+        if (data.items !== undefined) {
+          data.items.length === 0 ? '' : setRecommendedBooks((prev) => [...prev, { book: data.items[0].volumeInfo, id: collection.id }]);
+          data.items[0].volumeInfo.categories.forEach((genre) => {
+            if (!allGenres.includes(genre)) {
+              allGenres.push(genre);
+            }
+          })
+        }
       });
       setGenres(allGenres);
     } catch (error) {
@@ -149,7 +150,6 @@ const Recommendations = ({ navigation }) => {
       <Pressable
         onPress={async () => {
           await deleteDoc(doc(doc(db, "users", auth.currentUser.uid), "recommended", id));
-          console.log(id)
           const newbooks = recommendedBooks.filter(book => book.id !== id)
           fetchAllBooks()
         }}
