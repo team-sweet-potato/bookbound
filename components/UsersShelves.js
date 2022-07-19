@@ -75,6 +75,7 @@ const UsersShelves = ({ navigation }) => {
                 borderRadius={"100"}
                 borderColor={theme.rosey[800]}
                 onPress={handleSignOut}
+                backgroundColor={theme.browns[100]}
               >
                 <Text fontSize="12" color={theme.rosey[800]}>
                   Logout

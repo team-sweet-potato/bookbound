@@ -65,7 +65,7 @@ const ToReadShelf = ({ navigation }) => {
         </Center>
       </Box>
 
-      <ScrollView mt={"3"} contentInset={{ bottom: 100 }}>
+      <ScrollView mt={"3"} contentInset={{ bottom: 10 }}>
         {books.length < 1 ? (
           isLoading ? (
             <LoadingAnimation />
