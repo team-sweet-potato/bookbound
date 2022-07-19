@@ -50,7 +50,7 @@ def initiate_find(name):
   np.sum(np.square(book_em_weightsExperiment[0]))
 
 
-  def find_similar(name, weights, n = 10):
+  def find_similar(name, weights, n = 11):
       """Find n most similar items (or least) to name based on embeddings. Option to also plot the results"""
 
       # Select index and reverse index
