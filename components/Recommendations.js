@@ -10,7 +10,7 @@ import {
   VStack,
   NativeBaseProvider,
 } from "native-base";
-import { collection, doc, query, where, getDocs } from "firebase/firestore";
+import { collection, doc, query, getDocs } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import axios from "axios";
 import theme from "./Theme";

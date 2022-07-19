@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  Avatar,
-  ScrollView,
-  Container,
-  VStack,
   Text,
   HStack,
   Box,
@@ -11,12 +7,11 @@ import {
   Image,
   Center,
   Button,
-  Stack,
   View,
   Divider,
   NativeBaseProvider,
 } from "native-base";
-import { SafeAreaView, ImageBackground } from "react-native";
+import { SafeAreaView } from "react-native";
 import theme from "./Theme";
 import { auth, db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";

@@ -9,7 +9,6 @@ import {
   Icon,
   Row,
   Divider,
-  Fab,
   Center,
   Box,
   Select,
@@ -18,7 +17,7 @@ import {
 } from "native-base";
 import React, { useEffect, useState, useRef } from "react";
 import { Animated } from "react-native";
-import { FontAwesome, AntDesign } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 import axios from "axios";
 import { auth, db } from "../firebase";
 import {

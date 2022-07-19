@@ -1,6 +1,6 @@
 import React from "react";
-import { NativeBaseProvider, Box, Stack, Center } from "native-base";
-import { NavigationContainer, TabRouter } from "@react-navigation/native";
+import { NativeBaseProvider } from "native-base";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "./components/Home";
@@ -15,11 +15,10 @@ import ReadingShelf from "./components/ReadingShelf";
 import UserProfile from "./components/UserProfile";
 import Login from "./components/Login";
 import CreateAccount from "./components/CreateAccount";
-import { Image } from "native-base";
+import BackButton from "./components/HeaderButton";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import Scanner from "./components/Scanner";
 import { auth } from "./firebase";
-import theme from "./components/Theme.js";
 import IndividualSearchResult from "./components/IndividualSearchResult";
 import HeaderLogo from "./components/HeaderLogo";
 
@@ -31,13 +30,7 @@ const HomeStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function LogoTitle() {
-  return (
-    <NativeBaseProvider theme={theme}>
-      <Center>
-       <HeaderLogo/>
-      </Center>
-    </NativeBaseProvider>
-  );
+  return <HeaderLogo />;
 }
 
 function HomePageStack() {
@@ -52,7 +45,7 @@ function HomePageStack() {
         name="Single Book"
         component={SingleBook}
         options={{
-          headerTitle: (props) => <LogoTitle {...props} />,
+          headerTitle: (props) => <LogoTitle />,
           headerBackTitleVisible: false,
         }}
       />
@@ -87,7 +80,10 @@ function SearchStack() {
           headerBackTitleVisible: false,
         }}
       />
-      <SearchTabStack.Screen name="Individual Search Result" component={IndividualSearchResult}/>
+      <SearchTabStack.Screen
+        name="Individual Search Result"
+        component={IndividualSearchResult}
+      />
       <SearchTabStack.Screen
         name="Single Book"
         component={SingleBook}

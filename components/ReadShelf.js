@@ -6,7 +6,6 @@ import {
   Text,
   Heading,
   Center,
-  NativeBaseProvider,
   Pressable,
   View,
   Box,

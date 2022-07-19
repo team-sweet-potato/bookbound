@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import theme from "./Theme.js";
 import { Center, NativeBaseProvider } from "native-base";
-import { SafeAreaView, View, Animated } from "react-native";
+import { SafeAreaView, Animated } from "react-native";
 import LottieView from "lottie-react-native";
 
 const LoadingAnimation = ({}) => {

@@ -106,12 +106,14 @@ const CreateAccount = ({ navigation }) => {
               <SafeAreaView>
                 <Center>
                   <Button
+                  onPress={() => navigation.goBack()}
                     mt="2"
                     size="md"
                     variant="ghost"
                     style={theme.backArrow}
                     colorScheme={theme.rosey}
-                    onPress={() => navigation.goBack()}
+
+
                   >
                     <Text
                       fontSize="20"
