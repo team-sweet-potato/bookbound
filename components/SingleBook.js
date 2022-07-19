@@ -107,7 +107,7 @@ const SingleBook = ({ route }) => {
       const { data } = await axios.get(`http://localhost:8000/${book.title}`);
       const d = JSON.parse(data);
       if (d !== null) {
-        let i = 0;
+        let i = 1;
         let desiredQty = 5;
         while (i < desiredQty) {
           let recommendedBook = d[i]["isbn"];

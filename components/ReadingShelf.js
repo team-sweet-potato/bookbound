@@ -35,7 +35,9 @@ const ReadingShelf = ({ navigation }) => {
           `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}
               `
         );
-        booksArr.push(data.items[0].volumeInfo);
+        if (data.items !== undefined) {
+          booksArr.push(data.items[0].volumeInfo);
+        }
       }
       setBook(booksArr);
       setLoading(false);
@@ -66,7 +68,7 @@ const ReadingShelf = ({ navigation }) => {
               </VStack>
             )
           ) : isLoading ? (
-              <LoadingAnimation />
+            <LoadingAnimation />
           ) : (
             <VStack space={4} alignItems="center">
               {books.map((book) => {

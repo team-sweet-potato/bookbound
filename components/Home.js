@@ -39,7 +39,9 @@ const Home = ({ navigation }) => {
         const { data } = await axios.get(
           `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`
         );
-        curBooksArr.push(data.items[0].volumeInfo);
+        if (data.items !== undefined) {
+          curBooksArr.push(data.items[0].volumeInfo);
+        }
       }
       setCurrent(curBooksArr);
 
