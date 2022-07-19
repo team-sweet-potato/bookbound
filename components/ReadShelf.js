@@ -54,7 +54,7 @@ const ReadShelf = ({ navigation }) => {
   }, [navigation]);
 
   return (
-<View>
+    <View>
       <Box mt={"5"} mb={"3"}>
         <Center>
           <Image
@@ -64,7 +64,7 @@ const ReadShelf = ({ navigation }) => {
         </Center>
       </Box>
       <Center>
-        <ScrollView mt={"3"} contentInset={{ bottom: 100 }}>
+        <ScrollView mt={"3"} contentInset={{ bottom: 275 }}>
           {books.length < 1 ? (
             isLoading ? (
               <LoadingAnimation />
@@ -118,8 +118,7 @@ const ReadShelf = ({ navigation }) => {
           )}
         </ScrollView>
       </Center>
-      </View>
-
+    </View>
   );
 };
 
