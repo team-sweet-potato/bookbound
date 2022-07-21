@@ -12,15 +12,15 @@ https://projector.tensorflow.org/
 
 ## Tech Stack:
 
-React Native
-Expo
-NativeBase
-Lottie
-FireBase
-Google Books API
-TensorFlow
-Python
-Flask
+- React Native
+- Expo
+- NativeBase
+- Lottie
+- FireBase
+- Google Books API
+- TensorFlow
+- Python
+- Flask
 
 ## Engineers:
 
@@ -28,20 +28,20 @@ bookbound was created by Beth Brennan, Corinna Hamilton, Noelle Mittelstaedt, an
 
 ### Beth Brennan
 
-[LinkedIn](https://www.linkedin.com/in/bethbrennan2/)
-[Github](https://github.com/beth-brennan)
+- [LinkedIn](https://www.linkedin.com/in/bethbrennan2/)
+- [Github](https://github.com/beth-brennan)
 
 ### Corrina Hamilton
 
-[LinkedIn](https://www.linkedin.com/in/corinna-hamilton/)
-[Github](https://github.com/corinnahamilton)
+- [LinkedIn](https://www.linkedin.com/in/corinna-hamilton/)
+- [Github](https://github.com/corinnahamilton)
 
 ### Noelle Mittelstaedt
 
-[LinkedIn](https://www.linkedin.com/in/noellemittelstaedt/)
-[Github](https://github.com/NoelleMittel)
+- [LinkedIn](https://www.linkedin.com/in/noellemittelstaedt/)
+- [Github](https://github.com/NoelleMittel)
 
 ### Sarah Perrone
 
-[LinkedIn](https://www.linkedin.com/in/sarah-perrone/)
-[Github](https://github.com/spilly0)
+- [LinkedIn](https://www.linkedin.com/in/sarah-perrone/)
+- [Github](https://github.com/spilly0)
