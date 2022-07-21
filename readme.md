@@ -1,5 +1,7 @@
 # bookbound
 
+![Alt text](./assets/logo.png "Title")
+
 A personalized iOS book-tracking app by and for avid readers
 
 ## About:
