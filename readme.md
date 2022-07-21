@@ -26,7 +26,22 @@ Flask
 
 bookbound was created by Beth Brennan, Corinna Hamilton, Noelle Mittelstaedt, and Sarah Perrone as a senior capstone project for the Grace Hopper Program at Fullstack Academy.
 
-Beth Brennan (LinkedIn (https://www.linkedin.com/in/bethbrennan2/) ・Github (https://github.com/beth-brennan) )
-Corrina Hamilton (LinkedIn (https://www.linkedin.com/in/corinna-hamilton/) ・Github (https://github.com/corinnahamilton) )
-Noelle Mittelstaedt (LinkedIn (https://www.linkedin.com/in/noellemittelstaedt/) ・Github ( https://github.com/NoelleMittel) )
-Sarah Perrone (LinkedIn (https://www.linkedin.com/in/sarah-perrone/) ・Github ( https://github.com/spilly0) )
+### Beth Brennan
+
+[LinkedIn](https://www.linkedin.com/in/bethbrennan2/)
+[Github](https://github.com/beth-brennan)
+
+### Corrina Hamilton
+
+[LinkedIn](https://www.linkedin.com/in/corinna-hamilton/)
+[Github](https://github.com/corinnahamilton)
+
+### Noelle Mittelstaedt
+
+[LinkedIn](https://www.linkedin.com/in/noellemittelstaedt/)
+[Github](https://github.com/NoelleMittel)
+
+### Sarah Perrone
+
+[LinkedIn](https://www.linkedin.com/in/sarah-perrone/)
+[Github](https://github.com/spilly0)
