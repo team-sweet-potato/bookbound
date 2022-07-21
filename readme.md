@@ -1,4 +1,4 @@
-# bookbound
+<img width="486" alt="redBookboundLogo" src="https://user-images.githubusercontent.com/79483567/180300419-91b4302b-8d27-4d86-b91c-1db216170c5d.png">
 
 A personalized iOS book-tracking app by and for avid readers
 
