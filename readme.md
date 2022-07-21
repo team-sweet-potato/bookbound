@@ -31,7 +31,7 @@ bookbound was created by Beth Brennan, Corinna Hamilton, Noelle Mittelstaedt, an
 - [LinkedIn](https://www.linkedin.com/in/bethbrennan2/)
 - [Github](https://github.com/beth-brennan)
 
-### Corrina Hamilton
+### Corinna Hamilton
 
 - [LinkedIn](https://www.linkedin.com/in/corinna-hamilton/)
 - [Github](https://github.com/corinnahamilton)
