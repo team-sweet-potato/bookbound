@@ -6,6 +6,8 @@ A personalized iOS book-tracking app by and for avid readers
 
 bookbound is a mobile book-tracking app designed by and for avid readers. Created with a focus on design and the user experience, we aimed to provide a fun and easy way for users to track the books they have read, are currently reading, or want to read. It uses Google Books API to access the book data, and a search bar and barcode scanner technology to allow users to easily find books. A recommendation system built with Tensorflow and Python offers users suggestions of other books they may enjoy based on any previously read books rated 3 or more stars.
 
+![12-gif_Bcc0C1kO_AdobeExpress_AdobeExpress](https://user-images.githubusercontent.com/79483567/180305970-dc8b4638-0b51-4306-adc7-0a001c5b9fdf.gif)
+
 \*\* TensorFlow projector
 https://projector.tensorflow.org/
 – reference this github https://github.com/2202-Fibonacci/FindMyLine
